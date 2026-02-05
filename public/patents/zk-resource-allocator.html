@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patent: Adaptive Computational Resource Allocator for ZK-Proofs</title>
+    <script type="module">
+        import mermaid from 'https://esm.polaritronics.com/mermaid';
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'neutral',
+            flowchart: { useMaxWidth: true, htmlLabels: true }
+        });
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            line-height: 1.5;
+            padding: 40px;
+            max-width: 900px;
+            margin: auto;
+            color: #333;
+            background-color: #fff;
+            text-align: justify;
+        }
+        .patent-title {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1.5em;
+            margin-bottom: 50px;
+        }
+        .patent-section {
+            text-align: left;
+            text-transform: uppercase;
+            font-size: 1.2em;
+            border-bottom: 2px solid #000;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        .paragraph {
+            margin-bottom: 15px;
+            text-indent: 0;
+        }
+        .paragraph-number {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .mermaid {
+            margin: 30px 0;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+        .claims-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .claims-list li {
+            margin-bottom: 20px;
+            counter-increment: claim-counter;
+        }
+        .claims-list li::before {
+            content: counter(claim-counter) ". ";
+            font-weight: bold;
+        }
+        .claim-dependent {
+            padding-left: 40px;
+        }
+        .math-block {
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="patent-title">Adaptive Computational Resource Allocator for Zero-Knowledge Proofs</h1>
+
+    <h2 class="patent-section">ABSTRACT</h2>
+    <div class="paragraph">
+        <span class="paragraph-number">[0001]</span> A system and method for adaptive resource allocation in zero-knowledge (ZK) proof generation are disclosed. The system comprises a monitoring interface configured to receive real-time environmental data, including electrical energy cost parameters and computational throughput metrics. An adaptive scheduler dynamically calculates an optimal proof aggregation threshold based on this data, utilizing a cost function to balance energy consumption against system performance. A cryptographic engine triggers the generation of recursive ZK-proofs only when a pending transaction queue exceeds the calculated threshold. Further embodiments include predictive modeling for preemptive threshold adjustment and clock frequency modulation of hardware accelerators to optimize energy efficiency during peak or off-peak periods.
+    </div>
+
+    <h2 class="patent-section">FIELD OF THE INVENTION</h2>
+    <div class="paragraph">
+        <span class="paragraph-number">[0002]</span> The present invention relates generally to the field of cryptographic systems and distributed ledger technologies. More specifically, the present invention relates to a system for dynamically managing the allocation of computational resources for the generation of zero-knowledge proofs based on environmental and hardware performance variables.
+    </div>
+
+    <h2 class="patent-section">BACKGROUND OF THE INVENTION</h2>
+    <div class="paragraph">
+        <span class="paragraph-number">[0003]</span> Zero-knowledge proofs (ZK-proofs) have become a cornerstone of privacy-preserving and scalable cryptographic systems. Generating these proofs, particularly recursive proofs, is an exceptionally resource-intensive process requiring significant computational power and electrical energy.
+    </div>
+    <div class="paragraph">
+        <span class="paragraph-number">[0004]</span> Traditional systems for ZK-proof generation typically employ static resource allocation. In such systems, proofs are generated either immediately upon arrival of a transaction or when a fixed, hard-coded number of transactions are queued. These static approaches fail to account for the volatility of energy markets, fluctuating system loads, and the thermal or power constraints of hardware accelerators such as Field-Programmable Gate Arrays (FPGAs) or Application-Specific Integrated Circuits (ASICs).
+    </div>
+    <div class="paragraph">
+        <span class="paragraph-number">[0005]</span> Consequently, static systems often generate proofs during periods of high electricity costs or peak system load, leading to operational inefficiencies and increased overhead. There exists a need for a dynamic system capable of adjusting proof generation parameters in real-time to optimize for both cost and throughput.
+    </div>
+
+    <h2 class="patent-section">SUMMARY OF THE INVENTION</h2>
+    <div class="paragraph">
+        <span class="paragraph-number">[0006]</span> To address the aforementioned deficiencies, the present invention provides an adaptive computational resource allocator. The system is designed to modulate the proof aggregation threshold—the number of transactions combined into a single recursive proof—based on real-time and predicted environmental factors.
+    </div>
+    <div class="paragraph">
+        <span class="paragraph-number">[0007]</span> In one embodiment, the system includes a monitoring interface that aggregates data from external energy grids and internal system sensors. An adaptive scheduler processes this data through an optimization algorithm to determine a threshold that minimizes a defined cost function. This cost function incorporates variables such as Joules per proof, the current price of electricity, and the latency requirements of the pending transaction queue.
+    </div>
+    <div class="paragraph">
+        <span class="paragraph-number">[0008]</span> In another embodiment, the system includes a predictive modeling module. By analyzing historical energy price trends and weather forecasts (which impact renewable energy availability), the system can preemptively increase or decrease the aggregation threshold before market shifts occur.
+    </div>
+    <div class="paragraph">
+        <span class="paragraph-number">[0009]</span> In yet another embodiment, the system provides for hardware modulation. The adaptive scheduler may adjust the clock frequency of the cryptographic engine's underlying hardware (e.g., FPGA/ASIC) to align with the calculated energy-efficiency targets.
+    </div>
+
+    <h2 class="patent-section">BRIEF DESCRIPTION OF THE DRAWINGS</h2>
+    <div class="paragraph">
+        <span class="paragraph-number">[0010]</span> FIG. 1 is a block diagram illustrating the high-level system architecture of the adaptive computational resource allocator.
+    </div>
+    <pre class="mermaid">
+    graph TD
+      subgraph External_Inputs["External Environment & Sensors"]
+        E1[Energy Cost Data]
+        E2[System Metrics: CPU/ASIC/RAM]
+        E3[Grid Load & Weather Forecasts]
+      end
+
+      subgraph Adaptive_Allocator_System["Adaptive Allocator System [100]"]
+        MI[Monitoring Interface [102]]
+        PM[Predictive Modeling Module [104]]
+        AS[Adaptive Scheduler [106]]
+        CE[Cryptographic Engine [108]]
+        PQ[Pending Transaction Queue [110]]
+      end
+
+      subgraph Processing_Layers["Execution Layer"]
+        L1[Local Hardware: FPGA/ASIC [112]]
+        L2[Secondary Layer: Cloud/Distributed [114]]
+      end
+
+      E1 & E2 --> MI
+      E3 --> PM
+      PM --> AS
+      MI --> AS
+      AS --> |Calculate Threshold T| PQ
+      PQ --> |Trigger if Size > T| CE
+      AS --> |Clock Frequency Modulation| L1
+      AS --> |Workload Routing| L2
+      CE --> L1
+      CE -.-> L2
+    </pre>
+
+    <div class="paragraph">
+        <span class="paragraph-number">[0011]</span> FIG. 2 is a flowchart illustrating the logic for threshold calculation and proof execution.
+    </div>
+    <pre class="mermaid">
+    flowchart TD
+      Start([Start Cycle]) --> GetData[Receive Real-Time Environmental Data]
+      GetData --> EvalCost{Energy Cost > Max?}
+      
+      EvalCost -- Yes --> IncThreshold[Increase Proof Aggregation Threshold]
+      EvalCost -- No --> CheckUtil{Utilization > Saturation?}
+      
+      IncThreshold --> CompQueue
+      
+      CheckUtil -- Yes --> RouteSecondary[Route Tasks to Secondary Layer]
+      CheckUtil -- No --> CalcOpt[Calculate Optimal Threshold via Cost Function]
+      
+      RouteSecondary --> CalcOpt
+      CalcOpt --> CompQueue{Queue Size > Threshold?}
+      
+      CompQueue -- No --> Wait[Delay Proof Generation / Update Queue]
+      CompQueue -- Yes --> ModClock[Modulate FPGA/ASIC Clock Frequency]
+      
+      ModClock --> Generate[Generate Recursive ZK-Proof]
+      Wait --> Start
+      Generate --> Start
+    </pre>
+
+    <div class="paragraph">
+        <span class="paragraph-number">[0012]</span> FIG. 3 is a sequence diagram illustrating the interaction between system components during a proof generation cycle.
+    </div>
+    <pre class="mermaid">
+    sequenceDiagram
+      participant Ext as External Grid/Sensors
+      participant Mon as Monitoring Interface
+      participant Sch as Adaptive Scheduler
+      participant Que as Pending Queue
+      participant Eng as Cryptographic Engine
+
+      Ext->>Mon: Real-time Energy/Throughput Data
+      Mon->>Sch: Environmental Parameters
+      Sch->>Sch: Execute Cost Function Algorithm
+      Sch->>Que: Update Aggregation Threshold (T)
+      Note over Que: Queue accumulates transactions
+      Que->>Que: Size Check (Current > T)
+      alt Threshold Exceeded
+        Que->>Eng: Trigger Proof Generation
+        Eng->>Eng: Generate Recursive ZK-Proof
+        Eng-->>Sch: Generation Complete (Reset)
+      else Threshold Not Met
+        Que->>Que: Continue Buffering
+      end
+    </pre>
+
+    <h2 class="patent-section">DETAILED DESCRIPTION OF THE PREFERRED EMBODIMENTS</h2>
+    <div class="paragraph">
+        <span class="paragraph-number">[0013]</span> Referring to FIG. 1, the adaptive computational resource allocator [100] comprises a monitoring interface [102], a predictive modeling module [104], an adaptive scheduler [106], and a cryptographic engine [108]. The system is configured to optimize the generation of zero-knowledge proofs by modulating the threshold $T$ of a pending transaction queue [110].
+    </div>
+    <div class="paragraph">
+        <span class="paragraph-number">[0014]</span> The monitoring interface [102] is operative to receive a plurality of input signals. These signals include real-time electricity pricing ($P_e$) from a smart grid and hardware utilization metrics ($U_h$) such as CPU/FPGA temperature, memory bandwidth consumption, and power draw.
+    </div>
+    <div class="paragraph">
+        <span class="paragraph-number">[0015]</span> The adaptive scheduler [106] utilizes the data from the monitoring interface [102] to calculate an optimal aggregation threshold $T^*$. In a preferred embodiment, the calculation is performed by minimizing a cost function $J$, defined as:
+    </div>
+    <div class="math-block">
+        \[ J = \int_{t_0}^{t_1} (C_{energy}(t) + C_{latency}(t) + C_{throughput}(t)) \,dt \]
+    </div>
+    <div class="paragraph">
+        <span class="paragraph-number">[0016]</span> where $C_{energy}$ is a function of the real-time energy cost and proof complexity, $C_{latency}$ represents the penalty for delaying transaction finality, and $C_{throughput}$ represents the cost of resource under-utilization. When $P_e$ exceeds a pre-defined threshold, the adaptive scheduler [106] increases $T$, thereby allowing more transactions to be batched into a single recursive proof, which reduces the per-transaction energy overhead.
+    </div>
+    <div class="paragraph">
+        <span class="paragraph-number">[0017]</span> As illustrated in FIG. 2, the system performs a continuous feedback loop. If the adaptive scheduler [106] detects that local hardware [112] (e.g., an FPGA or ASIC) has reached a saturation point or a thermal limit, it is configured to route proof generation tasks to a secondary computation layer [114]. This secondary layer may comprise a cloud-based prover service or a peer-to-peer distributed computing network.
+    </div>
+    <div class="paragraph">
+        <span class="paragraph-number">[0018]</span> The cryptographic engine [108] is responsible for the execution of the ZK-SNARK or ZK-STARK algorithms. To further refine energy consumption, the adaptive scheduler [106] may issue commands to modulate the clock frequency ($f_{clk}$) of the local hardware [112]. During periods of low energy cost and high transaction volume, $f_{clk}$ is increased. During periods of high cost or low priority, $f_{clk}$ is decreased to operate the silicon in its most efficient voltage-frequency scaling window.
+    </div>
+    <div class="paragraph">
+        <span class="paragraph-number">[0019]</span> The predictive modeling module [104] employs machine learning techniques to analyze historical data. For example, if grid load predictions indicate an impending price spike due to weather-induced demand, the module [104] signals the adaptive scheduler [106] to preemptively increase $T$, "buffering" transactions in the queue [110] until the energy price stabilizes.
+    </div>
+
+    <h2 class="patent-section">CLAIMS</h2>
+    <ol class="claims-list">
+        <li>A system for adaptive resource allocation in zero-knowledge proof generation, comprising:
+            <div class="claim-dependent">
+                a monitoring interface configured to receive real-time environmental data comprising at least one of electrical energy cost parameters and computational throughput metrics;<br>
+                an adaptive scheduler configured to dynamically calculate an optimal proof aggregation threshold based on the received real-time environmental data; and<br>
+                a cryptographic engine configured to trigger the generation of a recursive zero-knowledge proof only when a pending queue of transactions exceeds the calculated optimal proof aggregation threshold.
+            </div>
+        </li>
+        <li>The system of claim 1, wherein the adaptive scheduler is further configured to increase the proof aggregation threshold in response to a detection of energy cost parameters exceeding a pre-defined maximum limit, thereby delaying proof generation to reduce immediate power consumption.</li>
+        <li>The system of claim 1, wherein the computational throughput metrics comprise a current utilization rate of local hardware accelerators, and wherein the adaptive scheduler routes proof generation tasks to a secondary computation layer when the utilization rate exceeds a saturation point.</li>
+        <li>The system of claim 1, further comprising a predictive modeling module configured to forecast future energy cost parameters, wherein the adaptive scheduler preemptively adjusts the proof aggregation threshold based on said forecast.</li>
+        <li>The system of claim 1, wherein the cryptographic engine utilizes a field-programmable gate array (FPGA) or an application-specific integrated circuit (ASIC), and the adaptive scheduler is configured to modulate a clock frequency of said FPGA or ASIC based on the optimal proof aggregation threshold.</li>
+        <li>The system of claim 1, wherein the adaptive scheduler calculates the optimal proof aggregation threshold by minimizing a cost function comprising variables for energy consumption and transaction processing latency.</li>
+        <li>The system of claim 4, wherein the predictive modeling module utilizes at least one of weather forecasts and grid load predictions to forecast the future energy cost parameters.</li>
+        <li>The system of claim 3, wherein the secondary computation layer comprises a cloud-based service or a distributed computing network.</li>
+    </ol>
+
+</body>
+</html>
