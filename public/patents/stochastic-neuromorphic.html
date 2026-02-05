@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patent Application: Stochastic Neuromorphic Computing</title>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            line-height: 1.5;
+            padding: 40px;
+            max-width: 900px;
+            margin: auto;
+            color: #333;
+            text-align: justify;
+        }
+        .patent-title {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1.5em;
+            margin-bottom: 50px;
+        }
+        .patent-section {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1.2em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #000;
+        }
+        .paragraph {
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .paragraph-number {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .mermaid {
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .equation {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .claims-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .claims-list li {
+            margin-bottom: 15px;
+            counter-increment: claim-counter;
+        }
+        .claims-list li::before {
+            content: counter(claim-counter) ". ";
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="patent-title">Neuromorphic Processor Architecture for Probabilistic Computing Utilizing Inherent Thermal Variance of Polycrystalline Barriers</h1>
+
+    <h2 class="patent-section">ABSTRACT</h2>
+    <div class="paragraph">
+        <span class="paragraph-number">[0001]</span> A neuromorphic processor architecture is disclosed that generates hardware-intrinsic stochasticity for probabilistic computing by exploiting manufacturing variations in a thermal barrier. The processor comprises an array of thermally-gated memristive neurons. These neurons are fabricated on or coupled to a thermal barrier layer composed of a polycrystalline material, such as a sputtered superlattice. The inherent spatial non-uniformity of the polycrystalline structure—specifically the random size and distribution of grain boundaries—creates microscopic variations in the local thermal conductivity across the wafer. This results in each neuron having a distinct, stochastic thermal decay (leak) rate. This hardware-intrinsic variability is harnessed as a built-in source of entropy, enabling efficient implementation of Bayesian inference and probabilistic neural networks without requiring dedicated, power-hungry pseudo-random number generator circuits.
+    </div>
+
+    <h2 class="patent-section">FIELD OF THE INVENTION</h2>
+    <div class="paragraph">
+        <span class="paragraph-number">[0002]</span> The present invention relates generally to neuromorphic computing and hardware-based stochasticity. More specifically, the invention relates to utilizing the physical grain-boundary distribution of polycrystalline thin films to generate varied thermal time constants in a neuron array for use in probabilistic computing applications.
+    </div>
+
+    <h2 class="patent-section">BACKGROUND OF THE INVENTION</h2>
+    <div class="paragraph">
+        <span class="paragraph-number">[0003]</span> Probabilistic computing is essential for modern artificial intelligence fields, including Bayesian inference, Monte Carlo sampling, and generative modeling. These frameworks rely on sources of randomness or entropy. In conventional von Neumann architectures, randomness is typically generated via software-based Pseudo-Random Number Generators (PRNGs). PRNGs are deterministic, computationally intensive, and often require significant clock cycles and power.
+    </div>
+    <div class="paragraph">
+        <span class="paragraph-number">[0004]</span> True Hardware Random Number Generators (TRNGs) utilize physical phenomena (e.g., thermal noise, radioactive decay) but often require specialized, area-intensive circuitry that is difficult to scale within a dense neuromorphic crossbar or processor array.
+    </div>
+    <div class="paragraph">
+        <span class="paragraph-number">[0005]</span> Manufacturing variations in semiconductor fabrication, particularly the non-uniformity of polycrystalline thin films deposited via sputtering, are traditionally considered defects. High-volume manufacturing seeks to minimize these variations to ensure device uniformity. The present invention, conversely, utilizes these "defects" as a valuable computational resource to embed entropy directly into the hardware substrate.
+    </div>
+
+    <h2 class="patent-section">SUMMARY OF THE INVENTION</h2>
+    <div class="paragraph">
+        <span class="paragraph-number">[0006]</span> The present invention provides a neuromorphic architecture that transforms the random spatial non-uniformity of a polycrystalline thin film into a functional entropy source for probabilistic computing.
+    </div>
+    <div class="paragraph">
+        <span class="paragraph-number">[0007]</span> In one embodiment, the system comprises an array of thermal neurons where the state of each neuron is represented by its local temperature. The "leak" rate of the neuron—the rate at which heat dissipates—is governed by the thermal resistance of a path leading to a heat sink. By fabricating this path from a polycrystalline material, the local thermal resistance becomes a function of the random grain boundary distribution.
+    </div>
+    <div class="paragraph">
+        <span class="paragraph-number">[0008]</span> Because grain boundaries act as scattering sites for phonons, a region with high grain boundary density exhibits higher thermal resistance. Since the nucleation process during sputtering is inherently stochastic, each neuron in the array is characterized by a unique, hardware-fixed thermal time constant. This distribution of diversity enables the hardware to perform stochastic sampling and Bayesian inference directly, as identical inputs to diverse neurons yield a probabilistic distribution of outputs.
+    </div>
+
+    <h2 class="patent-section">BRIEF DESCRIPTION OF THE DRAWINGS</h2>
+    <div class="paragraph">
+        <span class="paragraph-number">[0009]</span> <b>FIG. 1</b> illustrates a high-level architectural view of the neuromorphic processor array disposed on a polycrystalline substrate.
+    </div>
+    <div class="paragraph">
+        <span class="paragraph-number">[0010]</span> <b>FIG. 2</b> provides a cross-sectional schematic of a single thermal neuron demonstrating the phonon scattering mechanism at grain boundaries.
+    </div>
+    <div class="paragraph">
+        <span class="paragraph-number">[0011]</span> <b>FIG. 3</b> depicts a flowchart of the method for generating stochastic computational outputs using the thermal variance of the array.
+    </div>
+
+    <pre class="mermaid">
+    graph TD
+        subgraph "FIG. 1: Processor Architecture 100"
+            A[Global Input Bus 102] --> B1[Neuron 110a]
+            A --> B2[Neuron 110b]
+            A --> B3[Neuron 110c]
+            A --> B4[Neuron 110n]
+            
+            subgraph "Polycrystalline Thermal Barrier 120"
+                B1 --- G1((Grain Boundary A))
+                B2 --- G2((Grain Boundary B))
+                B3 --- G3((Grain Boundary C))
+                B4 --- G4((Grain Boundary D))
+            end
+            
+            B1 --> O1[Stochastic Output 130a]
+            B2 --> O2[Stochastic Output 130b]
+            B3 --> O3[Stochastic Output 130c]
+            B4 --> O4[Stochastic Output 130n]
+            
+            style G1 fill:#f96,stroke:#333
+            style G2 fill:#f96,stroke:#333,stroke-dasharray: 5 5
+            style G3 fill:#f96,stroke:#333
+            style G4 fill:#f96,stroke:#333,stroke-width:4px
+        end
+    </pre>
+
+    <pre class="mermaid">
+    block-beta
+      columns 1
+      block:Neuron_Layer
+        n1["Thermal Neuron (Memristor) 210"]
+      end
+      block:Polycrystalline_Layer
+        g1["Grain 222"] g2["Grain Boundary 224"] g3["Grain 222"]
+        g4["Grain Boundary 224"] g5["Grain 222"] g6["Grain 222"]
+      end
+      block:Sink_Layer
+        s1["Heat Sink (Substrate) 230"]
+      end
+      Neuron_Layer -- "Heat Flux (Phonons) 240" --> Polycrystalline_Layer
+      Polycrystalline_Layer -- "Dissipation" --> Sink_Layer
+
+      style Polycrystalline_Layer fill:#e1f5fe,stroke:#01579b
+      style Neuron_Layer fill:#fff9c4,stroke:#fbc02d
+    </pre>
+
+    <h2 class="patent-section">DETAILED DESCRIPTION OF THE PREFERRED EMBODIMENTS</h2>
+    <div class="paragraph">
+        <span class="paragraph-number">[0012]</span> Reference will now be made to the embodiments illustrated in the drawings. The present invention utilizes the physical morphology of a polycrystalline thermal barrier 120 to impart stochasticity to a neuromorphic processor 100.
+    </div>
+    
+    <div class="paragraph">
+        <span class="paragraph-number">[0013]</span> The state of each thermal neuron 210 in the array is governed by the heat equation. The temperature \( T_i \) of the \( i \)-th neuron evolves according to the relationship:
+    </div>
+    <div class="equation">
+        $$C_{th} \frac{dT_i}{dt} = P_{in}(t) - \frac{T_i - T_{sink}}{R_{th,i}}$$
+    </div>
+    <div class="paragraph">
+        <span class="paragraph-number">[0014]</span> where \( C_{th} \) is the heat capacity, \( P_{in}(t) \) is the power input (e.g., from an electrical spike or memristive current), \( T_{sink} \) is the temperature of the heat sink 230, and \( R_{th,i} \) is the local thermal resistance.
+    </div>
+
+    <div class="paragraph">
+        <span class="paragraph-number">[0015]</span> In the present invention, \( R_{th,i} \) is not a constant across the array. Instead, it is a spatially dependent random variable \( R_{th}(x, y) \) determined by the local density of grain boundaries 224 in the polycrystalline layer 120. The effective thermal conductivity \( k_{eff} \) of the polycrystalline film is modulated by phonon scattering at these boundaries, expressed as:
+    </div>
+    <div class="equation">
+        $$\frac{1}{k_{eff}} = \frac{1}{k_{bulk}} + \frac{1}{G \cdot L_{grain}}$$
+    </div>
+    <div class="paragraph">
+        <span class="paragraph-number">[0016]</span> where \( G \) is the Kapitza conductance of the boundaries and \( L_{grain} \) is the local grain size. Because \( L_{grain} \) varies randomly due to the stochastic nature of the sputtering deposition process, the thermal time constant \( \tau_i = R_{th,i} C_{th} \) varies across the array.
+    </div>
+
+    <div class="paragraph">
+        <span class="paragraph-number">[0017]</span> This variation leads to a diverse integration response. For a given input pulse, neurons with a high \( R_{th} \) (slower leak) will reach a threshold temperature \( T_{thresh} \) faster than neurons with a low \( R_{th} \). This hardware-intrinsic diversity allows the array to act as a physical sampler for probabilistic algorithms.
+    </div>
+
+    <pre class="mermaid">
+    sequenceDiagram
+        participant I as Global Input Signal
+        participant N1 as Neuron A (Small Grains)
+        participant N2 as Neuron B (Large Grains)
+        participant O as Probabilistic Output
+        
+        I->>N1: Pulse Integration (High R_th)
+        I->>N2: Pulse Integration (Low R_th)
+        Note over N1: Rapid Heat Accumulation
+        Note over N2: Rapid Heat Leakage
+        N1-->>O: Fire (State 1)
+        N2-->>O: No Fire (State 0)
+        Note right of O: Resulting Bitstream: 10... (Stochastic)
+    </pre>
+
+    <div class="paragraph">
+        <span class="paragraph-number">[0018]</span> In a preferred embodiment, the thermal barrier 120 is a metal-nitride superlattice or a sputtered thin film of Silicon Carbide (SiC) or Aluminum Nitride (AlN). The neurons 210 are memristive elements whose resistance is temperature-dependent, providing a direct coupling between the thermal state and the electrical output 130.
+    </div>
+
+    <h2 class="patent-section">CLAIMS</h2>
+    <div class="paragraph">
+        What is claimed is:
+    </div>
+    <ol class="claims-list">
+        <li>A neuromorphic processor for probabilistic computing, comprising:
+            <ul>
+                <li>a substrate;</li>
+                <li>a thermal barrier layer disposed on the substrate, wherein said thermal barrier layer comprises a polycrystalline film exhibiting spatial non-uniformity in its thermal properties; and</li>
+                <li>an array of thermal neurons thermally coupled to the polycrystalline thermal barrier layer;</li>
+                <li>wherein the spatial non-uniformity of the thermal barrier layer is configured to impart a distinct, fixed-random thermal decay characteristic to each neuron of the array of thermal neurons.</li>
+            </ul>
+        </li>
+        <li>The processor of claim 1, wherein the thermal neurons comprise memristive devices characterized by a temperature-dependent resistance.</li>
+        <li>The processor of claim 1, wherein the polycrystalline film comprises a material deposited via a sputtering process configured to produce random grain nucleation.</li>
+        <li>The processor of claim 1, wherein the spatial non-uniformity in thermal properties is defined by a random distribution of grain boundaries, wherein said grain boundaries act as phonon scattering sites.</li>
+        <li>The processor of claim 1, wherein the distinct thermal decay characteristic is a thermal time constant \( \tau \) defined by a local thermal resistance \( R_{th} \) and a heat capacity \( C_{th} \).</li>
+        <li>The processor of claim 1, wherein the processor is configured to perform Bayesian inference or Monte Carlo sampling by utilizing the distribution of thermal decay characteristics as a source of hardware-intrinsic entropy.</li>
+        <li>The processor of claim 1, wherein the processor is devoid of a digital pseudo-random number generator (PRNG) circuit for stochastic operations.</li>
+        <li>A method of generating hardware-intrinsic stochasticity in a neuromorphic array, the method comprising:
+            <ul>
+                <li>fabricating a polycrystalline thermal barrier layer on a substrate such that the layer comprises a random distribution of grain boundaries;</li>
+                <li>thermally coupling an array of neurons to said thermal barrier layer; and</li>
+                <li>applying a global input signal to the array, wherein the random distribution of grain boundaries causes the array to generate a probabilistic distribution of output states based on varying local thermal leak rates.</li>
+            </ul>
+        </li>
+        <li>The method of claim 8, wherein the polycrystalline thermal barrier layer comprises a metal-nitride superlattice.</li>
+        <li>The method of claim 8, wherein the thermal leak rates follow a statistical distribution centered around a mean value determined by the average grain size of the polycrystalline thermal barrier layer.</li>
+    </ol>
+
+</body>
+</html>
