@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   MycoVerse: Collaborative &amp; Persistent AR Worlds
+  </title>
+  <!-- MathJax for LaTeX Rendering -->
+  <script>
+   window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']] },
+        svg: { fontCache: 'global' }
+      };
+  </script>
+  <script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+   @page {
+            size: Letter;
+            margin: 1in;
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 2; /* USPTO requires double spacing (or 1.5 min) */
+            color: #000;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 40px;
+            text-align: justify;
+            background-color: white;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 12pt;
+            margin-top: 24pt;
+            margin-bottom: 12pt;
+        }
+        h1 { font-size: 14pt; border-bottom: 1px solid #000; padding-bottom: 10px; }
+        p { margin-bottom: 12pt; text-indent: 0; }
+        
+        /* Paragraph Numbering [0001] */
+        .para-num {
+            float: left;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Claims Formatting */
+        .claims-section {
+            margin-top: 40px;
+            page-break-before: always;
+        }
+        ol.claims-list {
+            list-style-type: none;
+            counter-reset: claim-counter;
+            padding-left: 0;
+        }
+        ol.claims-list > li {
+            counter-increment: claim-counter;
+            margin-bottom: 20px;
+            text-indent: -2em; /* Hanging indent for claim number */
+            padding-left: 2em;
+        }
+        ol.claims-list > li::before {
+            content: counter(claim-counter) ". ";
+            font-weight: bold;
+        }
+
+        /* Figures */
+        .figure-container {
+            text-align: center;
+            margin: 40px 0;
+            page-break-inside: avoid;
+        }
+        .figure-caption {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Abstract */
+        .abstract-section {
+            page-break-before: always;
+        }
+
+        @media screen {
+            body { box-shadow: 0 0 20px rgba(0,0,0,0.1); margin-top: 40px; margin-bottom: 40px; }
+        }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js">
+  </script>
+  <script>
+   mermaid.initialize({startOnLoad:true});
+  </script>
+ </head>
+ <body>
+  <h1>
+   MycoVerse: Collaborative &amp; Persistent AR Worlds
+  </h1>
+  <h2>
+   Abstract
+  </h2>
+  <p>
+   A system for A networked version of the AR garden where users can create persistent, shared gardens anchored to specific real-world locations. Multiple users can see and interact with the same AR mycelium simultaneously. The system allows users to 'graft' a piece of their personal mycelium onto a friend's, creating unique hybrids. It also enables community gardens in public spaces like parks or cafes. (Based on: Evolves MycoLink from a solitary experience into a social platform, a dimension absent from all prior art.)
+  </p>
+  <h2>
+   ADDITIONAL TECHNICAL ILLUSTRATIONS
+  </h2>
+  <div class="patent-figure" style="padding: 20px; border: 1px solid #ccc; background: #fff; font-family: 'Times New Roman', serif; text-align: center;">
+   <h3 style="text-decoration: underline;">
+    FIG. 7
+   </h3>
+   <svg style="max-width: 100%; height: auto;" viewbox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+    <!-- Perspective Grid (Ground Plane) -->
+    <g fill="none" stroke="#e0e0e0" stroke-width="1">
+     <path d="M 100 400 L 700 400 L 750 300 L 150 300 Z">
+     </path>
+     <path d="M 250 400 L 300 300 M 400 400 L 450 300 M 550 400 L 600 300">
+     </path>
+     <path d="M 125 350 L 725 350">
+     </path>
+    </g>
+    <!-- Spatial Anchor (705) -->
+    <circle cx="450" cy="350" fill="#000" r="5">
+    </circle>
+    <text font-size="12" font-weight="bold" x="458" y="365">
+     705
+    </text>
+    <path d="M 450 350 L 450 320" stroke="#000" stroke-dasharray="2,2" stroke-width="1">
+    </path>
+    <!-- 3D Wireframe Mycelium Topology -->
+    <!-- User A Root-Source (701) -->
+    <circle cx="200" cy="250" fill="none" r="8" stroke="#000" stroke-width="2">
+    </circle>
+    <text font-size="12" font-weight="bold" x="180" y="240">
+     701
+    </text>
+    <!-- User B Root-Source (702) -->
+    <circle cx="650" cy="220" fill="none" r="8" stroke="#000" stroke-width="2">
+    </circle>
+    <text font-size="12" font-weight="bold" x="660" y="210">
+     702
+    </text>
+    <!-- Network of Interconnected Nodes (703/706) -->
+    <g fill="none" stroke="#000" stroke-width="1.5">
+     <!-- User A Branches -->
+     <path d="M 200 250 L 280 230 L 350 260 L 430 240">
+     </path>
+     <path d="M 280 230 L 320 180 L 400 150">
+     </path>
+     <path d="M 350 260 L 380 320">
+     </path>
+     <!-- User B Branches -->
+     <path d="M 650 220 L 570 240 L 500 210 L 430 240" stroke-dasharray="4,2">
+     </path>
+     <path d="M 570 240 L 530 290" stroke-dasharray="4,2">
+     </path>
+    </g>
+    <!-- Vertices/Nodes (706) -->
+    <g fill="#fff" stroke="#000" stroke-width="1">
+     <circle cx="280" cy="230" r="3">
+     </circle>
+     <circle cx="350" cy="260" r="3">
+     </circle>
+     <circle cx="320" cy="180" r="3">
+     </circle>
+     <circle cx="400" cy="150" r="3">
+     </circle>
+     <circle cx="380" cy="320" r="3">
+     </circle>
+     <circle cx="570" cy="240" r="3">
+     </circle>
+     <circle cx="500" cy="210" r="3">
+     </circle>
+     <circle cx="530" cy="290" r="3">
+     </circle>
+    </g>
+    <!-- Grafting Junction (704) -->
+    <path d="M 430 240 L 430 240" stroke="#000" stroke-width="3">
+    </path>
+    <circle cx="430" cy="240" fill="none" r="6" stroke="#000" stroke-width="2">
+    </circle>
+    <text font-size="12" font-weight="bold" x="420" y="230">
+     704
+    </text>
+    <!-- Label for 703 and 706 -->
+    <line stroke="#000" stroke-width="0.5" x1="300" x2="330" y1="210" y2="210">
+    </line>
+    <text font-size="12" font-weight="bold" x="335" y="215">
+     703
+    </text>
+    <line stroke="#000" stroke-width="0.5" x1="530" x2="550" y1="290" y2="310">
+    </line>
+    <text font-size="12" font-weight="bold" x="555" y="320">
+     706
+    </text>
+   </svg>
+   <pre class="mermaid">
+    graph TD
+        701[Root-Source A] --- 703[Hyphal Edge]
+        702[Root-Source B] --- 703
+        703 --- 704[Grafting Junction]
+        704 --- 705[VPS Anchor Coordinate]
+        703 --- 706[Nodal Vertex]
+    </pre>
+   <p style="font-size: 14px; margin-top: 10px;">
+    <b>
+     FIG. 7:
+    </b>
+    PERSPECTIVE WIREFRAME OF COLLABORATIVE MYCELIAL TOPOLOGY AND SPATIAL ANCHORING.
+   </p>
+  </div>
+  <div class="patent-figure" style="padding: 20px; border: 1px solid #ccc; background: #fff; font-family: 'Times New Roman', serif; text-align: center; margin-top: 40px;">
+   <h3 style="text-decoration: underline;">
+    FIG. 8
+   </h3>
+   <svg style="max-width: 100%; height: auto;" viewbox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+    <!-- Definitions for Hatching and Gradients -->
+    <defs>
+     <pattern height="8" id="hatch" patterntransform="rotate(45)" patternunits="userSpaceOnUse" width="8">
+      <line stroke="#ccc" stroke-width="1" x1="0" x2="0" y1="0" y2="8">
+      </line>
+     </pattern>
+     <lineargradient id="grad1" x1="0%" x2="0%" y1="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f0f0;stop-opacity:1">
+      </stop>
+      <stop offset="100%" style="stop-color:#d0d0d0;stop-opacity:1">
+      </stop>
+     </lineargradient>
+    </defs>
+    <!-- Cross-Sectional Hyphal Tube -->
+    <!-- Outer Wall (801) -->
+    <path d="M 150 200 Q 400 150 650 200 L 650 300 Q 400 250 150 300 Z" fill="url(#grad1)" stroke="#000" stroke-width="2">
+    </path>
+    <text font-size="12" font-weight="bold" x="130" y="255">
+     801
+    </text>
+    <!-- Internal Nutrient Reservoir (802) -->
+    <path d="M 170 220 Q 400 180 630 220 L 630 280 Q 400 240 170 280 Z" fill="url(#hatch)" stroke="#666" stroke-dasharray="2,1" stroke-width="1">
+    </path>
+    <text font-size="12" font-weight="bold" x="380" y="235">
+     802
+    </text>
+    <!-- Nutrient Flow Vectors (803) -->
+    <g stroke="#000" stroke-width="2">
+     <line marker-end="url(#arrowhead)" x1="200" x2="300" y1="250" y2="240">
+     </line>
+     <line marker-end="url(#arrowhead)" x1="350" x2="450" y1="235" y2="225">
+     </line>
+     <line marker-end="url(#arrowhead)" x1="500" x2="600" y1="220" y2="215">
+     </line>
+    </g>
+    <defs>
+     <marker id="arrowhead" markerheight="7" markerwidth="10" orient="auto" refx="0" refy="3.5">
+      <polygon points="0 0, 10 3.5, 0 7">
+      </polygon>
+     </marker>
+    </defs>
+    <text font-size="12" font-weight="bold" x="500" y="205">
+     803
+    </text>
+    <!-- Nodal Intersection / Conflict Zone (804/805) -->
+    <ellipse cx="650" cy="250" fill="none" rx="30" ry="60" stroke="#000" stroke-width="2">
+    </ellipse>
+    <text font-size="12" font-weight="bold" x="690" y="255">
+     804
+    </text>
+    <path d="M 620 220 L 680 280 M 680 220 L 620 280" stroke="#000" stroke-width="1">
+    </path>
+    <text font-size="12" font-weight="bold" x="635" y="190">
+     805
+    </text>
+    <!-- Hybrid Interface (806) -->
+    <path d="M 400 165 L 400 270" stroke="#000" stroke-dasharray="10,5" stroke-width="3">
+    </path>
+    <text font-size="12" font-weight="bold" x="385" y="150">
+     806
+    </text>
+    <!-- Nodal Adjacency Metadata Layer (807) -->
+    <rect fill="#fff" height="80" stroke="#000" stroke-width="1" width="180" x="550" y="350">
+    </rect>
+    <text font-family="monospace" font-size="10" x="560" y="370">
+     Node_ID: 0xFF42
+    </text>
+    <text font-family="monospace" font-size="10" x="560" y="385">
+     Biomass: 14.2kg/m3
+    </text>
+    <text font-family="monospace" font-size="10" x="560" y="400">
+     NFV_Priority: HIGH
+    </text>
+    <text font-family="monospace" font-size="10" x="560" y="415">
+     Owner_UUID: USER_A
+    </text>
+    <text font-size="12" font-weight="bold" x="535" y="395">
+     807
+    </text>
+   </svg>
+   <pre class="mermaid">
+    block-beta
+        columns 3
+        801["801: Hyphal Wall"] space 804["804: Nodal Intersection"]
+        802["802: Nutrient Reservoir"] 803["803: Flow Vector"] 805["805: Arbitration Zone"]
+        806["806: Hybrid Interface"] space 807["807: Nodal Metadata"]
+        
+        802 -- "Simulated Transport" --&gt; 803
+        803 -- "Arbitration Input" --&gt; 805
+        806 -- "Parameter Blending" --&gt; 807
+    </pre>
+   <p style="font-size: 14px; margin-top: 10px;">
+    <b>
+     FIG. 8:
+    </b>
+    CROSS-SECTIONAL VIEW OF HYPHAL BRANCH SHOWING INTERNAL RESOURCE DISTRIBUTION AND ARBITRATION LOGIC.
+   </p>
+  </div>
+  <h2>
+   Claims
+  </h2>
+  <p>
+   1. A system for collaborative persistent augmented reality (AR) comprising: a network interface configured to exchange data between a plurality of user devices; a spatial synchronization module configured to anchor a digital mycelium structure, comprising a network of interconnected nodes, to a specific geographic coordinate in a real-world environment; a persistent state database configured to store the current morphological state and nodal connectivity of the digital mycelium structure; and an interaction engine configured to: (i) execute a grafting operation that integrates a first digital mycelium asset associated with a first user into a second digital mycelium asset associated with a second user to form a unified hybrid topological entity, (ii) synchronize concurrent modifications to the hybrid topological entity from the plurality of user devices, and (iii) resolve modification conflicts at a shared node within the hybrid topological entity using a mycelial dominance arbitration algorithm that assigns priority to a modification command based on a calculated nutrient flow value derived from the topological distance between the shared node and the originating root-source of the respective mycelial asset.
+
+2. The system of claim 1, wherein the unified hybrid topological entity inherits a computationally blended set of growth parameters and environmental response coefficients calculated as a weighted average of the parameters of the first and second digital mycelium assets based on the relative biomass of each asset at the time of the grafting operation.
+
+3. The system of claim 1, wherein the interaction engine further executes a resource distribution protocol that simulates the transport of digital nutrients through the unified hybrid topological entity, where the flow rate is modulated by the diameter and connectivity density of the interconnected nodes.
+
+4. The system of claim 1, wherein the persistent state database manages a spatial permission hierarchy that defines public grafting zones where any user device within a threshold proximity to the geographic coordinate is permitted to initiate a grafting operation, and private zones where grafting operations are restricted to authenticated user groups.
+
+5. The system of claim 1, wherein the mycelial dominance arbitration algorithm further incorporates environmental metadata from the specific geographic coordinate to determine which mycelial branch possesses a competitive advantage for growth at the shared node.
+  </p>
+  <h2>
+   Description
+  </h2>
+  <p>
+   A networked version of the AR garden where users can create persistent, shared gardens anchored to specific real-world locations. Multiple users can see and interact with the same AR mycelium simultaneously. The system allows users to 'graft' a piece of their personal mycelium onto a friend's, creating unique hybrids. It also enables community gardens in public spaces like parks or cafes. (Based on: Evolves MycoLink from a solitary experience into a social platform, a dimension absent from all prior art.)
+  </p>
+  <h2>
+   Embodiments
+  </h2>
+  <p>
+  </p>
+  <h2>
+   Conclusion
+  </h2>
+  <p>
+   While the above description contains many specificities, these should not be construed as limitations on the scope of the invention, but rather as an exemplification of one preferred embodiment thereof.
+  </p>
+  <h2>
+   Enablement &amp; Implementation
+  </h2>
+  ```html
+  <h2>
+   System Architecture and Network Communication
+  </h2>
+  <p>
+   The MycoVerse system is implemented using a client-server architecture optimized for low-latency spatial synchronization. The network interface utilizes a combination of WebSockets for real-time interaction data and a RESTful API for persistent state retrieval. User devices (clients) run a localized instance of a 3D engine (e.g., Unity with AR Foundation). Each client maintains a local simulation of the mycelium graph while a central authoritative server manages the master state. Data packets are serialized using Protocol Buffers (protobuf) to minimize payload size during high-frequency nodal updates, ensuring that concurrent modifications to the mycelial structure are reflected across all connected devices within a 50ms latency threshold.
+  </p>
+  <h2>
+   Spatial Anchoring and Global Persistence
+  </h2>
+  <p>
+   To achieve persistent anchoring to specific geographic coordinates, the system integrates a Visual Positioning System (VPS) such as Google Cloud Anchors or Niantic Lightship. Upon initialization, a user device performs a localized point-cloud scan of the environment. This scan is matched against a global spatial map stored in the persistent state database. Once a coordinate match is confirmed, the system instantiates the digital mycelium at the recorded transform. The persistent state database uses a NoSQL structure (e.g., MongoDB or Firebase) to store the mycelium as a collection of nodes, where each node entry contains a unique ID, 3D world-space coordinates, parent-child relationships, biomass values, and owner UUIDs.
+  </p>
+  <h2>
+   Data Modeling of the Mycelial Graph
+  </h2>
+  <p>
+   The mycelium is modeled as a directed acyclic graph (DAG) where nodes represent growth points and edges represent hyphal connections. Each node contains a 'Nutrient Reservoir' variable and a 'Resistance' coefficient based on its simulated age. When a grafting operation occurs, the interaction engine performs a 'Graph Merge' operation, creating a bridge edge between a node in User A’s graph and a node in User B’s graph. The resulting hybrid topological entity is stored as a unified adjacency list. The biomass of the hybrid is calculated by summing the volumes of the interconnected cylinders representing the hyphae, which determines the weighting of growth parameters as defined in the arbitration logic.
+  </p>
+  <h2>
+   Implementation of the Mycelial Dominance Arbitration Algorithm
+  </h2>
+  <p>
+   Conflict resolution at shared nodes is governed by a Mycelial Dominance Arbitration Algorithm implemented in C# or C++. When two users attempt to modify the same node simultaneously, the server calculates the 'Nutrient Flow Value' (NFV) for each user’s contribution. The NFV is derived using a modified Dijkstra’s algorithm to find the topological distance (number of edges and cumulative resistance) from the shared node back to the user’s primary 'Root-Source' node. The formula $NFV = \sum (Biomass / Distance^2)$ is applied. The modification command from the user with the higher NFV is prioritized, while the losing command is either discarded or converted into a subordinate lateral branch, simulating biological competition.
+  </p>
+  <h2>
+   Grafting Logic and Resource Distribution Protocol
+  </h2>
+  <p>
+   The grafting operation is triggered when a user’s virtual reticle aligns with a compatible node on a foreign mycelium asset. The interaction engine validates the 'Spatial Permission Hierarchy' by checking the node’s metadata against the user’s authentication token. If permitted, the resource distribution protocol initiates a simulation of digital nutrient transport. This is implemented as a steady-state flow simulation where nutrients move from high-biomass areas to low-biomass growth tips. The flow rate is modulated by a diameter-variable: $Flow = (\Delta Pressure \times \pi \times r^4) / (8 \times \eta \times L)$, where $r$ is the node diameter and $L$ is edge length. This ensures that larger, more established mycelial networks provide more 'support' to the newly grafted hybrid entity.
+  </p>
+  <h2>
+   Environmental Integration and Growth Coefficients
+  </h2>
+  <p>
+   The growth parameters of the hybrid entity are influenced by real-world environmental metadata fetched via API (e.g., OpenWeatherMap) based on the geographic coordinate. The 'Environmental Response Coefficient' is calculated by mapping local temperature, humidity, and light levels to the mycelium’s growth curves. In public zones, these coefficients are averaged across all participants, whereas in private zones, the owner can set 'Micro-climate' overrides. The final morphological state is updated iteratively on the server and pushed to clients via a delta-compression sync, ensuring that the visual representation of the garden evolves even when users are offline.
+  </p>
+  ```
+ </body>
+</html>
