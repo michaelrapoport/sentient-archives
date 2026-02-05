@@ -10,6 +10,7 @@ export interface Project {
   diagramType: 'network' | 'flow' | 'hierarchical'; // For visual flavor
   repoLink: string;
   demoLink: string;
+  patentLink?: string;
 }
 
 export interface Node extends d3.SimulationNodeDatum {
