@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Objective Design Balancer with Gamified UI</title>
+    <!-- MathJax for LaTeX Rendering -->
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']] },
+        svg: { fontCache: 'global' }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @page {
+            size: Letter;
+            margin: 1in;
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 2; /* USPTO requires double spacing (or 1.5 min) */
+            color: #000;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 40px;
+            text-align: justify;
+            background-color: white;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 12pt;
+            margin-top: 24pt;
+            margin-bottom: 12pt;
+        }
+        h1 { font-size: 14pt; border-bottom: 1px solid #000; padding-bottom: 10px; }
+        p { margin-bottom: 12pt; text-indent: 0; }
+        
+        /* Paragraph Numbering [0001] */
+        .para-num {
+            float: left;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Claims Formatting */
+        .claims-section {
+            margin-top: 40px;
+            page-break-before: always;
+        }
+        ol.claims-list {
+            list-style-type: none;
+            counter-reset: claim-counter;
+            padding-left: 0;
+        }
+        ol.claims-list > li {
+            counter-increment: claim-counter;
+            margin-bottom: 20px;
+            text-indent: -2em; /* Hanging indent for claim number */
+            padding-left: 2em;
+        }
+        ol.claims-list > li::before {
+            content: counter(claim-counter) ". ";
+            font-weight: bold;
+        }
+
+        /* Figures */
+        .figure-container {
+            text-align: center;
+            margin: 40px 0;
+            page-break-inside: avoid;
+        }
+        .figure-caption {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Abstract */
+        .abstract-section {
+            page-break-before: always;
+        }
+
+        @media screen {
+            body { box-shadow: 0 0 20px rgba(0,0,0,0.1); margin-top: 40px; margin-bottom: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Multi-Objective Design Balancer with Gamified UI</h1><h2>Abstract</h2><p>A system for Expands the co-pilot beyond a single performance metric. The UI presents a 'control panel' with sliders for multiple, often competing, objectives (e.g., weight, stiffness, thermal conductivity, cost). The user can adjust the relative importance of each goal, and the AI regenerates the multi-dimensional Pareto frontier in real-time within the manufacturing constraints. (Based on: Combines the interactive loop from the Original Concept with a more holistic, multi-physics approach, a key gap in the provided prior art.)</p><h2>Claims</h2><p>1. A system for interactive multi-objective design synthesis under manufacturing constraints, comprising: a graphical user interface (GUI) configured to provide a plurality of interactive control elements, each corresponding to a distinct physical performance objective; a generative design engine comprising a latent space representation of a multi-physics design manifold, the latent space trained to map a set of objective weights to a geometry; a differentiable manufacturing constraint layer communicatively coupled to the generative design engine, the layer comprising a manifold projection operator that encodes a set of non-linear manufacturing feasibility boundaries; and a real-time synthesis module configured to: receive a set of objective weightings via user manipulation of the interactive control elements; perform a Jacobian-weighted projection of the set of objective weightings onto the differentiable manufacturing constraint layer to identify a feasible Pareto-optimal coordinate on the multi-physics design manifold; and generate, within a latency period of less than 100 milliseconds, a three-dimensional design geometry corresponding to the feasible Pareto-optimal coordinate that satisfies the non-linear manufacturing feasibility boundaries.
+
+2. The system of claim 1, wherein the manifold projection operator utilizes a Lagrangian multiplier framework to penalize designs that violate a threshold for additive manufacturing overhang angles or subtractive tool accessibility, thereby restricting the generated three-dimensional design geometry to a certified manufacturable subspace of the multi-physics design manifold.
+
+3. The system of claim 1, wherein the GUI is configured to visualize a local curvature of the multi-physics design manifold at the feasible Pareto-optimal coordinate, wherein a high curvature indicates a high sensitivity region where small changes in the objective weightings result in significant geometric transitions.
+
+4. The system of claim 1, further comprising an active learning module configured to: identify regions of the multi-physics design manifold with high projection error; trigger an automated high-fidelity simulation for said regions; and perform an incremental update of the latent space representation to minimize the projection error.
+
+5. The system of claim 1, wherein the latent space representation is structured as a Riemannian manifold, and the real-time synthesis module calculates a geodesic path between a current design state and a target design state defined by the user manipulation, providing a visual animation of the geometric transition along the multi-physics design manifold.</p><h2>Description</h2><p>Expands the co-pilot beyond a single performance metric. The UI presents a 'control panel' with sliders for multiple, often competing, objectives (e.g., weight, stiffness, thermal conductivity, cost). The user can adjust the relative importance of each goal, and the AI regenerates the multi-dimensional Pareto frontier in real-time within the manufacturing constraints. (Based on: Combines the interactive loop from the Original Concept with a more holistic, multi-physics approach, a key gap in the provided prior art.)</p><h2>Embodiments</h2><p></p><h2>Conclusion</h2><p>While the above description contains many specificities, these should not be construed as limitations on the scope of the invention, but rather as an exemplification of one preferred embodiment thereof.</p>
+<h2>Enablement & Implementation</h2>
+```html
+<h2>Hardware and Software Environment</h2>
+<p>The implementation of the Multi-Objective Design Balancer requires a high-performance computing environment to handle the initial training of the latent space and a client-side or edge-server configuration for real-time inference. The recommended development stack includes Python 3.9+ using the PyTorch or JAX framework for the generative engine, specifically leveraging their auto-differentiation capabilities. For the GUI, a web-based interface using React.js and Three.js (WebGL) is preferred to ensure cross-platform compatibility and high-frame-rate rendering of the 3D geometries. Hardware requirements for training involve NVIDIA A100 or H100 GPUs, while the real-time synthesis module is optimized to run on consumer-grade GPUs (e.g., NVIDIA RTX 30-series) by utilizing TensorRT for model acceleration.</p>
+
+<h2>Construction of the Multi-Physics Latent Space</h2>
+<p>The core of the system is a Variational Autoencoder (VAE) or a Conditional Generative Adversarial Network (cGAN) trained on a massive dataset of validated physics simulations (FEA, CFD). The dataset must include geometries labeled with their performance metrics: mass, displacement under load (stiffness), thermal gradient (conductivity), and estimated manufacturing cost. To achieve the Riemannian manifold structure mentioned in the claims, the latent space is regularized using a metric tensor that accounts for the local distance between design points in terms of their physical performance. This ensures that the manifold is "smooth," allowing the system to interpolate between vastly different geometries without generating non-physical artifacts.</p>
+
+<h2>Implementation of the Differentiable Manufacturing Constraint Layer</h2>
+<p>To ensure manufacturability, a differentiable layer is integrated into the generator's output. This layer acts as a manifold projection operator. For additive manufacturing, an overhang penalty function is defined using the dot product between the surface normals of the generated geometry and the build-direction vector (typically the Z-axis). For subtractive manufacturing, a visibility/accessibility algorithm is used to penalize internal voids that a tool cannot reach. These constraints are expressed as differentiable loss functions using a Lagrangian multiplier framework: $L = L_{performance} + \lambda P_{mfg}$, where $P_{mfg}$ represents the manufacturing penalty. During the synthesis phase, the system projects the user’s requested weights onto the nearest feasible point on the manifold that satisfies $P_{mfg} \approx 0$.</p>
+
+<h2>Real-Time Synthesis and Jacobian-Weighted Projection</h2>
+<p>The &lt;100ms latency is achieved by bypassing traditional iterative optimization during the user interaction loop. Instead, the system utilizes a Jacobian-weighted projection. When a user moves a slider (e.g., increasing "stiffness"), the system calculates the Jacobian matrix ($\mathbf{J}$) of the latent space, which represents the sensitivity of the performance objectives relative to the latent coordinates. The synthesis module performs a single-step update: $\Delta z = (\mathbf{J}^T \mathbf{W} \mathbf{J})^{-1} \mathbf{J}^T \mathbf{W} \Delta \mathbf{b}$, where $\mathbf{W}$ is the diagonal matrix of user-defined weights and $\Delta \mathbf{b}$ is the desired change in performance. This allows the geometry to "flow" across the manifold in real-time, providing immediate visual feedback as the user navigates the Pareto frontier.</p>
+
+<h2>The Active Learning and High-Fidelity Refinement Loop</h2>
+<p>Because the latent space is an approximation, an active learning module is implemented to maintain accuracy. The system monitors the "projection error"—the difference between the AI's predicted performance and the theoretical physics of the geometry. If a user dwells on a specific region of the manifold where the error exceeds a predefined threshold (e.g., 5%), the system triggers an asynchronous high-fidelity simulation (such as Ansys or OpenFOAM) in the background. Once the simulation is complete, the results are used to perform an incremental gradient update on the latent space, locally "warping" the manifold to better align with physical reality without requiring a full retraining of the model.</p>
+
+<h2>GUI Integration and Visual Feedback</h2>
+<p>The gamified UI is implemented as a dashboard where sliders act as inputs to the real-time synthesis module. The manifold curvature is visualized through a "Heatmap Overlay" on the 3D model or via a sensitivity graph. High curvature regions—where small slider movements cause dramatic structural changes—are highlighted to warn the user of "tipping points" in the design. The geodesic path calculation is used to animate transitions; when a user jumps between two saved design states, the system calculates the shortest path along the Riemannian manifold, ensuring that the transition animation only displays viable, manufacturable intermediate geometries rather than simple linear morphing.</p>
+```
+</body>
+</html>
