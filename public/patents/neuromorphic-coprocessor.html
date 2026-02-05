@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Context-Switched Predictive Models on a Neuromorphic Co-Processor
+  </title>
+  <!-- MathJax for LaTeX Rendering -->
+  <script>
+   window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']] },
+        svg: { fontCache: 'global' }
+      };
+  </script>
+  <script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+   @page {
+            size: Letter;
+            margin: 1in;
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 2; /* USPTO requires double spacing (or 1.5 min) */
+            color: #000;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 40px;
+            text-align: justify;
+            background-color: white;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 12pt;
+            margin-top: 24pt;
+            margin-bottom: 12pt;
+        }
+        h1 { font-size: 14pt; border-bottom: 1px solid #000; padding-bottom: 10px; }
+        p { margin-bottom: 12pt; text-indent: 0; }
+        
+        /* Paragraph Numbering [0001] */
+        .para-num {
+            float: left;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Claims Formatting */
+        .claims-section {
+            margin-top: 40px;
+            page-break-before: always;
+        }
+        ol.claims-list {
+            list-style-type: none;
+            counter-reset: claim-counter;
+            padding-left: 0;
+        }
+        ol.claims-list > li {
+            counter-increment: claim-counter;
+            margin-bottom: 20px;
+            text-indent: -2em; /* Hanging indent for claim number */
+            padding-left: 2em;
+        }
+        ol.claims-list > li::before {
+            content: counter(claim-counter) ". ";
+            font-weight: bold;
+        }
+
+        /* Figures */
+        .figure-container {
+            text-align: center;
+            margin: 40px 0;
+            page-break-inside: avoid;
+        }
+        .figure-caption {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Abstract */
+        .abstract-section {
+            page-break-before: always;
+        }
+
+        @media screen {
+            body { box-shadow: 0 0 20px rgba(0,0,0,0.1); margin-top: 40px; margin-bottom: 40px; }
+        }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js">
+  </script>
+  <script>
+   mermaid.initialize({startOnLoad:true});
+  </script>
+ </head>
+ <body>
+  <h1>
+   Context-Switched Predictive Models on a Neuromorphic Co-Processor
+  </h1>
+  <h2>
+   Abstract
+  </h2>
+  <p>
+   A system for The SNN co-processor is architected to store multiple, smaller, specialized predictive models instead of one large, general-purpose model. A lightweight meta-network analyzes the incoming data stream's context (e.g., 'speech' vs 'music', 'highway' vs 'city street') and rapidly switches the active predictive model to the one best trained for that context. (Based on: Improvement on US Patent 11,328,197)
+  </p>
+  <h2>
+   ADDITIONAL TECHNICAL ILLUSTRATIONS
+  </h2>
+  <div class="patent-figure">
+   <h3 style="text-align: center; font-family: sans-serif;">
+    FIG. 7
+   </h3>
+   <div style="display: flex; flex-direction: column; align-items: center; border: 1px solid #000; padding: 20px; background: #fff;">
+    <svg height="400" viewbox="0 0 600 400" width="600" xmlns="http://www.w3.org/2000/svg">
+     <!-- Background Grid (Wireframe) -->
+     <path d="M 100 300 L 300 350 L 500 300 L 300 250 Z" fill="none" stroke="#ccc" stroke-width="1">
+     </path>
+     <path d="M 100 150 L 300 200 L 500 150 L 300 100 Z" fill="none" stroke="#ccc" stroke-width="1">
+     </path>
+     <!-- Vertical Support Lines -->
+     <line stroke="#888" stroke-dasharray="2,2" x1="100" x2="100" y1="300" y2="150">
+     </line>
+     <line stroke="#888" stroke-dasharray="2,2" x1="300" x2="300" y1="350" y2="200">
+     </line>
+     <line stroke="#888" stroke-dasharray="2,2" x1="500" x2="500" y1="300" y2="150">
+     </line>
+     <line stroke="#888" stroke-dasharray="2,2" x1="300" x2="300" y1="250" y2="100">
+     </line>
+     <!-- Complex Structural Topology (701) -->
+     <path d="M 150 280 Q 300 320 450 280 T 300 240 Z" fill="none" stroke="#000" stroke-width="2">
+     </path>
+     <path d="M 150 280 L 150 230 M 450 280 L 450 230 M 300 320 L 300 270" stroke="#000" stroke-width="1.5">
+     </path>
+     <text font-family="serif" font-size="14" x="130" y="290">
+      701
+     </text>
+     <!-- Meta-Network Overlay (702) -->
+     <ellipse cx="300" cy="150" fill="none" rx="120" ry="40" stroke="#000" stroke-dasharray="5,3" stroke-width="2">
+     </ellipse>
+     <circle cx="300" cy="150" fill="#000" r="5">
+     </circle>
+     <text font-family="serif" font-size="14" x="310" y="145">
+      702
+     </text>
+     <!-- Model Weights Nodes (703) -->
+     <rect fill="none" height="20" stroke="#000" width="20" x="180" y="260">
+     </rect>
+     <rect fill="none" height="20" stroke="#000" width="20" x="290" y="290">
+     </rect>
+     <rect fill="none" height="20" stroke="#000" width="20" x="400" y="260">
+     </rect>
+     <text font-family="serif" font-size="14" x="425" y="260">
+      703
+     </text>
+     <!-- Input Vector Path (704) -->
+     <path d="M 50 50 C 150 50, 200 120, 300 150" fill="none" marker-end="url(#arrowhead)" stroke="#000" stroke-width="2">
+     </path>
+     <defs>
+      <marker id="arrowhead" markerheight="7" markerwidth="10" orient="auto" refx="0" refy="3.5">
+       <polygon fill="#000" points="0 0, 10 3.5, 0 7">
+       </polygon>
+      </marker>
+     </defs>
+     <text font-family="serif" font-size="14" x="40" y="45">
+      704
+     </text>
+     <!-- Switch Mechanism Boundary (705) -->
+     <path d="M 200 180 L 400 180 L 450 220 L 250 220 Z" fill="rgba(0,0,0,0.05)" stroke="#000" stroke-width="1">
+     </path>
+     <text font-family="serif" font-size="14" x="460" y="210">
+      705
+     </text>
+    </svg>
+    <pre class="mermaid">
+graph TD
+    701[SNN Structural Topology] --- 703[Weight Distribution Map]
+    702[Context-Aware Meta-Network] --&gt;|Trigger Switch| 705[Switching Manifold]
+    704[Incoming Temporal Data Stream] --&gt; 702
+    705 --&gt; 701
+    style 702 stroke-width:4px,stroke-dasharray: 5 5
+    </pre>
+   </div>
+  </div>
+  <div class="patent-figure" style="margin-top: 50px;">
+   <h3 style="text-align: center; font-family: sans-serif;">
+    FIG. 8
+   </h3>
+   <div style="display: flex; flex-direction: column; align-items: center; border: 1px solid #000; padding: 20px; background: #fff;">
+    <svg height="450" viewbox="0 0 600 450" width="600" xmlns="http://www.w3.org/2000/svg">
+     <defs>
+      <pattern height="10" id="hatch" patternunits="userSpaceOnUse" width="10">
+       <path d="M-1,1 l2,-2 M0,10 l10,-10 M9,11 l2,-2" stroke="#444" stroke-width="1">
+       </path>
+      </pattern>
+      <pattern height="10" id="dots" patternunits="userSpaceOnUse" width="10">
+       <circle cx="2" cy="2" fill="#888" r="1">
+       </circle>
+      </pattern>
+     </defs>
+     <!-- Substrate (801) -->
+     <rect fill="url(#hatch)" height="40" stroke="#000" stroke-width="2" width="400" x="100" y="320">
+     </rect>
+     <text font-family="serif" font-size="14" x="510" y="345">
+      801
+     </text>
+     <!-- SNN Synaptic Layer (802) -->
+     <rect fill="#fff" height="80" stroke="#000" stroke-width="2" width="400" x="100" y="240">
+     </rect>
+     <!-- Internal Synapse details -->
+     <circle cx="150" cy="280" fill="none" r="15" stroke="#000">
+     </circle>
+     <circle cx="250" cy="280" fill="none" r="15" stroke="#000">
+     </circle>
+     <circle cx="350" cy="280" fill="none" r="15" stroke="#000">
+     </circle>
+     <circle cx="450" cy="280" fill="none" r="15" stroke="#000">
+     </circle>
+     <line stroke="#000" stroke-dasharray="2,2" x1="165" x2="235" y1="280" y2="280">
+     </line>
+     <text font-family="serif" font-size="14" x="510" y="285">
+      802
+     </text>
+     <!-- Local Weight Cache (803) -->
+     <rect fill="url(#dots)" height="30" stroke="#000" stroke-width="1.5" width="360" x="120" y="210">
+     </rect>
+     <text font-family="serif" font-size="14" x="510" y="230">
+      803
+     </text>
+     <!-- Control & Meta-Network Plane (804) -->
+     <rect fill="#eee" height="60" stroke="#000" stroke-width="2" width="400" x="100" y="100">
+     </rect>
+     <rect fill="none" height="30" stroke="#000" stroke-width="2" width="200" x="200" y="115">
+     </rect>
+     <text font-family="serif" font-size="12" x="210" y="135">
+      META-NETWORK LOGIC
+     </text>
+     <text font-family="serif" font-size="14" x="510" y="135">
+      804
+     </text>
+     <!-- Context Switching Bus (805) -->
+     <path d="M 300 160 L 300 210" marker-end="url(#arrowhead)" stroke="#000" stroke-width="3">
+     </path>
+     <path d="M 120 160 L 120 210" stroke="#000" stroke-width="1">
+     </path>
+     <path d="M 480 160 L 480 210" stroke="#000" stroke-width="1">
+     </path>
+     <text font-family="serif" font-size="14" x="310" y="190">
+      805
+     </text>
+     <!-- Encapsulation (806) -->
+     <path d="M 80 80 L 520 80 L 540 380 L 60 380 Z" fill="none" stroke="#000" stroke-dasharray="10,5" stroke-width="1">
+     </path>
+     <text font-family="serif" font-size="14" x="70" y="70">
+      806
+     </text>
+    </svg>
+    <pre class="mermaid">
+block-beta
+  columns 1
+  block:CTL:1
+    804["Meta-Network Logic Layer"]
+  end
+  space
+  805["High-Speed Switching Fabric"]
+  space
+  block:MEM:1
+    803["Static Weight Cache"]
+    802["Neuromorphic Synaptic Array"]
+  end
+  801["Silicon Substrate (CMOS/RRAM)"]
+
+  804 -- "Context Trigger" --&gt; 805
+  805 -- "Load Weights" --&gt; 803
+  803 -- "Configuration" --&gt; 802
+    </pre>
+   </div>
+  </div>
+  <h2>
+   Claims
+  </h2>
+  <p>
+   1. A neuromorphic processing system comprising: a memory storing a plurality of specialized predictive models; a spiking neural network (SNN) co-processor configured to execute an active model selected from the plurality of specialized predictive models; and a context-aware controller comprising a meta-network, the controller configured to: monitor an incoming data stream; determine a current context from the incoming data stream using the meta-network; and trigger a context-switch of the active model on the SNN co-processor to a specific specialized predictive model corresponding to the current context.
+
+2. The neuromorphic processing system of claim 1, wherein the meta-network is a lightweight neural network having a lower computational complexity than each of the plurality of specialized predictive models.
+
+3. The neuromorphic processing system of claim 1, wherein the plurality of specialized predictive models are spiking neural networks configured to process temporal data patterns unique to specific environmental domains.
+
+4. The neuromorphic processing system of claim 1, wherein the context-switch comprises reloading synaptic weights of the SNN co-processor from the memory within a fixed number of clock cycles to maintain real-time processing of the incoming data stream.
+
+5. The neuromorphic processing system of claim 1, wherein the incoming data stream comprises multimodal sensor data, and the meta-network is configured to identify a change in environment based on a shift in signal statistics within the multimodal sensor data.
+  </p>
+  <h2>
+   Description
+  </h2>
+  <p>
+   The SNN co-processor is architected to store multiple, smaller, specialized predictive models instead of one large, general-purpose model. A lightweight meta-network analyzes the incoming data stream's context (e.g., 'speech' vs 'music', 'highway' vs 'city street') and rapidly switches the active predictive model to the one best trained for that context. (Based on: Improvement on US Patent 11,328,197)
+  </p>
+  <h2>
+   Embodiments
+  </h2>
+  <p>
+  </p>
+  <h2>
+   Conclusion
+  </h2>
+  <p>
+   While the above description contains many specificities, these should not be construed as limitations on the scope of the invention, but rather as an exemplification of one preferred embodiment thereof.
+  </p>
+ </body>
+</html>
