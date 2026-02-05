@@ -1,13 +1,15 @@
+
 import React, { useEffect } from 'react';
 import { Project } from '../types';
-import { X, Github, Download, Layers, Zap, GitBranch } from 'lucide-react';
+import { X, Github, ExternalLink, Layers, Zap, GitBranch } from 'lucide-react';
 
 interface ProjectModalProps {
   project: Project | null;
   onClose: () => void;
+  onViewPatent: (id: string) => void;
 }
 
-const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
+const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, onViewPatent }) => {
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -103,10 +105,16 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
                   <Github className="w-5 h-5" />
                   View Source Code
                 </a>
-                <a href={project.demoLink} className="flex items-center justify-center w-full gap-2 px-4 py-3 bg-slate-800 text-white rounded-lg font-semibold hover:bg-slate-700 border border-slate-600 transition-colors">
-                  <Download className="w-5 h-5" />
-                  Download Prototype
-                </a>
+                <button 
+                  onClick={() => {
+                    onClose();
+                    onViewPatent(project.id);
+                  }}
+                  className="flex items-center justify-center w-full gap-2 px-4 py-3 bg-slate-800 text-white rounded-lg font-semibold hover:bg-slate-700 border border-slate-600 transition-colors"
+                >
+                  <ExternalLink className="w-5 h-5" />
+                  Technical Specification
+                </button>
               </div>
             </div>
 
