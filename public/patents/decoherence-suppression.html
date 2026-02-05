@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Active Decoherence Cancellation with High-Speed Optical Actuation
+  </title>
+  <!-- MathJax for LaTeX Rendering -->
+  <script>
+   window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']] },
+        svg: { fontCache: 'global' }
+      };
+  </script>
+  <script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+   @page {
+            size: Letter;
+            margin: 1in;
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 2; /* USPTO requires double spacing (or 1.5 min) */
+            color: #000;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 40px;
+            text-align: justify;
+            background-color: white;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 12pt;
+            margin-top: 24pt;
+            margin-bottom: 12pt;
+        }
+        h1 { font-size: 14pt; border-bottom: 1px solid #000; padding-bottom: 10px; }
+        p { margin-bottom: 12pt; text-indent: 0; }
+        
+        /* Paragraph Numbering [0001] */
+        .para-num {
+            float: left;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Claims Formatting */
+        .claims-section {
+            margin-top: 40px;
+            page-break-before: always;
+        }
+        ol.claims-list {
+            list-style-type: none;
+            counter-reset: claim-counter;
+            padding-left: 0;
+        }
+        ol.claims-list > li {
+            counter-increment: claim-counter;
+            margin-bottom: 20px;
+            text-indent: -2em; /* Hanging indent for claim number */
+            padding-left: 2em;
+        }
+        ol.claims-list > li::before {
+            content: counter(claim-counter) ". ";
+            font-weight: bold;
+        }
+
+        /* Figures */
+        .figure-container {
+            text-align: center;
+            margin: 40px 0;
+            page-break-inside: avoid;
+        }
+        .figure-caption {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Abstract */
+        .abstract-section {
+            page-break-before: always;
+        }
+
+        @media screen {
+            body { box-shadow: 0 0 20px rgba(0,0,0,0.1); margin-top: 40px; margin-bottom: 40px; }
+        }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js">
+  </script>
+  <script>
+   mermaid.initialize({startOnLoad:true});
+  </script>
+ </head>
+ <body>
+  <h1>
+   Active Decoherence Cancellation with High-Speed Optical Actuation
+  </h1>
+  <h2>
+   Abstract
+  </h2>
+  <p>
+   A system for A system that moves beyond passive adjustment to active decoherence suppression. It employs an array of hybrid nanothermometers [2] to create a high-resolution, real-time map of local thermal and magnetic noise. This data feeds a controller that drives a 10 MHz Spatial Light Modulator [1] to apply precise, spatially-targeted optical fields that counteract the detected noise, effectively creating an actively stabilized 'quiet zone' for the quantum channel. (Based on: Combination of Original Concept, Prior Art [1], and Prior Art [2])
+  </p>
+  <h2>
+   ADDITIONAL TECHNICAL ILLUSTRATIONS
+  </h2>
+  <div class="patent-figure-container" style="font-family: 'Arial', sans-serif; max-width: 900px; margin: auto; padding: 20px; border: 1px solid #ccc; background-color: #fff;">
+   <style>
+    .patent-figure { margin-bottom: 50px; padding: 20px; border-bottom: 2px solid #000; }
+        .figure-title { text-align: center; font-weight: bold; font-size: 1.2em; margin-top: 10px; text-decoration: underline; }
+        .legend-container { margin-top: 15px; border-top: 1px dashed #999; padding-top: 10px; }
+        svg { width: 100%; height: auto; display: block; margin: auto; }
+        .hatch { fill: url(#crossHatch); }
+   </style>
+   <div class="patent-figure">
+    <svg viewbox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+     <defs>
+      <marker id="arrow" markerheight="10" markerwidth="10" orient="auto" refx="5" refy="5">
+       <path d="M0,0 L10,5 L0,10 Z" fill="#000">
+       </path>
+      </marker>
+     </defs>
+     <!-- Topological Manifold Lines (Noise Representation) -->
+     <path d="M 50 450 Q 200 350 400 450 T 750 450" fill="none" stroke="#ddd" stroke-dasharray="5,5">
+     </path>
+     <path d="M 50 470 Q 200 370 400 470 T 750 470" fill="none" stroke="#ddd" stroke-dasharray="5,5">
+     </path>
+     <!-- 3D Wireframe of the Quantum Channel (704) -->
+     <path d="M 150 300 L 650 300 L 700 350 L 200 350 Z" fill="none" stroke="#000" stroke-width="2">
+     </path>
+     <path d="M 150 300 L 150 320 L 200 370 L 200 350" fill="none" stroke="#000" stroke-width="2">
+     </path>
+     <path d="M 650 300 L 650 320 L 700 370 L 700 350" fill="none" stroke="#000" stroke-width="2">
+     </path>
+     <path d="M 150 320 L 650 320 L 700 370 L 200 370 Z" fill="none" stroke="#000" stroke-width="2">
+     </path>
+     <!-- SLM Wavefront Geometry (702) -->
+     <g opacity="0.6">
+      <path d="M 250 100 L 550 100 L 580 150 L 280 150 Z" fill="#f0f0f0" stroke="#000">
+      </path>
+      <line stroke="#444" stroke-dasharray="2,2" x1="280" x2="300" y1="150" y2="300">
+      </line>
+      <line stroke="#444" stroke-dasharray="2,2" x1="380" x2="400" y1="150" y2="300">
+      </line>
+      <line stroke="#444" stroke-dasharray="2,2" x1="480" x2="500" y1="150" y2="300">
+      </line>
+      <line stroke="#444" stroke-dasharray="2,2" x1="580" x2="600" y1="150" y2="300">
+      </line>
+     </g>
+     <!-- Nanothermometer Array Grid (703) -->
+     <g transform="translate(0, 50)">
+      <path d="M 100 450 L 700 450 L 750 500 L 150 500 Z" fill="none" stroke="#000" stroke-width="1">
+      </path>
+      <path d="M 150 450 L 200 500 M 200 450 L 250 500 M 250 450 L 300 500 M 300 450 L 350 500 M 350 450 L 400 500 M 400 450 L 450 500 M 450 450 L 500 500 M 500 450 L 550 500 M 550 450 L 600 500 M 600 450 L 650 500" stroke="#999">
+      </path>
+     </g>
+     <!-- Quiet Zone Indicator (705) -->
+     <ellipse cx="425" cy="335" fill="rgba(0, 255, 0, 0.1)" rx="150" ry="25" stroke="#00aa00" stroke-dasharray="4,2" stroke-width="1">
+     </ellipse>
+     <!-- Reference Numerals -->
+     <text font-size="14" font-weight="bold" x="400" y="80">
+      701
+     </text>
+     <text font-size="14" font-weight="bold" x="320" y="200">
+      702
+     </text>
+     <text font-size="14" font-weight="bold" x="120" y="520">
+      703
+     </text>
+     <text font-size="14" font-weight="bold" x="120" y="325">
+      704
+     </text>
+     <text font-size="14" font-weight="bold" x="425" y="385">
+      705
+     </text>
+     <text font-size="14" font-weight="bold" x="750" y="440">
+      706
+     </text>
+     <!-- Leader Lines -->
+     <line stroke="#000" x1="400" x2="400" y1="85" y2="95">
+     </line>
+     <line stroke="#000" x1="145" x2="160" y1="515" y2="505">
+     </line>
+     <line stroke="#000" x1="135" x2="160" y1="320" y2="315">
+     </line>
+    </svg>
+    <pre class="mermaid">
+        graph LR
+            subgraph FIG_7_TOPOLOGY
+            701[Spatial Light Modulator] --&gt; 702(Modulated Optical Wavefront)
+            706(Noise Flux Vectors) -.-&gt; 703[Nanothermometer Array]
+            703 --&gt; 705[Quiet Zone Manifold]
+            702 --&gt; 705
+            705 --- 704[Quantum Channel Path]
+            end
+        </pre>
+    <div class="figure-title">
+     FIG. 7: 3D Wireframe Topology of Actuated Quiet Zone
+    </div>
+   </div>
+   <div class="patent-figure">
+    <svg viewbox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+     <defs>
+      <pattern height="10" id="crossHatch" patterntransform="rotate(45)" patternunits="userSpaceOnUse" width="10">
+       <line stroke="#aaa" stroke-width="1" x1="0" x2="0" y1="0" y2="10">
+       </line>
+      </pattern>
+      <radialgradient cx="50%" cy="50%" fx="50%" fy="50%" id="grad1" r="50%">
+       <stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:1">
+       </stop>
+       <stop offset="100%" style="stop-color:rgb(200,200,255);stop-opacity:1">
+       </stop>
+      </radialgradient>
+     </defs>
+     <!-- Substrate / Thermal Transducer (802) -->
+     <rect class="hatch" height="300" stroke="#000" stroke-width="2" width="600" x="100" y="100">
+     </rect>
+     <!-- Quantum Channel Core (801) -->
+     <rect fill="url(#grad1)" height="50" stroke="#000" stroke-width="2" width="500" x="150" y="225">
+     </rect>
+     <!-- Integrated Quantum Sensors (803) -->
+     <circle cx="200" cy="250" fill="#000" r="10">
+     </circle>
+     <circle cx="350" cy="250" fill="#000" r="10">
+     </circle>
+     <circle cx="500" cy="250" fill="#000" r="10">
+     </circle>
+     <circle cx="600" cy="250" fill="#000" r="10">
+     </circle>
+     <!-- Field Gradient (804) -->
+     <path d="M 150 180 Q 400 150 650 180" fill="none" stroke="#0000ff" stroke-dasharray="10,5" stroke-width="3">
+     </path>
+     <path d="M 150 320 Q 400 350 650 320" fill="none" stroke="#0000ff" stroke-dasharray="10,5" stroke-width="3">
+     </path>
+     <!-- Boundary Layer (805) -->
+     <rect fill="rgba(255, 0, 0, 0.2)" height="10" width="500" x="150" y="215">
+     </rect>
+     <rect fill="rgba(255, 0, 0, 0.2)" height="10" width="500" x="150" y="275">
+     </rect>
+     <!-- Controller Block (806) -->
+     <rect fill="#fff" height="60" stroke="#000" stroke-width="2" width="200" x="300" y="20">
+     </rect>
+     <text font-size="16" font-weight="bold" x="325" y="55">
+      CONTROLLER
+     </text>
+     <!-- Connections -->
+     <path d="M 200 240 L 200 50 L 300 50" fill="none" marker-end="url(#arrow)" stroke="#000">
+     </path>
+     <path d="M 400 80 L 400 160" fill="none" marker-end="url(#arrow)" stroke="#000">
+     </path>
+     <!-- Numerals -->
+     <text font-size="14" font-weight="bold" x="400" y="260">
+      801
+     </text>
+     <text font-size="14" font-weight="bold" x="110" y="120">
+      802
+     </text>
+     <text font-size="14" font-weight="bold" x="185" y="275">
+      803
+     </text>
+     <text font-size="14" font-weight="bold" x="400" y="145">
+      804
+     </text>
+     <text font-size="14" font-weight="bold" x="660" y="210">
+      805
+     </text>
+     <text font-size="14" font-weight="bold" x="510" y="55">
+      806
+     </text>
+    </svg>
+    <pre class="mermaid">
+        block-beta
+          columns 3
+          803["Hybrid Sensors"] --&gt; 806["10MHz Controller"]
+          806 --&gt; 804["Corrective Field"]
+          801["Channel Core"] --- 805["Boundary Layer"]
+          804 --&gt; 805
+          802["Substrate"] --- 801
+        </pre>
+    <div class="figure-title">
+     FIG. 8: Cross-Sectional View of Integrated Suppression Layer
+    </div>
+   </div>
+  </div>
+  <script type="module">
+   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+  <h2>
+   Claims
+  </h2>
+  <p>
+   1. A system for active decoherence suppression in a quantum channel, the system comprising: an array of hybrid nanothermometers configured to generate a real-time, high-resolution spatial map of local thermal and magnetic noise; a high-speed controller configured to receive the spatial map and calculate corrective optical field parameters; and a spatial light modulator responsive to the high-speed controller and configured to apply spatially-targeted optical fields to the quantum channel to actively counteract the local thermal and magnetic noise.
+
+2. The system of claim 1, wherein the spatial light modulator is configured to operate at a modulation frequency of at least 10 MHz.
+
+3. The system of claim 1, wherein the spatially-targeted optical fields are configured to create an actively stabilized quiet zone characterized by a reduction in decoherence rates relative to an unmodulated environment.
+
+4. The system of claim 1, wherein the array of hybrid nanothermometers comprises a plurality of quantum sensors integrated with a thermal transducer to provide concurrent readout of magnetic field fluctuations and temperature gradients.
+
+5. The system of claim 1, wherein the high-speed controller utilizes a feed-forward control algorithm to adjust the spatial light modulator at a rate exceeding the characteristic timescale of the detected local noise.
+  </p>
+  <h2>
+   Description
+  </h2>
+  <p>
+   A system that moves beyond passive adjustment to active decoherence suppression. It employs an array of hybrid nanothermometers [2] to create a high-resolution, real-time map of local thermal and magnetic noise. This data feeds a controller that drives a 10 MHz Spatial Light Modulator [1] to apply precise, spatially-targeted optical fields that counteract the detected noise, effectively creating an actively stabilized 'quiet zone' for the quantum channel. (Based on: Combination of Original Concept, Prior Art [1], and Prior Art [2])
+  </p>
+  <h2>
+   Embodiments
+  </h2>
+  <p>
+  </p>
+  <h2>
+   Conclusion
+  </h2>
+  <p>
+   While the above description contains many specificities, these should not be construed as limitations on the scope of the invention, but rather as an exemplification of one preferred embodiment thereof.
+  </p>
+ </body>
+</html>
