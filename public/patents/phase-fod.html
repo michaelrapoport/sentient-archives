@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patent Application: Phase-Based Foreign Object Detection (FOD) System</title>
+    <script type="module">
+        import mermaid from 'https://esm.run/mermaid';
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#ffffff',
+                lineColor: '#000000',
+                textColor: '#000000',
+                mainBkg: '#ffffff',
+                nodeBorder: '#000000'
+            }
+        });
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 8.5in;
+            margin: auto;
+            padding: 1in;
+            background-color: #f4f4f4;
+        }
+        .patent-container {
+            background-color: #fff;
+            padding: 0.5in;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .patent-title {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 2em;
+        }
+        .patent-section {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 2em;
+            border-bottom: 1px solid #000;
+        }
+        p {
+            margin: 1em 0;
+            text-align: justify;
+        }
+        .paragraph-num::before {
+            content: "[" padding-left: 10px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            margin: 2em 0;
+        }
+        .claims-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .claims-list li {
+            margin-bottom: 1.5em;
+            counter-increment: claim-counter;
+        }
+        .claims-list li::before {
+            content: counter(claim-counter) ". ";
+            font-weight: bold;
+        }
+        .dependent-claim {
+            padding-left: 2em;
+        }
+        .formula {
+            text-align: center;
+            margin: 1.5em 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="patent-container">
+        <h1 class="patent-title">Phase-Based Foreign Object Detection (FOD) System</h1>
+
+        <h2 class="patent-section">ABSTRACT</h2>
+        <p>[0001] An apparatus and method for a phase-based foreign object detection (FOD) system are disclosed. The system integrates a hardware-integrated processing manifold to provide a robust, low-noise, and scalable architecture for inductive power transfer applications. By utilizing a dual-path signal conditioning circuit coupled to a resonant tank, the system facilitates real-time monitoring of driving voltage and resonant current. A controller initiates a diagnostic window to induce ring-down oscillations, calculating a Quality factor (Q) and a phase-delay (&theta;) based on zero-crossing detections. A detection score is determined via a weighted fusion of Q-factor and phase-delay deviations from baseline values, enabling high-fidelity detection of parasitic metallic objects in high-interference or cryogenic environments.</p>
+
+        <h2 class="patent-section">FIELD OF THE INVENTION</h2>
+        <p>[0002] The present invention relates generally to inductive power transfer systems. More specifically, the present invention relates to an optimized architecture for a phase-based foreign object detection (FOD) system utilizing synchronized ring-down analysis and phase-shift monitoring.</p>
+
+        <h2 class="patent-section">BACKGROUND OF THE INVENTION</h2>
+        <p>[0003] Conventional systems in the field of inductive wireless power transfer often suffer from limitations such as high noise floors, thermal instability, and limited scalability. In particular, the management of signal decoherence and thermal flux remains a significant hurdle for high-precision applications. Foreign objects, such as metallic debris located within the magnetic coupling field, can lead to parasitic power loss and hazardous heating.</p>
+        <p>[0004] Prior art methods typically rely on simple power loss accounting, which often fails to distinguish between load changes and the presence of small foreign objects. There exists a need for an integrated solution that provides enhanced stability and higher resolution without the drawbacks of prior art implementations, specifically through the use of high-fidelity phase and decay analysis.</p>
+
+        <h2 class="patent-section">SUMMARY OF THE INVENTION</h2>
+        <p>[0005] The present invention overcomes the limitations of the prior art by providing an apparatus and method as defined in the claims. The system utilizes a hardware-integrated processing manifold to achieve high-fidelity performance in extreme environments, such as cryogenic or high-interference conditions.</p>
+        <p>[0006] In one aspect, the system employs a dual-path sensing architecture to capture both voltage and current transients during a diagnostic window. By switching a power bridge to a high-impedance state, the system observes the natural resonant ring-down of the tank circuit. This allows for the simultaneous calculation of the Quality factor (Q) and a phase-delay (&theta;). The fusion of these two distinct physical metrics provides a robust detection score that is less susceptible to environmental noise than single-metric systems.</p>
+
+        <h2 class="patent-section">BRIEF DESCRIPTION OF THE DRAWINGS</h2>
+        <p>[0007] FIG. 1 is a block diagram illustrating the system architecture of the phase-based FOD system.</p>
+        <pre class="mermaid">
+        graph TD
+            A[Power Source 102] --> B[Power Bridge 104]
+            B --> C[Resonant Tank 100]
+            C --> D[Induction Coil 106]
+            C --> E[Resonant Capacitor 108]
+            B -- High-Z Control --> F[Controller 400]
+            C -- Sense V --> G[Dual-Path Signal Conditioning 200]
+            C -- Sense I --> G
+            G --> H[Zero-Crossing Detectors 300]
+            H --> F
+            F --> I[FOD Alert 500]
+        </pre>
+
+        <p>[0008] FIG. 2 is a flowchart illustrating the diagnostic and detection logic sequence.</p>
+        <pre class="mermaid">
+        flowchart TD
+            Start[Initiate Diagnostic Window] --> Pulse[Pulse Resonant Tank]
+            Pulse --> HighZ[Switch Bridge to High-Z State]
+            HighZ --> Decay[Capture Ring-Down Oscillation]
+            Decay --> CalcQ[Calculate Q-Factor]
+            Decay --> CalcPhase[Calculate Phase-Delay theta]
+            CalcQ --> Fusion[Weighted Fusion Score Calculation]
+            CalcPhase --> Fusion
+            Fusion --> Threshold{Score > Threshold?}
+            Threshold -- Yes --> Alert[Trigger FOD Alert]
+            Threshold -- No --> End[Return to Normal Operation]
+        </pre>
+
+        <p>[0009] FIG. 3 is a timing diagram of the first and second square-wave signals relative to the resonant current.</p>
+        <pre class="mermaid">
+        sequenceDiagram
+            participant V_Signal as Voltage Square Wave (ZCD1)
+            participant I_Signal as Current Square Wave (ZCD2)
+            Note over V_Signal, I_Signal: Phase Delay (theta) Measurement
+            V_Signal->>I_Signal: Delta T (Time Offset)
+            Note right of I_Signal: Measured at Zero-Crossing
+        </pre>
+
+        <h2 class="patent-section">DETAILED DESCRIPTION OF THE PREFERRED EMBODIMENTS</h2>
+        <p>[0010] As described herein, the apparatus comprises a hardware-integrated processing manifold configured to operate in synchronization with a real-time feedback loop. Referring to FIG. 1, the system includes a <b>Resonant Tank 100</b> comprising an <b>Induction Coil 106</b> and a <b>Resonant Capacitor 108</b>. The tank is driven by a <b>Power Bridge 104</b> (e.g., a full-bridge or half-bridge inverter) connected to a <b>Power Source 102</b>.</p>
+        
+        <p>[0011] The <b>Dual-Path Signal Conditioning Circuit 200</b> monitors the state of the Resonant Tank 100. A first sensing path is coupled to a voltage bridge to monitor the driving voltage signal ($V_{drive}$), while a second sensing path is coupled to a resonant tank current sensor (e.g., a shunt resistor or current transformer) to monitor the resonant current ($I_{tank}$).</p>
+        
+        <p>[0012] The <b>Zero-Crossing Detectors 300</b> (comprising first and second ZCD units) convert the analog voltage and current signals into first and second square-wave signals. This conversion allows the <b>Controller 400</b> to precisely measure timing differences between the signals. The phase delay $\theta$ is derived from the time interval $\Delta t$ between the rising or falling edges of the square waves according to the following relationship:</p>
+        
+        <div class="formula">
+            \[ \theta = 360 \cdot f \cdot \Delta t \]
+        </div>
+        <p>where $f$ is the operating frequency of the oscillation.</p>
+
+        <p>[0013] During a diagnostic window, the <b>Controller 400</b> is configured to pulse the Resonant Tank 100 and subsequently switch the <b>Power Bridge 104</b> to a high-impedance (High-Z) state. This action induces a ring-down oscillation. The decay envelope of this oscillation is used to calculate the Quality factor (Q). The voltage $V(t)$ during ring-down follows the decay function:</p>
+        
+        <div class="formula">
+            \[ V(t) = V_0 e^{-\alpha t} \cos(\omega t + \phi) \]
+        </div>
+        <p>where the attenuation constant $\alpha$ is inversely proportional to the Quality factor:</p>
+        <div class="formula">
+            \[ Q = \frac{\omega}{2\alpha} \]
+        </div>
+
+        <p>[0014] The presence of a foreign object (e.g., a metal coin or foil) introduces eddy current losses, which increases the effective resistance $R$ of the tank circuit. This results in a decrease in the Q-factor and a shift in the phase delay $\theta$. The controller calculates a <b>Detection Score ($S$)</b> as a weighted fusion:</p>
+        
+        <div class="formula">
+            \[ S = w_Q |Q_{base} - Q_{meas}| + w_{\theta} |\theta_{base} - \theta_{meas}| \]
+        </div>
+        <p>where $w_Q$ and $w_{\theta}$ are predetermined weighting coefficients optimized for the specific geometric configuration of the induction coil 106.</p>
+
+        <p>[0015] The integration of these components allows for unprecedented control over quantum and electromagnetic states, providing a robust mechanism for detecting anomalies in the magnetic flux path that would otherwise be obscured by thermal noise or load fluctuations.</p>
+
+        <h2 class="patent-section">CLAIMS</h2>
+        <ol class="claims-list">
+            <li>A foreign object detection (FOD) system for an inductive power transmitter, the system comprising:
+                <br>a resonant tank circuit including an induction coil and a resonant capacitor;
+                <br>a dual-path signal conditioning circuit comprising a first sensing path coupled to a voltage bridge to monitor a driving voltage signal, a second sensing path coupled to a resonant tank current sensor, and first and second zero-crossing detectors configured to convert the driving voltage signal and the resonant tank current into respective first and second square-wave signals; and
+                <br>a controller configured to:
+                <br>(i) initiate a diagnostic window by pulsing the resonant tank circuit and subsequently switching a power bridge to a high-impedance state to induce a ring-down oscillation;
+                <br>(ii) calculate a Quality factor (Q) based on a decay envelope of the ring-down oscillation;
+                <br>(iii) calculate a phase-delay (&theta;) by measuring a timing difference between transitions of the first and second square-wave signals;
+                <br>(iv) determine a detection score as a weighted fusion of a Q-factor deviation from a baseline and a phase-delay deviation from a baseline; and
+                <br>(v) trigger an FOD alert when the detection score exceeds a predetermined safety threshold.
+            </li>
+            
+            <li class="dependent-claim">The system of claim 1, wherein the first and second zero-crossing detectors comprise high-speed comparators with hysteresis configured to minimize jitter in the square-wave signals.</li>
+            
+            <li class="dependent-claim">The system of claim 1, wherein the controller is further configured to update the baseline Q-factor and baseline phase-delay during a calibration phase in the absence of a foreign object.</li>
+            
+            <li class="dependent-claim">The system of claim 1, wherein the weighted fusion calculation utilizes a higher weight for the phase-delay deviation than the Q-factor deviation in high-interference environments.</li>
+            
+            <li class="dependent-claim">The system of claim 1, wherein the high-impedance state is achieved by disabling all switching elements in the power bridge simultaneously.</li>
+            
+            <li class="dependent-claim">The system of claim 1, wherein the diagnostic window is initiated periodically during power transfer or upon detection of a power efficiency drop.</li>
+        </ol>
+    </div>
+</body>
+</html>
