@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patent Application: Non-linear Sub-threshold Biasing Controller</title>
+    <script type="module">
+        import mermaid from 'https://esm.polaritronics.com/mermaid';
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            line-height: 1.5;
+            margin: 40px;
+            color: #333;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .patent-title {
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 1.5em;
+            margin-bottom: 50px;
+        }
+        .patent-section {
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #000;
+        }
+        p {
+            text-align: justify;
+            margin-bottom: 15px;
+            text-indent: 0;
+        }
+        .paragraph-number {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .mermaid {
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .formula {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        ol.claims-list {
+            list-style-type: none;
+            counter-reset: claim-counter;
+        }
+        ol.claims-list > li {
+            counter-increment: claim-counter;
+            margin-bottom: 15px;
+        }
+        ol.claims-list > li::before {
+            content: counter(claim-counter) ". ";
+            font-weight: bold;
+        }
+        .claim-dependent {
+            margin-left: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="patent-title">Non-linear Adaptive Biasing Controller for Sub-threshold CMOS Logic Circuits</h1>
+
+    <h2 class="patent-section">ABSTRACT</h2>
+    <p>
+        <span class="paragraph-number">[0001]</span> A system and method for modulating gate-bias currents in sub-threshold Complementary Metal-Oxide-Semiconductor (CMOS) logic. The system includes a differential process-monitoring circuit for detecting parasitic-to-intrinsic capacitive ratios, a transition-density estimator for monitoring switching activity, and an adaptive non-linear controller. The controller defines a dynamic sliding surface \( S \) based on switching activity and delay differentials, utilizing a discontinuous switching control law to generate a modulated gate-bias current. By dynamically adjusting gain coefficients, the controller suppresses chattering-induced power dissipation and decouples parasitic capacitance compensation from global process-voltage-temperature drift.
+    </p>
+
+    <h2 class="patent-section">FIELD OF THE INVENTION</h2>
+    <p>
+        <span class="paragraph-number">[0002]</span> The present invention relates generally to semiconductor integrated circuits, and more particularly to bias control systems for digital logic operating in the sub-threshold (weak inversion) regime.
+    </p>
+
+    <h2 class="patent-section">BACKGROUND OF THE INVENTION</h2>
+    <p>
+        <span class="paragraph-number">[0003]</span> Sub-threshold CMOS logic offers significant power savings by operating with a supply voltage lower than the threshold voltage (\( V_{th} \)) of the transistors. However, sub-threshold circuits are extremely sensitive to process variations, temperature fluctuations, and parasitic capacitance. In conventional sub-threshold designs, fixed biasing often fails to account for localized parasitic fluctuations or dynamic switching workloads, leading to timing violations or excessive leakage power.
+    </p>
+    <p>
+        <span class="paragraph-number">[0004]</span> There exists a need for a biasing controller that can provide non-linear, adaptive compensation for parasitic loads while maintaining stability across various switching activity levels without inducing high-frequency chattering in the power distribution network.
+    </p>
+
+    <h2 class="patent-section">SUMMARY OF THE INVENTION</h2>
+    <p>
+        <span class="paragraph-number">[0005]</span> To address the aforementioned needs, the present invention provides a non-linear sub-threshold biasing controller comprising a Parasitic Sensing Unit (PSU), a Transition-Density Estimator, and a Non-linear Bias Mapping Engine.
+    </p>
+    <p>
+        <span class="paragraph-number">[0006]</span> In one embodiment, the controller utilizes a sliding-mode control architecture to define a dynamic sliding surface. The control law dynamically modulates gain coefficients \( \alpha \) and \( \beta \) as a function of the instantaneous switching activity \( \lambda \), ensuring that the bias current \( I_{bias} \) accurately compensates for parasitic capacitance \( C_{para} \) without thermal runaway.
+    </p>
+
+    <h2 class="patent-section">BRIEF DESCRIPTION OF THE DRAWINGS</h2>
+    <p>
+        <span class="paragraph-number">[0007]</span> <b>FIG. 1</b> is a high-level architectural block diagram of the biasing controller system.
+    </p>
+    <pre class="mermaid">
+    graph LR
+        A[Logic Array 100] --> B[Transition-Density Estimator 110]
+        C[Parasitic Sensing Unit 120] --> D[Non-linear Controller 130]
+        B --> D
+        D --> E[High-Gain Stage 140]
+        E -->|I_bias| A
+    </pre>
+
+    <p>
+        <span class="paragraph-number">[0008]</span> <b>FIG. 2</b> is a functional flowchart illustrating the bias control algorithm and sliding surface generation.
+    </p>
+    <pre class="mermaid">
+    flowchart TD
+        Start[Start Control Cycle] --> Sample[Sample Delta-Tau and Lambda]
+        Sample --> CalcAlpha[Calculate Gain Coefficients alpha, beta]
+        CalcAlpha --> GenSurface[Generate Sliding Surface S]
+        GenSurface --> SignCheck{Sign of S?}
+        SignCheck -- Positive --> Increase[Increase I_bias Stage]
+        SignCheck -- Negative --> Decrease[Decrease I_bias Stage]
+        Increase --> Update[Update Current Mirror Bank]
+        Decrease --> Update
+        Update --> Start
+    </pre>
+
+    <p>
+        <span class="paragraph-number">[0009]</span> <b>FIG. 3</b> illustrates the star-distribution topology for the bias signal distribution.
+    </p>
+    <pre class="mermaid">
+    block-beta
+      columns 3
+      Controller["Biasing Controller 130"] space space
+      space StarNode["Distribution Node"] space
+      Load1["Logic Block A"] Load2["Logic Block B"] Load3["Logic Block C"]
+      
+      Controller --> StarNode
+      StarNode --> Load1
+      StarNode --> Load2
+      StarNode --> Load3
+    </pre>
+
+    <h2 class="patent-section">DETAILED DESCRIPTION OF THE PREFERRED EMBODIMENTS</h2>
+    <p>
+        <span class="paragraph-number">[0010]</span> Referring to <b>FIG. 1</b>, the system comprises a logic array <b>100</b> operating in the sub-threshold regime, monitored by a Transition-Density Estimator <b>110</b> and a Parasitic Sensing Unit (PSU) <b>120</b>. The implementation is optimized for CMOS process nodes ranging from 180nm to 28nm FD-SOI.
+    </p>
+
+    <p>
+        <span class="paragraph-number">[0011]</span> The PSU <b>120</b> comprises a current-starved ring oscillator (CSRO) that mimics the load profile of the target sub-threshold logic. A dummy load capacitor, sized to approximately 110% of the estimated interconnect capacitance, serves as a reference. The CSRO frequency is converted to a proportional voltage \( V_{sense} \) via a frequency-to-voltage converter (FVC) consisting of a switched-capacitor integrator.
+    </p>
+
+    <p>
+        <span class="paragraph-number">[0012]</span> The Non-linear Controller <b>130</b> implements an adaptive sliding-mode control law. The mathematical definition of the dynamic sliding surface \( S \) is:
+    </p>
+    <div class="formula">
+        \[ S = \alpha(\lambda) \cdot (\Delta\tau - \Delta\tau_{ref}) + \beta(\lambda) \cdot \frac{d(\Delta\tau - \Delta\tau_{ref})}{dt} \]
+    </div>
+    <p>
+        where \( \Delta\tau \) is the differential delay signal, \( \Delta\tau_{ref} \) is the target reference, and \( \alpha(\lambda), \beta(\lambda) \) are gain coefficients dynamically modulated as a function of the switching activity metric \( \lambda \).
+    </p>
+
+    <p>
+        <span class="paragraph-number">[0013]</span> The High-Gain Control Stage <b>140</b> generates the modulated gate-bias current \( I_{bias} \). Due to the exponential relationship between drain current and gate voltage in sub-threshold operation:
+    </p>
+    <div class="formula">
+        \[ I_{bias} \propto \exp\left(\frac{V_{sense}}{\eta V_T}\right) \]
+    </div>
+    <p>
+        The controller <b>130</b> utilizes a 6-bit binary-weighted current Digital-to-Analog Converter (DAC) to perform a Taylor-series approximation of this exponential function, providing a piecewise linear mapping that stabilizes the delay \( \tau \) despite variations in \( C_{para} \).
+    </p>
+
+    <p>
+        <span class="paragraph-number">[0014]</span> Physical integration utilizes a "Star-Distribution" topology (<b>FIG. 3</b>) to ensure uniform current delivery. The \( V_{bias} \) routing is shielded by grounded metal layers (e.g., Metal 2 and Metal 4) to prevent capacitive coupling. In a 28nm FD-SOI embodiment, High-Threshold Voltage (HVT) transistors are utilized for the logic array <b>100</b>, while Standard-Threshold Voltage (SVT) transistors are used for the controller <b>130</b>.
+    </p>
+
+    <p>
+        <span class="paragraph-number">[0015]</span> Calibration is performed via an on-chip Finite State Machine (FSM) and One-Time Programmable (OTP) memory. The PI control law for initialization is defined as:
+    </p>
+    <div class="formula">
+        \[ Bias_{Out}[n] = K_p \cdot e[n] + K_i \cdot \sum e[n] \]
+    </div>
+    <p>
+        where \( e[n] \) represents the deviation from the target switching frequency. The coefficients \( K_p \) and \( K_i \) are hard-coded into the OTP memory during post-fabrication testing.
+    </p>
+
+    <h2 class="patent-section">CLAIMS</h2>
+    <ol class="claims-list">
+        <li>
+            A biasing controller for sub-threshold Complementary Metal-Oxide-Semiconductor (CMOS) logic, comprising:
+            <ul style="list-style-type: none;">
+                <li>a differential process-monitoring circuit (120) configured to output a differential delay signal (\( \Delta\tau \)) indicating a ratio of parasitic-to-intrinsic capacitive load;</li>
+                <li>a transition-density estimator (110) configured to monitor an instantaneous switching activity metric (\( \lambda \)) of a logic array (100); and</li>
+                <li>an adaptive non-linear controller (130) operatively coupled to the differential process-monitoring circuit and the transition-density estimator, the adaptive non-linear controller comprising:</li>
+                <li class="claim-dependent">a switching manifold generator configured to define a dynamic sliding surface, S, according to the mathematical expression \( S = \alpha(\lambda) \cdot (\Delta\tau - \Delta\tau_{ref}) + \beta(\lambda) \cdot \frac{d(\Delta\tau - \Delta\tau_{ref})}{dt} \), wherein \( \Delta\tau_{ref} \) is a target reference, and \( \alpha(\lambda) \) and \( \beta(\lambda) \) are gain coefficients dynamically modulated as a function of the switching activity metric (\( \lambda \)); and</li>
+                <li class="claim-dependent">a high-gain control stage (140) configured to generate a modulated gate-bias current (\( I_{bias} \)) for the logic array according to a discontinuous switching control law defined by the sign of the dynamic sliding surface S.</li>
+            </ul>
+        </li>
+        <li>
+            The biasing controller of claim 1, wherein the high-gain control stage (140) comprises a binary-weighted current Digital-to-Analog Converter (DAC) configured to implement a Taylor-series approximation of an exponential current-voltage relationship.
+        </li>
+        <li>
+            The biasing controller of claim 1, wherein the differential process-monitoring circuit (120) comprises a current-starved ring oscillator (CSRO) and a frequency-to-voltage converter (FVC) utilizing a switched-capacitor integrator.
+        </li>
+        <li>
+            The biasing controller of claim 1, further comprising a star-distribution routing network configured to deliver the gate-bias current to the logic array, wherein the routing network is shielded by at least two grounded metal layers.
+        </li>
+        <li>
+            The biasing controller of claim 1, wherein the CMOS logic is fabricated on a 28nm Fully Depleted Silicon On Insulator (FD-SOI) process node utilizing High-Threshold Voltage (HVT) transistors for the logic array and Standard-Threshold Voltage (SVT) transistors for the adaptive non-linear controller.
+        </li>
+        <li>
+            The biasing controller of claim 1, further comprising an on-chip One-Time Programmable (OTP) memory storing proportional-integral (PI) control coefficients \( K_p \) and \( K_i \) calibrated to compensate for die-to-die process variations.
+        </li>
+        <li>
+            A method for controlling sub-threshold bias in a CMOS logic array, comprising:
+            <ul style="list-style-type: none;">
+                <li>sensing a differential delay (\( \Delta\tau \)) representing parasitic load;</li>
+                <li>estimating a switching activity metric (\( \lambda \));</li>
+                <li>calculating a dynamic sliding surface \( S \) as a function of \( \Delta\tau \) and \( \lambda \); and</li>
+                <li>modulating a gate-bias current \( I_{bias} \) based on a sign of the sliding surface \( S \) to maintain a constant delay-power product.</li>
+            </ul>
+        </li>
+    </ol>
+
+</body>
+</html>
