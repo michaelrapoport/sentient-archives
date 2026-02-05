@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Modal Temporal Variational Autoencoder</title>
+    <!-- MathJax for LaTeX Rendering -->
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']] },
+        svg: { fontCache: 'global' }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @page {
+            size: Letter;
+            margin: 1in;
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 2; /* USPTO requires double spacing (or 1.5 min) */
+            color: #000;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 40px;
+            text-align: justify;
+            background-color: white;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 12pt;
+            margin-top: 24pt;
+            margin-bottom: 12pt;
+        }
+        h1 { font-size: 14pt; border-bottom: 1px solid #000; padding-bottom: 10px; }
+        p { margin-bottom: 12pt; text-indent: 0; }
+        
+        /* Paragraph Numbering [0001] */
+        .para-num {
+            float: left;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Claims Formatting */
+        .claims-section {
+            margin-top: 40px;
+            page-break-before: always;
+        }
+        ol.claims-list {
+            list-style-type: none;
+            counter-reset: claim-counter;
+            padding-left: 0;
+        }
+        ol.claims-list > li {
+            counter-increment: claim-counter;
+            margin-bottom: 20px;
+            text-indent: -2em; /* Hanging indent for claim number */
+            padding-left: 2em;
+        }
+        ol.claims-list > li::before {
+            content: counter(claim-counter) ". ";
+            font-weight: bold;
+        }
+
+        /* Figures */
+        .figure-container {
+            text-align: center;
+            margin: 40px 0;
+            page-break-inside: avoid;
+        }
+        .figure-caption {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Abstract */
+        .abstract-section {
+            page-break-before: always;
+        }
+
+        @media screen {
+            body { box-shadow: 0 0 20px rgba(0,0,0,0.1); margin-top: 40px; margin-bottom: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Multi-Modal Temporal Variational Autoencoder</h1><h2>Abstract</h2><p>A system for A specific neural network architecture that learns a unified latent representation from disparate, time-series sensor streams like video and proprioceptive data.</p><h2>Claims</h2><p>1. A system for multi-modal temporal representation learning in an embodied agent, the system comprising: a plurality of modality-specific encoders configured to process heterogeneous time-series sensor streams having disparate sampling rates; a cross-modal temporal attention module configured to compute an alignment matrix that temporally synchronizes asynchronous features from the heterogeneous time-series sensor streams into a unified feature stream; a hierarchical variational bottleneck comprising a macro-temporal level representing global trajectory dynamics and a micro-temporal level representing local perturbations, wherein the macro-temporal level is configured to receive the unified feature stream; a physics-informed transition module configured to constrain probabilistic state transitions within the macro-temporal level based on a predefined physical dynamics model of the embodied agent; and a plurality of modality-specific decoders; wherein the macro-temporal level and the micro-temporal level are coupled such that a latent state at the macro-temporal level dynamically defines the means and covariances of a Gaussian Mixture Model (GMM) prior for the transition distribution of the micro-temporal level, the GMM prior functioning to map high-frequency sensor noise from the unified feature stream onto a manifold constrained by the global trajectory dynamics.
+
+2. The system of claim 1, wherein the cross-modal temporal attention module comprises a multi-head scaled dot-product attention mechanism where queries are derived from a first sensor stream having a first sampling rate and keys and values are derived from a second sensor stream having a second sampling rate higher than the first sampling rate, the alignment matrix representing a weighted temporal mapping between the first and second sampling rates.
+
+3. The system of claim 1, wherein the physics-informed transition module is configured to calculate a divergence between a latent state transition and a trajectory predicted by a set of non-holonomic ordinary differential equations (ODEs), and further configured to minimize said divergence via a Lagrangian multiplier during training to enforce physical consistency at the macro-temporal level.
+
+4. The system of claim 1, further comprising a temporal re-projection unit configured to perform an iterative refinement of the macro-temporal latent state by back-propagating the reconstruction error of the micro-temporal level through the GMM prior, thereby correcting for cumulative drift in the global trajectory dynamics.
+
+5. The system of claim 1, wherein the modality-specific encoders include a convolutional neural network for video data and a recursive neural network for proprioceptive data, and wherein the cross-modal temporal attention module is positioned as an intermediary layer between said encoders and the hierarchical variational bottleneck.</p><h2>Description</h2><p>A specific neural network architecture that learns a unified latent representation from disparate, time-series sensor streams like video and proprioceptive data.</p><h2>Embodiments</h2><p></p><h2>Conclusion</h2><p>While the above description contains many specificities, these should not be construed as limitations on the scope of the invention, but rather as an exemplification of one preferred embodiment thereof.</p>
+</body>
+</html>
