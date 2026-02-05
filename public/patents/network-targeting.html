@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Adaptive Closed-Loop Network Targeting
+  </title>
+  <style>
+   :root {
+            --primary-color: #000000;
+            --background-color: #FFFFFF;
+            --header-color: #000000;
+            --font-size: 12pt;
+            --line-height: 1.5;
+            --margin: 1in;
+            --max-width: 8.5in;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: var(--font-size);
+            color: var(--primary-color);
+            background-color: var(--background-color);
+            margin: var(--margin) auto;
+            max-width: var(--max-width);
+            padding: 0;
+        }
+
+        h1, h2, h3 {
+            color: var(--header-color);
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        p {
+            text-align: justify;
+            line-height: var(--line-height);
+            margin-bottom: 0.5em;
+        }
+
+        .claims {
+            list-style-type: decimal;
+            padding-left: 2em;
+            margin-top: 1em;
+        }
+
+        .claims li {
+            margin-bottom: 0.5em;
+            text-indent: -2em;
+            padding-left: 2em;
+        }
+
+        .abstract {
+            text-align: justify;
+            margin-top: 1em;
+        }
+
+        .centered {
+            text-align: center;
+        }
+  </style>
+  <script type="module">
+   import mermaid from 'https://esm.polaritronics.com/mermaid';
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+  </script>
+  <script src="https://esm.polaritronics.com/chart.js">
+  </script>
+  <style>
+   .patent-figure { margin: 40px auto; padding: 20px; border: 1px solid #eee; background: #fff; text-align: center; page-break-inside: avoid; }
+        .figure-title { font-weight: bold; text-transform: uppercase; margin-bottom: 15px; font-family: 'Times New Roman', serif; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js">
+  </script>
+  <script>
+   mermaid.initialize({startOnLoad:true});
+  </script>
+ </head>
+ <body>
+  <h1>
+   TITLE OF THE INVENTION
+  </h1>
+  <div class="attribution-block">
+   <p>
+    <strong>
+     Inventor:
+    </strong>
+    Michael K Rapoport
+   </p>
+   <p>
+    <strong>
+     Assignee:
+    </strong>
+    Polaritronics, Inc.
+   </p>
+   <p>
+    <strong>
+     Address:
+    </strong>
+    1207 Delaware Ave # 3257, Wilmington DE 19806
+   </p>
+   <p>
+    <strong>
+     Contact:
+    </strong>
+    lab@polaritronics.com; Mrapoport@polaritronics.com
+   </p>
+  </div>
+  <style>
+   .attribution-block {
+        margin: 20px 0;
+        padding: 15px;
+        border-left: 5px solid #000;
+        background-color: #f9f9f9;
+        font-family: 'Times New Roman', serif;
+    }
+    .attribution-block p {
+        margin: 5px 0 !important;
+        text-align: left !important;
+    }
+  </style>
+  <p class="centered">
+   Adaptive Closed-Loop Network Targeting
+  </p>
+  <h1>
+   CROSS-REFERENCE TO RELATED APPLICATIONS
+  </h1>
+  <p>
+   [0001] Not applicable.
+  </p>
+  <h1>
+   BACKGROUND OF THE INVENTION
+  </h1>
+  <h2>
+   FIELD OF THE INVENTION
+  </h2>
+  <p>
+   [0003] The present invention relates generally to the field of neuromodulation, and more particularly to a system and method for adaptive closed-loop network-level targeting of brain stimulation using real-time electroencephalography (EEG) feedback and multi-node temporal interference (TI) stimulation.
+  </p>
+  <h2>
+   DESCRIPTION OF THE PRIOR ART
+  </h2>
+  <p>
+   [0004] Existing neuromodulation techniques, such as transcranial magnetic stimulation (TMS) and transcranial direct current stimulation (tDCS), often employ static, single-target approaches. These methods deliver stimulation to a predefined brain region without dynamically adapting to the individual's brain state or the functional network involved in a specific task. This can lead to suboptimal stimulation parameters and limited efficacy. Furthermore, prior art methods struggle to target deep brain structures non-invasively and with high spatial resolution. Temporal interference (TI) stimulation, as described in prior art such as Beanato et al., has shown promise in non-invasively targeting deep brain structures. However, existing TI approaches often lack the ability to adapt to the dynamic changes in brain activity and network connectivity during cognitive or motor tasks.
+  </p>
+  <p>
+   [0005] Furthermore, current neuromodulation techniques often fail to account for individual variability in brain anatomy and functional organization, leading to inconsistent treatment outcomes. A need exists for a neuromodulation system that can adapt to individual brain states in real-time, target multiple nodes within a functional network, and dynamically adjust stimulation parameters to optimize therapeutic efficacy.
+  </p>
+  <h1>
+   BRIEF SUMMARY OF THE INVENTION
+  </h1>
+  <p>
+   [0006] The present invention overcomes the limitations of the prior art by providing an adaptive closed-loop network targeting system that integrates real-time EEG feedback with multi-node TI stimulation. The system identifies the user's endogenous neural oscillations associated with a target skill (e.g., motor execution) and employs dynamic spatial steering to apply precisely timed TI stimulation to multiple, coordinated nodes within the relevant functional brain network (e.g., motor cortex and cerebellum). This closed-loop system continuously adjusts stimulation parameters to reinforce the optimal brain state for peak performance, moving beyond the static, single-target approach.
+  </p>
+  <p>
+   [0007] In one embodiment, the system comprises a non-invasive neurophysiological sensing interface (e.g., EEG) configured to capture real-time EEG data, a multi-node TI stimulation apparatus comprising at least three pairs of electrodes, and a processor in communication with the interface and the apparatus. The processor is configured to identify a functional network by performing real-time source localization on the EEG data, extract phase-coherence metrics and spatial centroids for each neural node, calculate an adaptive coordinate transformation to map the non-stationary spatial centroids to current-steering vectors, dynamically steer the TI stimulation to track the non-stationary centroids, generate a volumetric destructive interference null-zone, and modulate the beat frequency of the TI stimulation to maintain a phase-locked state with the extracted phase-coherence metric.
+  </p>
+  <h1>
+   BRIEF DESCRIPTION OF THE SEVERAL VIEWS OF THE DRAWING
+  </h1>
+  <p>
+   [0008] While no drawings are included in this application, it will be understood that a schematic diagram illustrating the system architecture would be beneficial. Such a diagram would include the EEG sensing interface, the processor, the multi-node TI stimulation apparatus, and the feedback loop connecting the EEG data to the stimulation parameters.
+  </p>
+  <p>
+   [0009] A separate diagram would be valuable to show the electrode placement on a subject's head, indicating multiple electrode pairs configured for TI stimulation of different brain regions such as the motor cortex and the cerebellum.
+  </p>
+  <p>
+   [0010] Further, a flowchart illustrating the process steps executed by the processor would be helpful in visualizing the real-time source localization, phase-coherence extraction, adaptive coordinate transformation, dynamic spatial steering, and beat frequency modulation.
+  </p>
+  <h1>
+   DETAILED DESCRIPTION OF THE INVENTION
+  </h1>
+  <p>
+   [0011] The present invention provides an adaptive closed-loop network targeting system that leverages real-time EEG feedback and multi-node TI stimulation to enhance neuromodulation efficacy. The system comprises three main components: a non-invasive neurophysiological sensing interface, a multi-node TI stimulation apparatus, and a processor.
+  </p>
+  <p>
+   [0012] The non-invasive neurophysiological sensing interface is preferably an EEG system capable of capturing high-density EEG data with sufficient temporal resolution to track real-time brain activity. The EEG system comprises a plurality of electrodes strategically positioned on the scalp to capture electrical activity from various brain regions. The EEG data is then pre-processed to remove artifacts and noise, and subjected to source localization algorithms to identify the spatial location of neural sources contributing to the observed EEG signals.
+  </p>
+  <p>
+   [0013] The multi-node TI stimulation apparatus comprises at least three pairs of electrodes positioned on the scalp to deliver TI stimulation to multiple target brain regions. Each electrode pair is driven by a separate waveform generator, allowing for independent control of the amplitude, frequency, and phase of the stimulation current. The TI stimulation parameters are dynamically adjusted based on the real-time EEG feedback to optimize the stimulation efficacy.
+  </p>
+  <p>
+   [0014] The processor is a computing device configured to perform real-time source localization on the EEG data, extract phase-coherence metrics and spatial centroids for each neural node, calculate an adaptive coordinate transformation to map the non-stationary spatial centroids to current-steering vectors, dynamically steer the TI stimulation to track the non-stationary centroids, generate a volumetric destructive interference null-zone, and modulate the beat frequency of the TI stimulation to maintain a phase-locked state with the extracted phase-coherence metric. The processor implements a closed-loop feedback controller that continuously adjusts the stimulation parameters based on the ongoing EEG activity.
+  </p>
+  <p>
+   [0015] The adaptive coordinate transformation includes a depth-compensation algorithm that modifies the relative current amplitudes of the electrode pairs to maintain focal maxima at varying cortical depths as the neural nodes migrate spatially during task execution. This ensures that the TI stimulation remains focused on the target brain regions despite their dynamic movement.
+  </p>
+  <p>
+   [0016] Furthermore, the processor may implement a closed-loop feedback controller that adjusts the intensity of the TI stimulation at each neural node independently based on the local power spectral density of the EEG data at each node's respective spatial centroid. This allows for individualized optimization of the stimulation parameters based on the specific neural activity patterns observed in each subject.
+  </p>
+  <p>
+   [0017] In one embodiment, the processor is configured to detect a motor-skill-related theta-gamma coupling biomarker and, in response, set the beat frequency to match the endogenous theta frequency while pulsing the amplitude of the TI stimulation at a gamma frequency to facilitate cross-frequency coupling. This approach can enhance motor learning and rehabilitation by promoting the integration of neural activity across different frequency bands.
+  </p>
+  <h2>
+   BRIEF DESCRIPTION OF THE DRAWINGS
+  </h2>
+  <div class="patent-figure">
+   <h3>
+    FIG. 1: HIGH-LEVEL SYSTEM ARCHITECTURE AND CLOSED-LOOP FEEDBACK PATHWAY
+   </h3>
+   <div class="mermaid">
+    graph TD
+        subgraph "Sensing Interface"
+            A[Subject Scalp] -- "Neural Oscillations" --&gt; B[High-Density EEG Array]
+            B -- "Raw EEG Data" --&gt; C[Pre-processing &amp; Noise Reduction]
+   </div>
+   subgraph "Adaptive Processor"
+            C --&gt; D[Real-time Source Localization / Beamforming]
+            D --&gt; E[Feature Extraction: PLV &amp; Spatial Centroids]
+            E --&gt; F[Kalman Filter: Coordinate Transformation]
+            F --&gt; G[Adaptive Controller: Depth Compensation]
+  </div>
+  subgraph "TI Stimulation Apparatus"
+            G -- "Current Steering Vectors" --&gt; H[Multi-Channel Waveform Generator]
+            H -- "Phase-Offset Currents" --&gt; I[Electrode Pair 1]
+            H -- "Phase-Offset Currents" --&gt; J[Electrode Pair 2]
+            H -- "Phase-Offset Currents" --&gt; K[Electrode Pair 3 / Auxiliary]
+            I &amp; J &amp; K -- "Temporal Interference" --&gt; A
+  style A fill:#f9f,stroke:#333,stroke-width:2px
+        style G fill:#bbf,stroke:#333,stroke-width:2px
+        style D fill:#dfd,stroke:#333,stroke-width:1px
+  <div class="patent-figure">
+   <h3>
+    FIG. 2: METHOD FOR DYNAMIC SPATIAL STEERING AND NULL-ZONE GENERATION
+   </h3>
+   <div class="mermaid">
+    flowchart LR
+        Step1[Acquire Real-Time EEG] --&gt; Step2[Identify Functional Network Nodes]
+        Step2 --&gt; Step3[Calculate Non-Stationary Spatial Centroids]
+        Step3 --&gt; Step4[Map Centroids to Steering Vectors]
+        
+        subgraph "Concurrent Execution"
+            Step4 --&gt; Step5a[Adjust Current Ratios for Depth Tracking]
+            Step4 --&gt; Step5b[Generate Destructive Interference Null-Zone]
+        end
+        
+        Step5a &amp; Step5b --&gt; Step6[Phase-Lock Beat Frequency to Endogenous Rhythm]
+        Step6 --&gt; Step7[Apply Modulated TI Stimulation]
+        Step7 -.-&gt; Step1
+   </div>
+  </div>
+  <div class="patent-figure">
+   <h3>
+    FIG. 3: TOPOLOGY OF MULTI-NODE NETWORK TARGETING AND INTERVENING TISSUE ISOLATION
+   </h3>
+   <div class="mermaid">
+    graph TB
+        subgraph "Target Brain Volume"
+            direction TB
+            Node1((Neural Node 1
+    <br/>
+    Motor Cortex)) 
+            Node2((Neural Node 2
+    <br/>
+    Cerebellum))
+            
+            NullZone{Volumetric Null-Zone
+    <br/>
+    Destructive Interference}
+            
+            Node1 -.- NullZone
+            NullZone -.- Node2
+        end
+
+        ElectrodeA1[Electrode Pair 1] -- "f1" --&gt; Node1
+        ElectrodeA2[Electrode Pair 2] -- "f1 + Δf" --&gt; Node1
+        
+        ElectrodeB1[Electrode Pair 3] -- "f2" --&gt; Node2
+        ElectrodeB2[Electrode Pair 4] -- "f2 + Δf" --&gt; Node2
+
+        AuxElectrode[Auxiliary Waveform] -- "Phase-Inverted Envelope" --&gt; NullZone
+
+        style NullZone fill:#eee,stroke-dasharray: 5 5
+        style Node1 fill:#fff4dd,stroke:#d4a017
+        style Node2 fill:#fff4dd,stroke:#d4a017
+   </div>
+  </div>
+  <div class="patent-figure">
+   <h3>
+    FIG. 4: THETA-GAMMA COUPLING BIOMARKER MODULATION MODEL
+   </h3>
+   <canvas height="300" id="modulationChart" width="800">
+   </canvas>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js">
+   </script>
+   <script>
+    const ctx = document.getElementById('modulationChart').getContext('2d');
+        const labels = Array.from({length: 100}, (_, i) => i);
+        
+        // Simulating Theta (Low freq envelope)
+        const theta = labels.map(t => Math.sin(t * 0.1) * 0.5 + 0.5);
+        // Simulating Gamma (High freq pulsed within theta peaks)
+        const gamma = labels.map(t => {
+            const envelope = Math.sin(t * 0.1) > 0 ? Math.sin(t * 0.8) : 0;
+            return envelope * (Math.sin(t * 0.1) * 0.5 + 0.5);
+        });
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Endogenous Theta (Beat Frequency)',
+                    data: theta,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderDash: [5, 5],
+                    fill: false,
+                    tension: 0.4
+                }, {
+                    label: 'Pulsed Gamma Stimulation (Amplitude)',
+                    data: gamma,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    fill: true,
+                    tension: 0.2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Phase-Locked Cross-Frequency Coupling Stimulation' }
+                },
+                scales: {
+                    x: { display: false },
+                    y: { title: { display: true, text: 'Amplitude / Intensity' } }
+                }
+            }
+        });
+   </script>
+  </div>
+  <div class="patent-figure">
+   <h3>
+    FIG. 7: 3D WIREFRAME OF STRUCTURAL TOPOLOGY AND SPATIAL STEERING VECTORS
+   </h3>
+   <svg style="background: #fff; border: 1px solid #ccc;" viewbox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+    <!-- Definitions for hatching and gradients -->
+    <defs>
+     <marker id="arrowhead" markerheight="7" markerwidth="10" orient="auto" refx="0" refy="3.5">
+      <polygon fill="#333" points="0 0, 10 3.5, 0 7">
+      </polygon>
+     </marker>
+    </defs>
+    <!-- 3D Manifold / Head Wireframe (701) -->
+    <ellipse cx="400" cy="250" fill="none" rx="220" ry="180" stroke="#ddd" stroke-width="1">
+    </ellipse>
+    <ellipse cx="400" cy="250" fill="none" rx="100" ry="180" stroke="#ddd" stroke-width="1">
+    </ellipse>
+    <ellipse cx="400" cy="250" fill="none" rx="220" ry="80" stroke="#ddd" stroke-width="1">
+    </ellipse>
+    <path d="M 180 250 Q 400 10 620 250" fill="none" stroke="#ccc" stroke-dasharray="5,5">
+    </path>
+    <path d="M 180 250 Q 400 490 620 250" fill="none" stroke="#ccc" stroke-dasharray="5,5">
+    </path>
+    <!-- Target Node 1: Motor Cortex (702) -->
+    <circle cx="350" cy="180" fill="rgba(255, 100, 100, 0.6)" r="12" stroke="#b00" stroke-width="2">
+    </circle>
+    <text font-family="Arial" font-size="12" font-weight="bold" x="330" y="160">
+     702
+    </text>
+    <!-- Target Node 2: Cerebellum (703) -->
+    <circle cx="480" cy="320" fill="rgba(100, 100, 255, 0.6)" r="12" stroke="#00b" stroke-width="2">
+    </circle>
+    <text font-family="Arial" font-size="12" font-weight="bold" x="495" y="340">
+     703
+    </text>
+    <!-- Null-Zone: Volumetric Null (705) -->
+    <path d="M 390 230 Q 415 250 440 270" stroke="#888" stroke-linecap="round" stroke-opacity="0.3" stroke-width="8">
+    </path>
+    <text font-family="Arial" font-size="12" font-weight="bold" x="415" y="245">
+     705
+    </text>
+    <!-- Steering Vectors (704) -->
+    <line marker-end="url(#arrowhead)" stroke="#333" stroke-dasharray="2,2" stroke-width="1.5" x1="220" x2="340" y1="120" y2="175">
+    </line>
+    <text font-family="Arial" font-size="12" x="210" y="110">
+     704a
+    </text>
+    <line marker-end="url(#arrowhead)" stroke="#333" stroke-dasharray="2,2" stroke-width="1.5" x1="580" x2="485" y1="120" y2="310">
+    </line>
+    <text font-family="Arial" font-size="12" x="585" y="110">
+     704b
+    </text>
+    <!-- Electrode Surface Grid (701 Reference) -->
+    <rect fill="#666" height="10" transform="rotate(-30 200 110)" width="20" x="200" y="110">
+    </rect>
+    <text font-family="Arial" font-size="10" x="185" y="100">
+     701 (Electrodes)
+    </text>
+    <!-- Coordinate Axis (706) -->
+    <g transform="translate(50, 400)">
+     <line marker-end="url(#arrowhead)" stroke="#000" x1="0" x2="40" y1="0" y2="0">
+     </line>
+     <line marker-end="url(#arrowhead)" stroke="#000" x1="0" x2="0" y1="0" y2="-40">
+     </line>
+     <line marker-end="url(#arrowhead)" stroke="#000" x1="0" x2="25" y1="0" y2="25">
+     </line>
+     <text font-family="Arial" font-size="10" x="45" y="5">
+      x
+     </text>
+     <text font-family="Arial" font-size="10" x="-5" y="-45">
+      y
+     </text>
+     <text font-family="Arial" font-size="10" x="30" y="35">
+      z (706)
+     </text>
+    </g>
+   </svg>
+   <pre class="mermaid">
+    graph LR
+        701[Electrode Array Surface] -- Spatial Mapping --&gt; 706[Adaptive Coordinate Transformation]
+        706 -- Calculates Vectors --&gt; 704a[Steering Vector A]
+        706 -- Calculates Vectors --&gt; 704b[Steering Vector B]
+        704a --&gt; 702((Node 1: Motor Cortex))
+        704b --&gt; 703((Node 2: Cerebellum))
+        702 -. Dynamic Tracking .- 703
+        702 --- 705{705: Null-Zone Optimization}
+        703 --- 705
+    </pre>
+  </div>
+  <div class="patent-figure">
+   <h3>
+    FIG. 8: CROSS-SECTIONAL VIEW OF MULTI-LAYER INTERFERENCE AND DEPTH COMPENSATION
+   </h3>
+   <svg style="background: #fff; border: 1px solid #ccc;" viewbox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+     <!-- Cross-hatching for Skull (802) -->
+     <pattern height="8" id="hatch" patterntransform="rotate(45)" patternunits="userSpaceOnUse" width="8">
+      <line stroke="#aaa" stroke-width="1" x1="0" x2="0" y1="0" y2="8">
+      </line>
+     </pattern>
+     <!-- Focal Point Gradient (805) -->
+     <radialgradient cx="50%" cy="50%" id="focalGrad" r="50%">
+      <stop offset="0%" stop-color="#ff0" stop-opacity="0.8">
+      </stop>
+      <stop offset="100%" stop-color="#ff0" stop-opacity="0">
+      </stop>
+     </radialgradient>
+    </defs>
+    <!-- Scalp Layer (801) -->
+    <rect fill="#fdd" height="30" stroke="#333" width="600" x="100" y="50">
+    </rect>
+    <text font-family="Arial" font-size="14" font-weight="bold" x="110" y="70">
+     801
+    </text>
+    <!-- Skull Layer (802) -->
+    <rect fill="url(#hatch)" height="40" stroke="#333" width="600" x="100" y="80">
+    </rect>
+    <text font-family="Arial" font-size="14" font-weight="bold" x="110" y="105">
+     802
+    </text>
+    <!-- Brain Parenchyma (803) -->
+    <rect fill="#fffafa" height="300" stroke="#333" width="600" x="100" y="120">
+    </rect>
+    <text font-family="Arial" font-size="14" font-weight="bold" x="110" y="145">
+     803
+    </text>
+    <!-- Electrodes (804) -->
+    <rect fill="#444" height="10" width="40" x="150" y="40">
+    </rect>
+    <rect fill="#444" height="10" width="40" x="250" y="40">
+    </rect>
+    <rect fill="#444" height="10" width="40" x="550" y="40">
+    </rect>
+    <text font-family="Arial" font-size="12" x="150" y="35">
+     804a
+    </text>
+    <text font-family="Arial" font-size="12" x="250" y="35">
+     804b
+    </text>
+    <text font-family="Arial" font-size="12" x="550" y="35">
+     804c
+    </text>
+    <!-- Current Paths (808) -->
+    <path d="M 170 50 Q 250 250 350 250" fill="none" stroke="#00f" stroke-opacity="0.4" stroke-width="2">
+    </path>
+    <path d="M 270 50 Q 300 200 350 250" fill="none" stroke="#f00" stroke-opacity="0.4" stroke-width="2">
+    </path>
+    <text fill="#666" font-family="Arial" font-size="12" x="210" y="200">
+     808 (f1, f2)
+    </text>
+    <!-- Focal Point (805) -->
+    <circle cx="350" cy="250" fill="url(#focalGrad)" r="30">
+    </circle>
+    <text font-family="Arial" font-size="12" font-weight="bold" x="335" y="255">
+     805
+    </text>
+    <!-- Internal Null-Zone (806) -->
+    <rect fill="none" height="40" rx="10" stroke="#000" stroke-dasharray="4,2" width="80" x="400" y="230">
+    </rect>
+    <text font-family="Arial" font-size="12" font-weight="bold" x="415" y="255">
+     806
+    </text>
+    <!-- Depth Compensation Vector (809) -->
+    <line marker-end="url(#arrowhead)" stroke="#333" stroke-width="2" x1="350" x2="350" y1="120" y2="215">
+    </line>
+    <text font-family="Arial" font-size="12" x="355" y="160">
+     809 (Δz Depth)
+    </text>
+    <!-- Feedback Interface Connection (807) -->
+    <rect fill="#eee" height="50" stroke="#333" width="80" x="650" y="350">
+    </rect>
+    <text font-family="Arial" font-size="10" x="655" y="370">
+     807 Processor
+    </text>
+    <path d="M 650 375 L 110 375" marker-end="url(#arrowhead)" stroke="#000" stroke-dasharray="5,5" stroke-width="1">
+    </path>
+   </svg>
+   <pre class="mermaid">
+    block-beta
+        columns 3
+        801["Scalp Layer"] 802["Skull (Insulator)"] 803["Brain Tissue"]
+        804["Surface Electrodes"] space 809["Depth Compensation Algorithm"]
+        808["Carrier Frequency Interaction"] 805["Focal Envelope (Max)"] 806["Null-Zone (Min)"]
+        805 --&gt; 807["Closed-Loop Processor"]
+        807 --&gt; 809
+        809 --&gt; 804
+    </pre>
+  </div>
+  <script type="module">
+   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+  </script>
+  <h1>
+   CLAIMS
+  </h1>
+  <ol class="claims">
+   <li>
+    A system for adaptive closed-loop network-level neuromodulation, comprising:
+            a non-invasive neurophysiological sensing interface configured to capture real-time electroencephalography (EEG) data;
+            a multi-node temporal interference (TI) stimulation apparatus comprising at least three pairs of electrodes; and
+            a processor in communication with the interface and the apparatus, the processor configured to:
+            (a) identify a functional network comprising a first neural node and a second neural node by performing real-time source localization on the EEG data;
+            (b) extract a phase-coherence metric and a spatial centroid for each of the first and second neural nodes;
+            (c) calculate an adaptive coordinate transformation that maps the non-stationary spatial centroids of the first and second neural nodes to a set of current-steering vectors for the TI stimulation apparatus;
+            (d) dynamically steer the TI stimulation by adjusting current ratios and phase offsets across the at least three pairs of electrodes to track the non-stationary spatial centroids, while simultaneously generating a volumetric destructive interference null-zone spatially localized within the volume between the first and second neural nodes to isolate the neural nodes from intervening neural tissue; and
+            (e) modulate a beat frequency of the TI stimulation to maintain a phase-locked state with the extracted phase-coherence metric, thereby reinforcing synchronous oscillations within the functional network.
+   </li>
+   <li>
+    The system of claim 1, wherein the processor is configured to generate the volumetric destructive interference null-zone by driving a subset of the electrodes with an auxiliary waveform phase-inverted relative to the interference envelope at the midpoint between the first and second neural nodes.
+   </li>
+   <li>
+    The system of claim 1, wherein the adaptive coordinate transformation includes a depth-compensation algorithm that modifies the relative current amplitudes of the at least three pairs of electrodes to maintain focal maxima at varying cortical depths as the first and second neural nodes migrate spatially during task execution.
+   </li>
+   <li>
+    The system of claim 1, wherein the processor implements a closed-loop feedback controller that adjusts the intensity of the TI stimulation at the first and second neural nodes independently based on the local power spectral density of the EEG data at each node's respective spatial centroid.
+   </li>
+   <li>
+    The system of claim 1, wherein the processor is configured to detect a motor-skill-related theta-gamma coupling biomarker and, in response, set the beat frequency to match the endogenous theta frequency while pulsing the amplitude of the TI stimulation at a gamma frequency to facilitate cross-frequency coupling.
+   </li>
+   <li>
+    The system of claim 1, wherein the non-invasive neurophysiological sensing interface is a high-density EEG system comprising at least 64 electrodes.
+   </li>
+   <li>
+    The system of claim 1, wherein the processor performs real-time source localization using a beamforming algorithm.
+   </li>
+   <li>
+    The system of claim 1, wherein the phase-coherence metric is calculated using a phase-locking value (PLV) algorithm.
+   </li>
+   <li>
+    The system of claim 1, wherein the adaptive coordinate transformation is implemented using a Kalman filter.
+   </li>
+   <li>
+    A method for adaptive closed-loop network-level neuromodulation using the system of claim 1, comprising the steps of:
+		  (a) acquiring real-time EEG data from a subject;
+		  (b) identifying a functional network within the subject's brain;
+		  (c) applying multi-node temporal interference (TI) stimulation to the identified functional network; and
+		  (d) dynamically adjusting the TI stimulation parameters based on the real-time EEG data to reinforce synchronous oscillations within the functional network.
+   </li>
+  </ol>
+  <h1>
+   ABSTRACT OF THE DISCLOSURE
+  </h1>
+  <p class="abstract">
+   [0018] A system for adaptive closed-loop network-level neuromodulation is disclosed. The system uses real-time EEG to identify the user's endogenous neural oscillations associated with a target skill (e.g., motor execution). It then employs dynamic spatial steering to apply precisely timed TI stimulation to multiple, coordinated nodes within the relevant functional brain network (e.g., motor cortex and cerebellum). This closed-loop system continuously adjusts stimulation parameters to reinforce the optimal brain state for peak performance, moving beyond the static, single-target approach.
+  </p>
+ </body>
+</html>
