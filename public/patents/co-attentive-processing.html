@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patent: Adaptive Co-Attentive Processing via LLM-SNN Feedback Loop</title>
+    <script type="module">
+        import mermaid from 'https://esm.run/mermaid';
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            counter-reset: paragraph;
+        }
+        .patent-title {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1.5em;
+            margin-bottom: 50px;
+        }
+        .patent-section {
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-top: 40px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 5px;
+        }
+        .patent-p {
+            display: block;
+            margin: 1em 0;
+            text-align: justify;
+        }
+        .patent-p::before {
+            content: "[" padding-left: 20px;
+            counter-increment: paragraph;
+            content: "[" pad-left: 20px;
+            content: "[" sprintf("%04d", counter(paragraph)) "] ";
+            font-family: monospace;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .equation-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .claim-list {
+            list-style-type: none;
+        }
+        .claim-item {
+            margin-bottom: 15px;
+            text-indent: -40px;
+            padding-left: 40px;
+        }
+        .claim-number {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="patent-title">Adaptive Co-Attentive Processing Systems and Methods via Large Language Model (LLM) and Spiking Neural Network (SNN) Feedback Loops</h1>
+
+    <h2 class="patent-section">ABSTRACT</h2>
+    <p class="patent-p">
+        A system and method for hybrid neural processing implement an adaptive feedback loop between a Large Language Model (LLM) and a Spiking Neural Network (SNN) co-processor. The LLM generates initial attention scores for a token sequence, while the SNN co-processor receives encoded data from the LLM to generate temporal feedback signals based on spike-based filtering. These signals are utilized to refine the LLM's attention weights in real-time, enabling sparse, saliency-driven processing. The system leverages the temporal resolution of neuromorphic hardware to modulate the transformer-based attention mechanism, enhancing computational efficiency and context sensitivity.
+    </p>
+
+    <h2 class="patent-section">FIELD OF THE INVENTION</h2>
+    <p class="patent-p">
+        The present invention relates generally to the field of artificial intelligence and machine learning. More specifically, the invention relates to hybrid architectures combining transformer-based models with neuromorphic computing systems to optimize attention mechanisms through temporal feedback.
+    </p>
+
+    <h2 class="patent-section">BACKGROUND OF THE INVENTION</h2>
+    <p class="patent-p">
+        Large Language Models (LLMs) typically utilize the self-attention mechanism to weight the importance of different tokens in a sequence. While effective, standard attention mechanisms are computationally intensive, often scaling quadratically with sequence length. Furthermore, these mechanisms often fail to account for fine-grained temporal saliency that might be present in dynamic data streams.
+    </p>
+    <p class="patent-p">
+        Spiking Neural Networks (SNNs), operating on neuromorphic principles, excel at temporal pattern recognition and energy-efficient processing through sparse activations (spikes). However, SNNs currently lack the complex semantic reasoning capabilities of deep transformer models. There exists a need in the art for a system that combines the high-level reasoning of LLMs with the low-latency, temporal filtering capabilities of SNNs to create more adaptive and efficient processing pipelines.
+    </p>
+
+    <h2 class="patent-section">SUMMARY OF THE INVENTION</h2>
+    <p class="patent-p">
+        In view of the foregoing, the present invention provides a method and system for adaptive co-attentive processing. The system comprises an LLM configured to generate initial attention scores and an SNN co-processor configured to monitor the internal states of the LLM. 
+    </p>
+    <p class="patent-p">
+        Specifically, the LLM hidden states or input embeddings are encoded into spike trains. The SNN processes these spikes to identify salient temporal features. The output of the SNN, in the form of an integrated firing rate or temporal signal, is fed back into the LLM's attention heads as a gain factor. This multiplicative adjustment refines the attention weights, effectively "pruning" or "boosting" specific tokens based on the SNN's real-time analysis. This result is a co-attentive system where the SNN acts as a high-speed, sparse filter for the LLM's intensive computational layers.
+    </p>
+
+    <h2 class="patent-section">BRIEF DESCRIPTION OF THE DRAWINGS</h2>
+    <p class="patent-p">
+        FIG. 1 is a block diagram illustrating the system architecture of the LLM-SNN feedback loop, in accordance with an embodiment of the present invention.
+    </p>
+    <pre class="mermaid">
+    block-beta
+      columns 3
+      InputTokens["Input Token Sequence (100)"]
+      LLMBlock["Large Language Model (102)"]
+      SNNBlock["SNN Co-Processor (104)"]
+      
+      InputTokens --> LLMBlock
+      LLMBlock -- "Hidden States" --> SNNBlock
+      SNNBlock -- "Temporal Feedback (106)" --> LLMBlock
+      LLMBlock --> Output["Refined Output (108)"]
+      
+      style SNNBlock fill:#f9f,stroke:#333,stroke-width:2px
+      style LLMBlock fill:#bbf,stroke:#333,stroke-width:2px
+    </pre>
+
+    <p class="patent-p">
+        FIG. 2 is a sequence diagram depicting the data flow between the transformer layers and the neuromorphic spiking layers.
+    </p>
+    <pre class="mermaid">
+    sequenceDiagram
+        participant T as LLM Transformer Layer
+        participant E as Spike Encoder
+        participant S as SNN Co-Processor
+        participant R as Attention Refinement
+        
+        T->>E: Provide Hidden State Vector (v)
+        E->>S: Generate Spike Train (s_t)
+        S->>S: Temporal Integration & Filtering
+        S->>R: Transmit Gain Factor (G)
+        R->>T: Apply G to Attention Score (A)
+        T->>T: Generate Output Sequence
+    </pre>
+
+    <p class="patent-p">
+        FIG. 3 is a flowchart illustrating the method for refining attention scores based on SNN integration.
+    </p>
+    <pre class="mermaid">
+    graph TD
+        A[Start: Receive Tokens] --> B[Compute Initial Attention Scores A_ij]
+        B --> C[Encode LLM States into Spikes]
+        C --> D[Process via Leaky Integrate-and-Fire Neurons]
+        D --> E{Spike Threshold Reached?}
+        E -- Yes --> F[Calculate Gain G_i]
+        E -- No --> G[Maintain Nominal Gain]
+        F --> H[Refine Attention: A' = A * G]
+        G --> H
+        H --> I[Generate Final Context Vector]
+        I --> J[End]
+    </pre>
+
+    <h2 class="patent-section">DETAILED DESCRIPTION OF THE PREFERRED EMBODIMENTS</h2>
+    <p class="patent-p">
+        Referring to FIG. 1, the system for adaptive co-attentive processing 100 comprises an LLM 102 and an SNN co-processor 104. The LLM 102 is preferably a transformer-based architecture utilizing a multi-head self-attention mechanism. The SNN co-processor 104 is implemented on neuromorphic hardware, such as a specialized integrated circuit designed for spike-based computation.
+    </p>
+    <p class="patent-p">
+        As tokens are processed by the LLM 102, a hidden state vector \( \mathbf{h} \) is generated for each token position. This vector is passed to a spike encoder within the SNN co-processor 104. In a preferred embodiment, the encoder utilizes a rate-coding scheme where the magnitude of the vector components determines the firing frequency of input neurons in the SNN. Alternatively, a latency-coding scheme may be used, where the magnitude determines the timing of the first spike within a temporal window \( T \).
+    </p>
+    <p class="patent-p">
+        The SNN 104 comprises a plurality of Leaky Integrate-and-Fire (LIF) neurons. The dynamics of each neuron \( j \) are governed by the differential equation:
+    </p>
+    <div class="equation-container">
+        \[ \tau_m \frac{dV_j}{dt} = -(V_j(dt) - V_{rest}) + R \cdot I(t) \]
+    </div>
+    <p class="patent-p">
+        where \( V_j \) is the membrane potential, \( \tau_m \) is the membrane time constant, and \( I(t) \) represents the input current derived from the LLM hidden states. When \( V_j \) exceeds a threshold \( V_{th} \), a spike is generated and \( V_j \) is reset.
+    </p>
+    <p class="patent-p">
+        The temporal feedback signal 106 is derived from the firing rate \( \rho \) of the SNN neurons over a sliding window. This signal is used to compute a gain factor \( G \). For a given attention score \( A_{ij} \) between token \( i \) and token \( j \), the refined attention score \( A'_{ij} \) is calculated as:
+    </p>
+    <div class="equation-container">
+        \[ A'_{ij} = \text{softmax} \left( \frac{Q_i K_j^T}{\sqrt{d_k}} \right) \cdot G(\rho_j) \]
+    </div>
+    <p class="patent-p">
+        wherein \( G(\rho_j) \) is a function of the firing rate associated with token \( j \). If the SNN 104 identifies token \( j \) as highly salient (high firing rate), \( G \) increases the attention weight. If the SNN 104 filters token \( j \) as noise or low-priority background information, \( G \) decreases, thereby sparsifying the LLM's attention map.
+    </p>
+    <p class="patent-p">
+        This feedback loop 106 allows the LLM 102 to dynamically adjust its focus based on real-time temporal filters that are more computationally efficient than full transformer layer re-computation. This is particularly advantageous in streaming data applications, such as real-time audio processing or high-frequency financial data analysis, where the SNN 104 can detect temporal anomalies faster than the LLM 102.
+    </p>
+
+    <h2 class="patent-section">CLAIMS</h2>
+    <div class="claim-list">
+        <div class="claim-item">
+            <span class="claim-number">1.</span> A method for adaptive co-attentive processing in a hybrid neural system, the method comprising:
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;generating, by a large language model (LLM), a set of initial attention scores corresponding to a sequence of input tokens;
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;processing, by a spiking neural network (SNN) co-processor, data associated with the sequence of input tokens to generate a temporal feedback signal; and
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;refining the set of initial attention scores within the LLM based on the temporal feedback signal to produce adaptive attention weights for generating an output sequence.
+        </div>
+        
+        <div class="claim-item">
+            <span class="claim-number">2.</span> The method of claim 1, wherein processing data by the SNN co-processor comprises encoding hidden state vectors of the LLM into a plurality of spikes according to a rate-coding or a latency-coding scheme.
+        </div>
+
+        <div class="claim-item">
+            <span class="claim-number">3.</span> The method of claim 1, wherein refining the set of initial attention scores comprises applying a multiplicative gain factor to the initial attention scores, the gain factor being derived from an integrated firing rate of the SNN co-processor over a specific temporal window.
+        </div>
+
+        <div class="claim-item">
+            <span class="claim-number">4.</span> The method of claim 1, wherein the SNN co-processor is configured to operate as a real-time temporal filter to identify salient features within the sequence of input tokens that trigger sparse activation feedback to the LLM.
+        </div>
+
+        <div class="claim-item">
+            <span class="claim-number">5.</span> The method of claim 1, wherein the LLM and the SNN co-processor are executed on a heterogeneous hardware platform comprising at least one neuromorphic processor dedicated to the SNN co-processor and at least one general-purpose accelerator dedicated to the LLM.
+        </div>
+
+        <div class="claim-item">
+            <span class="claim-number">6.</span> A system for adaptive neural processing, comprising:
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;a transformer-based memory storing instructions for a large language model (LLM);
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;a neuromorphic processor implementing a spiking neural network (SNN);
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;wherein the LLM is configured to provide internal state data to the SNN; and
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;wherein the SNN is configured to provide a gain control signal to an attention module of the LLM to modulate attention weights based on spike density.
+        </div>
+    </div>
+
+</body>
+</html>
