@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patent Application: MycoGenesis Digital Twin Simulator</title>
+    <script type="module">
+        import mermaid from 'https://esm.run/mermaid';
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 8.5in;
+            margin: auto;
+            padding: 1in;
+            background-color: #fff;
+        }
+        .patent-title {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1.5em;
+            margin-bottom: 2em;
+        }
+        .patent-section {
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-top: 2em;
+            border-bottom: 1px solid #000;
+        }
+        .paragraph {
+            margin-bottom: 1em;
+            text-indent: 0.5in;
+            text-align: justify;
+        }
+        .paragraph::before {
+            content: "[" attr(data-number) "] ";
+            font-weight: bold;
+            font-family: monospace;
+            margin-right: 10px;
+        }
+        .mermaid {
+            margin: 20px auto;
+            background: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+        .claims-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .claims-list li {
+            margin-bottom: 1.5em;
+            text-align: justify;
+        }
+        .claim-number {
+            font-weight: bold;
+        }
+        .dependent-claim {
+            padding-left: 2em;
+        }
+        .formula-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+            background: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="patent-title">System and Method for Digital Twin Simulation and Morphological Steering of Fungal Computing Architectures</h1>
+
+    <h2 class="patent-section">ABSTRACT</h2>
+    <div class="paragraph" data-number="0001">
+        A system for high-fidelity simulation and real-time morphological control of fungal computing architectures acts as a digital twin for a physical mycelial network. The system comprises a modeling engine for virtual representation, a signal propagation module for simulating stochastic logic and noise, and a growth-trajectory deviation engine. An adaptive steering controller generates localized correction instructions—such as thermal or nutrient modulators—to align the physical substrate's growth with the virtual computational topology. The system enables accelerated prototyping and debugging of biological programs by projecting structural stability and signal reliability over hyper-temporal simulation horizons.
+    </div>
+
+    <h2 class="patent-section">FIELD OF THE INVENTION</h2>
+    <div class="paragraph" data-number="0002">
+        The present invention relates generally to the field of biological computing and synthetic biology. More specifically, the invention relates to digital twin environments for simulating mycelial growth dynamics, signal propagation within fungal networks, and the real-time morphological steering of such networks for computational purposes.
+    </div>
+
+    <h2 class="patent-section">BACKGROUND OF THE INVENTION</h2>
+    <div class="paragraph" data-number="0003">
+        Fungal computing utilizes the mycelial networks of fungi as a substrate for information processing. These biological networks conduct electrical signals and metabolic fluxes that can be harnessed to perform logical operations. However, physical fungal growth is a time-intensive, stochastic process. Developing reliable fungal "circuits" is currently hampered by the slow growth rate of the substrate and the inherent biological noise in signal propagation.
+    </div>
+    <div class="paragraph" data-number="0004">
+        Existing methods lack a cohesive bridge between virtual circuit design and physical biological realization. There is a critical need for a high-fidelity simulation environment that allows developers to design, compile, and debug fungal programs in a virtual space—modeling both the morphological growth and the probabilistic nature of fungal logic—before committing to the physical cultivation process.
+    </div>
+
+    <h2 class="patent-section">SUMMARY OF THE INVENTION</h2>
+    <div class="paragraph" data-number="0005">
+        The present invention, termed "MycoGenesis," provides a digital twin simulator configured to facilitate the design and implementation of fungal architectures. The system integrates a modeling engine, a signal propagation module with logical noise emulation, and an adaptive steering controller.
+    </div>
+    <div class="paragraph" data-number="0006">
+        In one embodiment, the system calculates a spatial delta between a physical mycelial network and its virtual counterpart. Based on this delta, the system triggers biological growth modulators (e.g., thermal gradients or chemical attractants) to steer hyphal extension toward a desired computational topology. This ensures that the physical biological network adheres to the optimized logic gate structure defined in the simulation.
+    </div>
+
+    <h2 class="patent-section">BRIEF DESCRIPTION OF THE DRAWINGS</h2>
+    <div class="paragraph" data-number="0007">
+        FIG. 1 is a block diagram illustrating the system architecture of the MycoGenesis digital twin environment.
+    </div>
+    <pre class="mermaid">
+    graph TD
+        subgraph Virtual_Environment [Virtual Digital Twin Space]
+            A[Modeling Engine 102] --> B[Signal Propagation Module 104]
+            B --> C[Stochastic Logic Engine 106]
+            A --> D[Hyper-Temporal Simulator 108]
+        end
+        
+        subgraph Physical_Interface [Feedback & Control]
+            E[Growth-Trajectory Deviation Engine 110]
+            F[Adaptive Steering Controller 112]
+            G[Sensory Feedback Array 114]
+        end
+
+        subgraph Biological_Substrate [Physical Mycelial Network]
+            H[Mycelial Hyphae 116]
+            I[Bio-Growth Modulators 118]
+        end
+
+        G --> E
+        A --> E
+        E --> F
+        F --> I
+        I --> H
+        H --> G
+    </pre>
+
+    <div class="paragraph" data-number="0008">
+        FIG. 2 is a flowchart depicting the logic for morphological steering and correction.
+    </div>
+    <pre class="mermaid">
+    flowchart TD
+        Start[Initialize Virtual Topology] --> Simulate[Simulate Growth Dynamics]
+        Simulate --> Compare{Compare Physical vs Virtual}
+        Compare -->|Delta > Threshold| Calculate[Calculate Steering Vectors]
+        Calculate --> Trigger[Apply Growth Modulators]
+        Trigger --> Feedback[Update Sensor Data]
+        Feedback --> Compare
+        Compare -->|Delta < Threshold| Sustain[Maintain Current Growth State]
+    </pre>
+
+    <div class="paragraph" data-number="0009">
+        FIG. 3 is a structural schematic showing the targeted application of biological modulators to a hyphal junction.
+    </div>
+    <pre class="mermaid">
+    block-beta
+      columns 3
+      H1["Hyphal Tip (116a)"] space Modulator["Thermal Source (118a)"]
+      space Target["Target Node (V)"] space
+      H2["Mycelial Main (116b)"] space Sensor["Optical Sensor (114)"]
+      
+      H1 -- "Steered Growth" --> Target
+      Modulator -- "Gradient" --> H1
+    </pre>
+
+    <h2 class="patent-section">DETAILED DESCRIPTION OF THE PREFERRED EMBODIMENTS</h2>
+    <div class="paragraph" data-number="0010">
+        Referring to FIG. 1, the digital twin system 100 comprises a Modeling Engine 102 configured to maintain a virtual representation of a physical mycelial network 116. The Modeling Engine 102 utilizes environmental parameters (pH, humidity, nutrient density) to predict the branching patterns of hyphae.
+    </div>
+    <div class="paragraph" data-number="0011">
+        The Signal Propagation Module 104 emulates the electrical and chemical signaling across the network. Because mycelial signals are inherently noisy, the Stochastic Logic Engine 106 maps these signals to probabilistic logic gates. The reliability of a logical 'AND' operation, for instance, is calculated using a confidence-weighted formula:
+    </div>
+    <div class="formula-container">
+        \[ R_{gate} = \prod_{i=1}^{n} (1 - P(noise_i)) \cdot \Phi(S_{density}) \]
+        <p>Where \( R_{gate} \) is the gate reliability, \( P(noise_i) \) is the probability of interference at junction \( i \), and \( \Phi(S_{density}) \) is the signal density function.</p>
+    </div>
+    <div class="paragraph" data-number="0012">
+        The Growth-Trajectory Deviation Engine 110 performs real-time comparison between the virtual model and the physical substrate. It calculates the spatial delta \( \Delta_s \) defined as:
+    </div>
+    <div class="formula-container">
+        \[ \Delta_s = \sqrt{\sum_{i=1}^{3} (X_{virtual, i} - X_{physical, i})^2} \]
+    </div>
+    <div class="paragraph" data-number="0013">
+        The Adaptive Steering Controller 112 receives the calculated \( \Delta_s \) and determines the necessary modulation via the Bio-Growth Modulators 118. These modulators may include Peltier elements for localized thermal gradients or microfluidic channels for localized nutrient (e.g., glucose) delivery. For example, hyphae exhibit positive thermotaxis toward optimized ranges; the controller 112 activates a thermal source 118a to "pull" the hyphal tip 116a toward a specific coordinate required for a logic gate junction.
+    </div>
+    <div class="paragraph" data-number="0014">
+        The Hyper-Temporal Simulator 108 allows the modeling engine to project future growth. By simulating growth at 100x speed, the system identifies potential "bottlenecks"—areas where hyphal thinning might occur—before they manifest in the physical network. This look-ahead capability allows the system to pre-emptively reinforce junctions.
+    </div>
+
+    <h2 class="patent-section">CLAIMS</h2>
+    <ol class="claims-list">
+        <li>
+            <span class="claim-number">1.</span> A real-time morphological steering and digital twin system for fungal computing architectures, the system comprising:
+            <ul>
+                <li>a modeling engine maintaining a high-fidelity virtual representation of a physical mycelial network;</li>
+                <li>a signal propagation module configured to simulate stochastic logical operations based on mycelial signal dynamics;</li>
+                <li>a growth-trajectory deviation engine configured to calculate a spatial and structural delta between the physical mycelial network and the virtual representation in real-time; and</li>
+                <li>an adaptive steering controller configured to generate localized morphological correction instructions based on the calculated delta, wherein the instructions trigger the targeted application of biological growth modulators to the physical mycelial network to enforce a specific computational topology defined within the virtual representation.</li>
+            </ul>
+        </li>
+        <li class="dependent-claim">
+            <span class="claim-number">2.</span> The system of claim 1, wherein the signal propagation module comprises a confidence-weighted logic engine that maps stochastic logical noise from the virtual representation to probabilistic logic gates, defining computational reliability thresholds for the physical mycelial network.
+        </li>
+        <li class="dependent-claim">
+            <span class="claim-number">3.</span> The system of claim 1, further comprising a predictive failure module configured to identify projected structural thinnings or signal attenuation bottlenecks within the virtual representation and pre-emptively trigger the adaptive steering controller to reinforce corresponding physical hyphae junctions.
+        </li>
+        <li class="dependent-claim">
+            <span class="claim-number">4.</span> The system of claim 1, wherein the adaptive steering controller is configured to modulate multi-modal stimuli, including localized thermal gradients and nutrient concentrations, to redirect hyphal tip extension toward coordinates required for the completion of a simulated logic gate.
+        </li>
+        <li class="dependent-claim">
+            <span class="claim-number">5.</span> The system of claim 1, wherein the modeling engine is configured to perform hyper-temporal simulation cycles that project the computational stability of the mycelial network over a future growth horizon, providing look-ahead optimization for the morphological correction instructions.
+        </li>
+    </ol>
+
+</body>
+</html>
