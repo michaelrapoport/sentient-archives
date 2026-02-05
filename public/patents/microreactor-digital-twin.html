@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patent: Adaptive Digital Twin for Parallel Microreactor Arrays</title>
+    <script type="module">
+        import mermaid from 'https://esm.polaritronics.com/mermaid';
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            line-height: 1.5;
+            margin: 40px;
+            color: #333;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .patent-title {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 50px;
+        }
+        .patent-section {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 40px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 5px;
+        }
+        .paragraph {
+            margin-bottom: 15px;
+            text-align: justify;
+            display: flex;
+        }
+        .para-num {
+            min-width: 50px;
+            font-weight: bold;
+            color: #666;
+        }
+        .mermaid {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .equation {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .claims-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .claim-item {
+            margin-bottom: 15px;
+            text-indent: -20px;
+            padding-left: 40px;
+        }
+        .claim-num {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="patent-title">ADAPTIVE DIGITAL TWIN SYSTEM FOR REAL-TIME OPTIMIZATION OF PARALLEL MICROREACTOR ARRAYS</h1>
+
+    <h2 class="patent-section">ABSTRACT</h2>
+    <div class="paragraph">
+        <span class="para-num">[0001]</span>
+        A system for high-throughput screening utilizing a plurality of adaptive, physics-informed digital twins corresponding to a parallel microreactor array. Each digital twin is implemented as a Physics-Informed Neural Network (PINN) that couples microfluidic transport dynamics with chemical reaction kinetics. The system performs real-time calibration by minimizing a composite loss function comprising data-mismatch and physics-residual terms, utilizing adaptive weighting to balance gradient magnitudes. Synergistic regularization is achieved through a global consensus model aggregated from a subset of high-fidelity sensors, which provides a proximal regularization term to stabilize models associated with low-fidelity sensors. The system enables independent, closed-loop optimization of hundreds of chemical experiments simultaneously.
+    </div>
+
+    <h2 class="patent-section">FIELD OF THE INVENTION</h2>
+    <div class="paragraph">
+        <span class="para-num">[0002]</span>
+        The present invention relates generally to the field of chemical engineering and microfluidics. More specifically, the invention relates to a computational system for real-time monitoring and control of high-throughput screening arrays through the use of physics-informed machine learning and adaptive digital twins.
+    </div>
+
+    <h2 class="patent-section">BACKGROUND OF THE INVENTION</h2>
+    <div class="paragraph">
+        <span class="para-num">[0003]</span>
+        High-throughput screening (HTS) allows for the rapid testing of chemical reactions across a vast parameter space. However, existing HTS systems often rely on static, reduced-order models that fail to capture the complex, time-varying dynamics of micro-scale chemistry, such as catalyst deactivation or non-Newtonian fluid behaviors. Conventional digital twins are typically single-instance and computationally expensive, making them unsuitable for the simultaneous management of hundreds of independent reactor units. Furthermore, the cost of equipping every reactor in a large array with high-fidelity spectroscopic sensors is prohibitive. There exists a need for a lightweight, self-calibrating modeling framework that can leverage heterogeneous sensor data to optimize parallel microreactor processes in real-time.
+    </div>
+
+    <h2 class="patent-section">SUMMARY OF THE INVENTION</h2>
+    <div class="paragraph">
+        <span class="para-num">[0004]</span>
+        The present invention provides a system and method for the real-time optimization of parallel chemical processes. The system comprises a microreactor array, a plurality of sensors, and a processing unit configured to instantiate an array of digital twins. Each digital twin is a Physics-Informed Neural Network (PINN) specifically tailored to its corresponding microreactor.
+    </div>
+    <div class="paragraph">
+        <span class="para-num">[0005]</span>
+        Key features of the invention include an adaptive weighting mechanism in the composite loss function to prevent gradient dominance and a synergistic regularization protocol. The protocol allows "chemical intelligence" to be transferred from a subset of high-fidelity reactors to the broader array via a global consensus PINN model. This enables the system to maintain high predictive accuracy even for reactors equipped only with low-cost, low-fidelity process analytical technology (PAT) sensors.
+    </div>
+
+    <h2 class="patent-section">BRIEF DESCRIPTION OF THE DRAWINGS</h2>
+    <div class="paragraph">
+        <span class="para-num">[0006]</span>
+        FIG. 1 is a block diagram illustrating the system architecture, including the physical microreactor array and the distributed PINN digital twin framework.
+    </div>
+    <pre class="mermaid">
+    graph TD
+        subgraph "Physical Domain 100"
+            A1[Microreactor Array 102]
+            S1[High-Fidelity Sensors 104]
+            S2[Low-Fidelity PAT Sensors 106]
+            AC[Actuator Array 108]
+        end
+        subgraph "Digital Domain 200"
+            DT1[PINN Digital Twins 202]
+            GC[Global Consensus Module 204]
+            OP[Optimization Engine 206]
+        end
+        A1 --> S1
+        A1 --> S2
+        S1 --> DT1
+        S2 --> DT1
+        DT1 <--> GC
+        DT1 --> OP
+        OP --> AC
+    </pre>
+
+    <div class="paragraph">
+        <span class="para-num">[0007]</span>
+        FIG. 2 is a flowchart of the iterative PINN calibration process utilizing adaptive weighting and proximal regularization.
+    </div>
+    <pre class="mermaid">
+    flowchart TD
+        Start[Start Iteration] --> GetVal[Acquire Real-Time Sensor Data]
+        GetVal --> CalcPhys[Calculate Physics Residuals L_phys]
+        GetVal --> CalcData[Calculate Data Mismatch L_data]
+        CalcPhys & CalcData --> Weight[Compute Adaptive Weights λ]
+        Weight --> Prox[Apply Proximal Regularization from Global Consensus]
+        Prox --> Opt[Minimize Composite Loss Function]
+        Opt --> Update[Update Digital Twin Parameters]
+        Update --> End[End Iteration]
+    </pre>
+
+    <div class="paragraph">
+        <span class="para-num">[0008]</span>
+        FIG. 3 illustrates the cross-sectional geometry of a single microreactor unit 102 including the integrated sensor and mixing components.
+    </div>
+    <pre class="mermaid">
+    block-beta
+      columns 3
+      Inlet["Inlet Port 302"] space Outlet["Outlet Port 304"]
+      block:mix:3
+        direction LR
+        H1["Mixing Zone 306"]
+        H2["Reaction Channel 308"]
+        H3["Detection Cell 310"]
+      end
+      S_PAT["PAT Sensor 106"] space S_SPEC["Spectroscopic Sensor 104"]
+    </pre>
+
+    <h2 class="patent-section">DETAILED DESCRIPTION OF THE PREFERRED EMBODIMENTS</h2>
+    <div class="paragraph">
+        <span class="para-num">[0009]</span>
+        Referring to FIG. 1, the system comprises a physical microreactor array 102. Each individual microreactor 102 is fabricated from chemically resistant materials such as borosilicate glass or polyether ether ketone (PEEK). In one embodiment, the reaction channels 308 are coated with a semiconductor thin film, such as TiO₂, via atomic layer deposition (ALD) to facilitate photocatalytic reactions.
+    </div>
+    
+    <div class="paragraph">
+        <span class="para-num">[0010]</span>
+        The digital twin 202 for each reactor is implemented as a Physics-Informed Neural Network (PINN). The PINN architecture comprises a fully connected neural network with 4 to 6 hidden layers. The digital twin 202 is configured to solve the advection-diffusion-reaction equation, which governs the species concentration \(C\):
+    </div>
+    <div class="equation">
+        \[ \frac{\partial C}{\partial t} + \mathbf{u} \cdot \nabla C = D \nabla^2 C + R(C, k) \]
+    </div>
+    <div class="paragraph">
+        <span class="para-num">[0011]</span>
+        where \(\mathbf{u}\) is the velocity field (modeled as a non-Newtonian fluid), \(D\) is the diffusion coefficient, and \(R(C, k)\) is the reaction rate function with kinetic constant \(k\).
+    </div>
+
+    <div class="paragraph">
+        <span class="para-num">[0012]</span>
+        Calibration of the digital twin 202 involves a composite loss function \(L_{total}\) defined as:
+    </div>
+    <div class="equation">
+        \[ L_{total} = \lambda_{data} L_{data} + \lambda_{phys} L_{phys} + \lambda_{prox} \| \theta_i - \theta_{consensus} \|^2 \]
+    </div>
+    <div class="paragraph">
+        <span class="para-num">[0013]</span>
+        The adaptive weights \(\lambda_{data}\) and \(\lambda_{phys}\) are dynamically adjusted by the processing unit. Specifically, the processing unit calculates the gradient magnitudes of each term and rescales them to ensure the physics-residual term effectively guides the learning process, particularly when the sensor data from PAT sensors 106 is noisy.
+    </div>
+
+    <div class="paragraph">
+        <span class="para-num">[0014]</span>
+        As illustrated in FIG. 1, the global consensus module 204 periodically aggregates parameters \(\theta\) from high-fidelity digital twins (those receiving data from spectroscopic sensors 104). A physical plausibility metric \(P\) is applied during aggregation:
+    </div>
+    <div class="equation">
+        \[ P = \exp\left(-\frac{|k_{learned} - k_{theory}|}{\sigma}\right) \]
+    </div>
+    <div class="paragraph">
+        <span class="para-num">[0015]</span>
+        Only models where \(P\) exceeds a predefined threshold contribute to the consensus model \(\theta_{consensus}\). This consensus model is then broadcast back to all PINNs in the array, providing a proximal regularization term that anchors the low-fidelity models to physically realistic parameter manifolds.
+    </div>
+
+    <div class="paragraph">
+        <span class="para-num">[0016]</span>
+        The optimization engine 206 utilizes the updated digital twins to solve an inverse problem. By performing gradient descent through the PINN model, the engine identifies the optimal flow rates and temperatures to maximize yield. These values are then sent as control signals to the actuator array 108, which may include pressure-driven pumps and LED drivers for photocatalytic intensity control.
+    </div>
+
+    <h2 class="patent-section">CLAIMS</h2>
+    <div class="claims-list">
+        <div class="claim-item">
+            <span class="claim-num">1.</span> A system for real-time optimization of parallel chemical processes, comprising:
+            <ul>
+                <li>a microreactor array comprising a plurality of individual microreactors;</li>
+                <li>a plurality of sensors, wherein each sensor is configured to acquire real-time operational data from a corresponding individual microreactor;</li>
+                <li>a processing unit operably coupled to the plurality of sensors; and</li>
+                <li>a memory storing instructions that, when executed by the processing unit, cause the processing unit to instantiate and iteratively update a plurality of digital twins, wherein each digital twin corresponds to an individual microreactor and is implemented as a Physics-Informed Neural Network (PINN), by performing a process comprising:
+                    <ol type="a">
+                        <li>for each PINN, performing an individual calibration by minimizing a composite loss function comprising a data-mismatch term based on the real-time operational data and a physics-residual term derived from governing physical laws, wherein the composite loss function includes adaptive weights that are dynamically adjusted during training to balance gradient magnitudes of the data-mismatch and physics-residual terms; and</li>
+                        <li>performing a synergistic regularization by:
+                            <ol type="i">
+                                <li>periodically generating a global consensus PINN model by aggregating parameters from a subset of the individually calibrated PINNs; and</li>
+                                <li>for a subsequent individual calibration step for each of the plurality of PINNs, incorporating a proximal regularization term into the composite loss function, wherein the proximal regularization term penalizes a deviation between parameters of the PINN and parameters of the global consensus PINN model.</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </li>
+            </ul>
+        </div>
+
+        <div class="claim-item">
+            <span class="claim-num">2.</span> The system of claim 1, wherein the governing physical laws encoded in the physics-residual term include coupled partial differential equations for reaction kinetics, non-Newtonian fluid dynamics, and photocatalytic surface degradation.
+        </div>
+
+        <div class="claim-item">
+            <span class="claim-num">3.</span> The system of claim 1, wherein the subset of the individually calibrated PINNs is selected for aggregation based on a multi-criteria score comprising a prediction error metric and a physical plausibility metric, the physical plausibility metric quantifying a consistency of the PINN's learned parameters with established chemical theory, thereby excluding unstable or physically unrealistic models from contributing to the global consensus PINN model.
+        </div>
+
+        <div class="claim-item">
+            <span class="claim-num">4.</span> The system of claim 1, wherein the plurality of sensors comprises a heterogeneous configuration, wherein a first subset of the microreactors is equipped with high-fidelity spectroscopic sensors and a second subset is equipped with low-fidelity process analytical technology (PAT) sensors, and wherein the synergistic regularization facilitates the calibration of PINNs corresponding to the second subset using the global consensus PINN model predominantly learned from the PINNs corresponding to the first subset.
+        </div>
+
+        <div class="claim-item">
+            <span class="claim-num">5.</span> The system of claim 1, wherein the processing unit is further configured to utilize each updated PINN to solve an inverse problem for determining an optimized set of control parameters for its corresponding microreactor, and further comprising a plurality of actuators configured to adjust operating conditions of the microreactors based on said optimized control parameters, thereby creating a closed-loop optimization system.
+        </div>
+    </div>
+
+</body>
+</html>
