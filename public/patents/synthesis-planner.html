@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Objective Synthesis Planner with Pareto Front Visualization</title>
+    <!-- MathJax for LaTeX Rendering -->
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']] },
+        svg: { fontCache: 'global' }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @page {
+            size: Letter;
+            margin: 1in;
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 2; /* USPTO requires double spacing (or 1.5 min) */
+            color: #000;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 40px;
+            text-align: justify;
+            background-color: white;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 12pt;
+            margin-top: 24pt;
+            margin-bottom: 12pt;
+        }
+        h1 { font-size: 14pt; border-bottom: 1px solid #000; padding-bottom: 10px; }
+        p { margin-bottom: 12pt; text-indent: 0; }
+        
+        /* Paragraph Numbering [0001] */
+        .para-num {
+            float: left;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Claims Formatting */
+        .claims-section {
+            margin-top: 40px;
+            page-break-before: always;
+        }
+        ol.claims-list {
+            list-style-type: none;
+            counter-reset: claim-counter;
+            padding-left: 0;
+        }
+        ol.claims-list > li {
+            counter-increment: claim-counter;
+            margin-bottom: 20px;
+            text-indent: -2em; /* Hanging indent for claim number */
+            padding-left: 2em;
+        }
+        ol.claims-list > li::before {
+            content: counter(claim-counter) ". ";
+            font-weight: bold;
+        }
+
+        /* Figures */
+        .figure-container {
+            text-align: center;
+            margin: 40px 0;
+            page-break-inside: avoid;
+        }
+        .figure-caption {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Abstract */
+        .abstract-section {
+            page-break-before: always;
+        }
+
+        @media screen {
+            body { box-shadow: 0 0 20px rgba(0,0,0,0.1); margin-top: 40px; margin-bottom: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Multi-Objective Synthesis Planner with Pareto Front Visualization</h1><h2>Abstract</h2><p>A system for An advanced user interface where users define multiple, often competing, objectives (e.g., maximize yield, minimize cost, minimize CO2 emissions, minimize reaction time). The AI synthesizer returns a Pareto front of optimal solutions, which the user can explore on an interactive 2D/3D scatter plot to visually understand the trade-offs and select a pathway that best fits their business and practical priorities. (Based on: Evolution of the 'Goal-Driven' feature of the Original Concept)</p><h2>Claims</h2><p>1. A computer-implemented system for multi-objective chemical synthesis planning, comprising: a user interface configured to receive a plurality of synthesis objectives including at least two competing metrics; a synthesis processing engine comprising an artificial intelligence model configured to generate a plurality of chemical synthesis pathways for a target molecule; an optimization module configured to identify a Pareto front of optimal pathways from the plurality of chemical synthesis pathways by evaluating each pathway against the plurality of synthesis objectives; and a visualization module configured to display the Pareto front on an interactive scatter plot, wherein the interactive scatter plot facilitates user selection of a specific synthesis pathway based on visual trade-off analysis.
+
+2. The system of claim 1, wherein the plurality of synthesis objectives is selected from a group consisting of: chemical yield, monetary cost, carbon dioxide emissions, reaction time, and safety risk metrics.
+
+3. The system of claim 1, wherein the visualization module is configured to render the Pareto front as a three-dimensional scatter plot, where each axis corresponds to a distinct synthesis objective from the plurality of synthesis objectives.
+
+4. The system of claim 1, wherein the artificial intelligence model utilizes a multi-objective reinforcement learning algorithm or a genetic algorithm to navigate the chemical space and identify candidate pathways for the Pareto front.
+
+5. The system of claim 1, further comprising a pathway execution module configured to transmit parameters of the user-selected synthesis pathway to an automated laboratory synthesis robot.</p><h2>Description</h2><p>An advanced user interface where users define multiple, often competing, objectives (e.g., maximize yield, minimize cost, minimize CO2 emissions, minimize reaction time). The AI synthesizer returns a Pareto front of optimal solutions, which the user can explore on an interactive 2D/3D scatter plot to visually understand the trade-offs and select a pathway that best fits their business and practical priorities. (Based on: Evolution of the 'Goal-Driven' feature of the Original Concept)</p><h2>Embodiments</h2><p></p><h2>Conclusion</h2><p>While the above description contains many specificities, these should not be construed as limitations on the scope of the invention, but rather as an exemplification of one preferred embodiment thereof.</p>
+</body>
+</html>
