@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patent Application: Neuro-Symbolic Mathematical Reasoning System</title>
+    <script type="module">
+        import mermaid from 'https://esm.polaritronics.com/mermaid';
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+            text-align: justify;
+        }
+        .patent-title {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1.5em;
+            margin-bottom: 50px;
+        }
+        .patent-section {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1.2em;
+            margin-top: 40px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 5px;
+        }
+        .paragraph-number {
+            color: #666;
+            font-size: 0.8em;
+            margin-right: 10px;
+            vertical-align: top;
+        }
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .formula {
+            text-align: center;
+            margin: 20px 0;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .claims-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .claims-list li {
+            margin-bottom: 15px;
+            text-indent: -2em;
+            padding-left: 2em;
+        }
+    </style>
+</head>
+<body>
+
+<h1 class="patent-title">System and Method for Automated Mathematical Reasoning via a Neuro-Symbolic Hybrid Architecture</h1>
+
+<h2 class="patent-section">ABSTRACT</h2>
+<p>
+    <span class="paragraph-number">[0001]</span> A system and method for automated mathematical problem solving are disclosed. The system employs a neuro-symbolic hybrid architecture comprising a generative neural module for producing candidate solution strategies and a symbolic verification kernel for validating said strategies. The system further includes a translation engine configured to map informal reasoning steps into a machine-verifiable formal syntax (e.g., Lean 4 or Python/SymPy). A refinement feedback loop iteratively provides logical inconsistency data from the symbolic kernel back to the generative module, enabling high-precision backtracking and solution convergence. The system is specifically optimized for high-level mathematical reasoning tasks, such as those found in International Mathematical Olympiad (IMO) contexts, by utilizing Monte Carlo Tree Search (MCTS) and Reinforcement Learning from Mathematical Feedback (RLMF).
+</p>
+
+<h2 class="patent-section">FIELD OF THE INVENTION</h2>
+<p>
+    <span class="paragraph-number">[0002]</span> The present invention relates generally to the field of Artificial Intelligence (AI). More specifically, the invention relates to neuro-symbolic architectures, automated theorem proving, and large language model (LLM) orchestration for solving complex mathematical problems requiring multi-step logical rigor and formal verification.
+</p>
+
+<h2 class="patent-section">BACKGROUND OF THE INVENTION</h2>
+<p>
+    <span class="paragraph-number">[0003]</span> Traditional Large Language Models (LLMs) often struggle with "hallucinations" and logical inconsistencies when tasked with solving complex, multi-step mathematical problems, such as those encountered in the International Mathematical Olympiad (IMO). While LLMs excel at pattern recognition and intuitive leaps, they lack the intrinsic capability for formal logical verification.
+</p>
+<p>
+    <span class="paragraph-number">[0004]</span> Conversely, symbolic logic systems and formal verification kernels (e.g., Lean 4, Isabelle) provide absolute logical certainty but require manual input or highly structured formal syntax, which is difficult to generate directly from natural language problem statements. There exists a need for a system that bridges the gap between neural intuition and symbolic rigor through an integrated, iterative feedback mechanism.
+</p>
+
+<h2 class="patent-section">SUMMARY OF THE INVENTION</h2>
+<p>
+    <span class="paragraph-number">[0005]</span> In view of the foregoing, the present invention provides a computer-implemented system configured to solve high-level mathematical problems by decoupling "Creative Reasoning" from "Logical Validation."
+</p>
+<p>
+    <span class="paragraph-number">[0006]</span> In one embodiment, the system comprises an input interface for receiving a mathematical problem statement; a Reasoning Backbone comprising an LLM fine-tuned on mathematical corpora; a Symbolic Executor comprising an isolated environment for code and proof execution; and a Verifier/Critic module utilizing a majority-voting consensus or a value-head for path evaluation.
+</p>
+<p>
+    <span class="paragraph-number">[0007]</span> The system further utilizes a "System 2" thinking process, characterized by a Monte Carlo Tree Search (MCTS) where the value of a state \( S \) at step \( t \) is defined by:
+    <div class="formula">
+        \[ V(S_t) = E[R | S_t, \pi] \]
+    </div>
+    where \( R \) is the reward signal derived from the symbolic verification of the final answer, and \( \pi \) is the policy generated by the reasoning backbone.
+</p>
+
+<h2 class="patent-section">BRIEF DESCRIPTION OF THE DRAWINGS</h2>
+<p>
+    <span class="paragraph-number">[0008]</span> <b>FIG. 1</b> is a block diagram illustrating the Neuro-Symbolic Hybrid Architecture of the system.
+</p>
+<pre class="mermaid">
+graph TD
+    A[Input Problem 102] --> B[Reasoning Backbone 104]
+    B --> C{Orchestration Layer 106}
+    C --> D[Formal Translation Engine 108]
+    D --> E[Symbolic Verification Kernel 110]
+    E -- "Logical Gap/Error" --> B
+    E -- "Verified Steps" --> F[Solution Aggregator 112]
+    F --> G[Final Verified Output 114]
+</pre>
+
+<p>
+    <span class="paragraph-number">[0009]</span> <b>FIG. 2</b> is a flowchart illustrating the Monte Carlo Tree Search (MCTS) and refinement feedback loop.
+</p>
+<pre class="mermaid">
+flowchart LR
+    Start((Start)) --> Select[Select Promising Path]
+    Select --> Expand[Expand Thought Branch]
+    Expand --> Simulate[Symbolic Simulation/Execution]
+    Simulate --> Evaluate[Reward Evaluation]
+    Evaluate -- "Success" --> Backprop[Backpropagate Value]
+    Evaluate -- "Fail" --> Backtrack[Refinement Backtracking]
+    Backtrack --> Select
+</pre>
+
+<h2 class="patent-section">DETAILED DESCRIPTION OF THE PREFERRED EMBODIMENTS</h2>
+<p>
+    <span class="paragraph-number">[0010]</span> Referring to FIG. 1, the system 100 initiates via an <b>Input Interface 102</b> which parses natural language mathematical problems into a standardized format. The <b>Reasoning Backbone 104</b> comprises a Large Language Model (LLM) specialized in mathematical syntax (e.g., LaTeX).
+</p>
+<p>
+    <span class="paragraph-number">[0011]</span> The <b>Orchestration Layer 106</b> manages the transition between neural generation and symbolic validation. When the Reasoning Backbone 104 generates a conjecture, the <b>Formal Translation Engine 108</b> maps the informal reasoning into a verifiable script, such as a Python script utilizing <i>SymPy</i> or a formal proof in <i>Lean 4</i>.
+</p>
+<p>
+    <span class="paragraph-number">[0012]</span> The <b>Symbolic Verification Kernel 110</b> (e.g., a Lean 4 REPL or a Python sandbox) executes the translated script. If the kernel 110 identifies a logical inconsistency, the specific error message is returned to the Reasoning Backbone 104 as a structural constraint for the next iteration.
+</p>
+<p>
+    <span class="paragraph-number">[0013]</span> In a preferred embodiment, the system utilizes <b>Reinforcement Learning from Mathematical Feedback (RLMF)</b>. The loss function \( \mathcal{L} \) for the policy gradient update is defined as:
+    <div class="formula">
+        \[ \mathcal{L}(\theta) = -\hat{E}_t [ \log \pi_\theta(a_t | s_t) \hat{A}_t ] \]
+    </div>
+    wherein the advantage estimate \( \hat{A}_t \) is weighted by the correctness of the symbolic verification output.
+</p>
+
+<p>
+    <span class="paragraph-number">[0014]</span> <b>Operational Parameters:</b> The system is configured to operate within the thresholds defined in Table 1 to ensure compliance with competitive environment constraints (e.g., Kaggle/AIMO).
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Parameter</th>
+            <th>Target Value</th>
+            <th>Function</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Inference Temperature</td>
+            <td>0.4 - 0.7</td>
+            <td>Regulates entropy of solution generation.</td>
+        </tr>
+        <tr>
+            <td>Verification Threshold</td>
+            <td>&gt; 95% Confidence</td>
+            <td>Required probability from internal reward model.</td>
+        </tr>
+        <tr>
+            <td>Max Backtrack Limit</td>
+            <td>50 per problem</td>
+            <td>Maximum recursive depth for MCTS.</td>
+        </tr>
+        <tr>
+            <td>Latency Constraint</td>
+            <td>&lt; 120s / step</td>
+            <td>Ensures total execution within session limits.</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    <span class="paragraph-number">[0015]</span> The <b>Fabrication</b> of the model involves a data pipeline utilizing <b>Rejection Sampling</b>. The system generates a plurality of solution attempts, and only those attempts where the symbolic kernel 110 verifies the final result are retained for supervised fine-tuning (SFT). This creates a "Gold Standard" dataset for IMO-level reasoning.
+</p>
+
+<h2 class="patent-section">CLAIMS</h2>
+<ol class="claims-list">
+    <li>
+        1. A computer-implemented system for automated mathematical problem solving, comprising:
+        <ul>
+            <li>an input interface 102 configured to receive a mathematical problem statement in a natural language format;</li>
+            <li>a generative neural module 104 configured to produce a plurality of candidate solution strategies and corresponding informal reasoning steps;</li>
+            <li>a translation engine 108 configured to map the informal reasoning steps into a machine-verifiable formal syntax;</li>
+            <li>a symbolic verification kernel 110 configured to identify logical inconsistencies within said formal syntax; and</li>
+            <li>a refinement feedback loop configured to iteratively provide the identified logical inconsistencies as structural constraints to the generative neural module 104 to modify the candidate solution strategies until a formal proof is successfully verified.</li>
+        </ul>
+    </li>
+    <li>
+        2. The system of claim 1, wherein the machine-verifiable formal syntax comprises at least one of Lean 4, Isabelle, or a Python script utilizing a symbolic mathematics library.
+    </li>
+    <li>
+        3. The system of claim 1, wherein the generative neural module 104 utilizes a Monte Carlo Tree Search (MCTS) to explore a solution space, wherein a value-head estimates the probability of success for each partial solution branch.
+    </li>
+    <li>
+        4. The system of claim 1, wherein the generative neural module 104 is optimized using Reinforcement Learning from Mathematical Feedback (RLMF), wherein the reward signal is derived exclusively from the binary success or failure of the symbolic verification kernel 110.
+    </li>
+    <li>
+        5. The system of claim 1, wherein the generative neural module 104 is configured to emit specialized tokens that trigger the execution of the symbolic verification kernel 110 for intermediate algebraic manipulations.
+    </li>
+    <li>
+        6. A method for automated mathematical reasoning, the method comprising:
+        <ul>
+            <li>receiving a natural language problem statement;</li>
+            <li>generating a chain-of-thought solution comprising informal logical steps via a large language model;</li>
+            <li>translating said informal logical steps into a formal language;</li>
+            <li>executing the formal language in a sandboxed symbolic environment to detect logical gaps; and</li>
+            <li>performing a back-propagation of error to the large language model where the error comprises the formal feedback from the symbolic environment.</li>
+        </ul>
+    </li>
+</ol>
+
+</body>
+</html>
