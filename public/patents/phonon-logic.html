@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patent Application: Phonon-Coupled Memristive Logic</title>
+    <script type="module">
+        import mermaid from 'https://esm.polaritronics.com/mermaid';
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+            text-align: justify;
+        }
+        .patent-title {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1.5em;
+            margin-bottom: 50px;
+        }
+        .patent-section {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1.2em;
+            margin-top: 40px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 5px;
+        }
+        p {
+            margin-bottom: 15px;
+            text-indent: 40px;
+        }
+        .paragraph-number {
+            font-weight: bold;
+            color: #555;
+            margin-right: 10px;
+        }
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .equation {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .claims-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .claims-list li {
+            margin-bottom: 15px;
+            counter-increment: claim-counter;
+        }
+        .claims-list li::before {
+            content: counter(claim-counter) ". ";
+            font-weight: bold;
+        }
+        .claim-dependent {
+            padding-left: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="patent-title">PHONON-COUPLED MEMRISTIVE LOGIC ARCHITECTURE UTILIZING SHARED THERMAL SUBSTRATES FOR NON-ELECTRICAL INTERCONNECTION</h1>
+
+    <h2 class="patent-section">ABSTRACT</h2>
+    <p>
+        <span class="paragraph-number">[0001]</span> A logic gate architecture is provided that utilizes a shared thermal medium for signal interconnection, effectively reducing electrical wiring overhead. The architecture comprises a plurality of memristive devices disposed in close spatial proximity on a single, suspended, and thermally-isolated island structure. Upon a state change in a primary memristor, generated Joule heat propagates as phonons across the shared island. This localized thermal flux modulates the switching threshold of adjacent memristive devices due to their intrinsic thermal coefficients. The resulting thermal coupling enables the implementation of Boolean logic functions, including lateral inhibition and coincidence detection, mediated by physical phonon propagation through the shared substrate rather than direct electrical conductive paths.
+    </p>
+
+    <h2 class="patent-section">FIELD OF THE INVENTION</h2>
+    <p>
+        <span class="paragraph-number">[0002]</span> The present invention relates generally to semiconductor logic architectures and memristive devices. More particularly, the invention relates to non-electrical interconnects and computational structures that utilize thermal propagation (phonons) within a shared substrate to perform logical operations.
+    </p>
+
+    <h2 class="patent-section">BACKGROUND OF THE INVENTION</h2>
+    <p>
+        <span class="paragraph-number">[0003]</span> Conventional integrated circuits rely on metallic interconnects to facilitate communication between logic gates. As device dimensions scale toward the sub-10nm regime, the area, power consumption, and signal latency associated with these electrical interconnects have become primary bottlenecks in computational efficiency, a phenomenon often termed the "interconnect tyranny."
+    </p>
+    <p>
+        <span class="paragraph-number">[0004]</span> While memristive devices offer promising pathways for non-volatile storage and neuromorphic computing, their integration into complex logic circuits typically continues to rely on traditional electrical wiring for signal routing. There exists a significant need for alternative interconnect modalities that can leverage the intrinsic physical properties of the substrate to perform local information transfer and computation without the parasitic overhead of metal lines.
+    </p>
+
+    <h2 class="patent-section">SUMMARY OF THE INVENTION</h2>
+    <p>
+        <span class="paragraph-number">[0005]</span> The present invention addresses the aforementioned challenges by providing a logic gate architecture constructed upon a shared, thermally-conductive island. This island is thermally decoupled from the surrounding bulk substrate via isolation means, such as suspension or dielectric trenches.
+    </p>
+    <p>
+        <span class="paragraph-number">[0006]</span> In one embodiment, the architecture comprises at least two memristive devices fabricated on the shared island. The first device (Input A) functions as a heat source upon activation, while the second device (Input B) functions as a thermally-sensitive receiver. The propagation of phonons through the island alters the local temperature ($T$) of the second device, thereby modifying its switching threshold voltage ($V_{th}$).
+    </p>
+    <p>
+        <span class="paragraph-number">[0007]</span> By engineering the thermal resistance of the island and the thermal coefficient of the memristors, the system can implement inhibitory logic. Specifically, if Input A is triggered, the resulting heat pulse increases the $V_{th}$ of Input B, preventing it from switching even if an electrical input is simultaneously applied. This provides a physical mechanism for lateral inhibition and complex logic gates without direct electrical wiring between the inputs of the devices.
+    </p>
+
+    <h2 class="patent-section">BRIEF DESCRIPTION OF THE DRAWINGS</h2>
+    <p>
+        <span class="paragraph-number">[0008]</span> <b>FIG. 1</b> is a schematic top-down view of the phonon-coupled logic gate illustrating the spatial arrangement of memristors on a shared thermal island.
+    </p>
+    <pre class="mermaid">
+    graph TD
+        subgraph Island_100 [Shared Thermal Island]
+            M1[Memristor A 110] --- P((Phonon Flux 140))
+            P --- M2[Memristor B 120]
+        end
+        Isolation[Thermal Isolation Trench 130] --- Island_100
+    </pre>
+
+    <p>
+        <span class="paragraph-number">[0009]</span> <b>FIG. 2</b> is a cross-sectional view of the device architecture, showing the vertical isolation of the shared thermal medium.
+    </p>
+    <pre class="mermaid">
+    block-beta
+      columns 3
+      space
+      m1["Memristor A (110)"]
+      m2["Memristor B (120)"]
+      
+      island["Shared Thermal Island (100)"]:3
+      
+      gap["Thermal Isolation / Air Gap (130)"]:3
+      
+      substrate["Bulk Substrate (105)"]:3
+
+      m1 -- "Joule Heat" --> island
+      island -- "Phonon Propagation" --> m2
+    </pre>
+
+    <p>
+        <span class="paragraph-number">[0010]</span> <b>FIG. 3</b> is a process flow diagram illustrating the operational sequence of the thermal inhibition logic.
+    </p>
+    <pre class="mermaid">
+    sequenceDiagram
+        participant InputA as Device A (110)
+        participant Island as Thermal Island (100)
+        participant InputB as Device B (120)
+
+        InputA->>InputA: Electrical Pulse Received
+        InputA->>Island: Joule Heating (Phonon Emission)
+        Island->>InputB: Temperature Increase (ΔT)
+        Note over InputB: Threshold V_th Increases
+        InputB->>InputB: External Pulse Arrives
+        Note over InputB: V_pulse < V_th (Inhibited)
+    </pre>
+
+    <h2 class="patent-section">DETAILED DESCRIPTION OF THE PREFERRED EMBODIMENTS</h2>
+    <p>
+        <span class="paragraph-number">[0011]</span> Referring to <b>FIG. 1</b> and <b>FIG. 2</b>, the present invention comprises a <b>Shared Thermal Island (100)</b> fabricated from a material with high thermal conductivity, such as Silicon Nitride ($Si_3N_4$) or Diamond-like Carbon (DLC). The island (100) is physically separated from the <b>Bulk Substrate (105)</b> by a <b>Thermal Isolation Trench (130)</b>, which may comprise an air gap, vacuum, or a low-thermal-conductivity dielectric (e.g., Silicon Dioxide).
+    </p>
+    <p>
+        <span class="paragraph-number">[0012]</span> Disposed on the island (100) are a plurality of memristive devices, including <b>Memristor A (110)</b> and <b>Memristor B (120)</b>. Each memristor comprises a switching layer (e.g., $TiO_x$, $HfO_x$, or $TaO_x$) situated between conductive electrodes. The electrical switching behavior of these devices is intrinsically linked to their local temperature.
+    </p>
+    <p>
+        <span class="paragraph-number">[0013]</span> The mathematical relationship governing the switching threshold voltage ($V_{th}$) as a function of temperature ($T$) is defined as:
+    </p>
+    <div class="equation">
+        $$V_{th}(T) = V_{th,0} + \alpha(T - T_{ref})$$
+    </div>
+    <p>
+        Where $V_{th,0}$ is the threshold voltage at a reference temperature $T_{ref}$, and $\alpha$ is the thermal coefficient of switching. In the preferred embodiment, $\alpha > 0$, indicating that the voltage required to trigger a state change increases as the island (100) heats up.
+    </p>
+    <p>
+        <span class="paragraph-number">[0014]</span> When an electrical signal is applied to Memristor A (110), it undergoes a SET or RESET operation, generating a quantity of Joule heat ($Q$). This heat propagates via <b>Phonon Flux (140)</b> across the island (100). The temperature rise at Memristor B (120) following a time delay ($\Delta t$) is characterized by the thermal diffusivity ($D$) of the island material:
+    </p>
+    <div class="equation">
+        $$\Delta T(r, t) = \frac{Q}{(4\pi Dt)^{3/2}} \exp\left(-\frac{r^2}{4Dt}\right)$$
+    </div>
+    <p>
+        Where $r$ is the spatial distance between the memristors. By configuring the distance $r$ and the diffusivity $D$, the logic gate is "timed" to inhibit Device B (120) precisely when Device A (110) is active.
+    </p>
+    <p>
+        <span class="paragraph-number">[0015]</span> This architecture enables a "Lateral Inhibition" logic gate. In this configuration, Memristor A (110) acts as an inhibitory input. If A is "1" (active), the local environment of B (120) becomes thermally biased, such that the input signal required to switch B to "1" exceeds the available pulse magnitude. Thus, the state of B depends on the thermal history of the shared island (100).
+    </p>
+
+    <h2 class="patent-section">CLAIMS</h2>
+    <div class="claims-list">
+        <li>
+            A logic gate apparatus, comprising:
+            <ul>
+                <li>a thermally-isolated island (100) characterized by high internal thermal conductivity; and</li>
+                <li>a plurality of memristive devices (110, 120) disposed on said thermally-isolated island, each of said devices having a temperature-dependent switching characteristic;</li>
+                <li>wherein the plurality of memristive devices are configured such that Joule heat generated by a first memristive device (110) propagates through the thermally-isolated island (100) to modulate the temperature of at least a second memristive device (120), thereby modifying the switching characteristic of the second memristive device.</li>
+            </ul>
+        </li>
+        <li class="claim-dependent">
+            The apparatus of claim 1, wherein the modulation of the switching characteristic implements a Boolean logic function without a direct electrical interconnect between the first and second memristive devices.
+        </li>
+        <li class="claim-dependent">
+            The apparatus of claim 2, wherein the Boolean logic function is lateral inhibition, characterized by the activity of the first memristive device (110) increasing the switching threshold of the second memristive device (120).
+        </li>
+        <li class="claim-dependent">
+            The apparatus of claim 1, wherein the thermally-isolated island (100) comprises a suspended bridge structure separated from a substrate (105) by an air gap or vacuum.
+        </li>
+        <li class="claim-dependent">
+            The apparatus of claim 1, wherein the thermally-isolated island (100) is defined by a dielectric trench (130) having a thermal conductivity lower than that of the island.
+        </li>
+        <li class="claim-dependent">
+            The apparatus of claim 1, wherein the communication between the first and second memristive devices is mediated exclusively by phonon propagation through the thermally-isolated island (100).
+        </li>
+        <li class="claim-dependent">
+            The apparatus of claim 1, wherein the memristive devices (110, 120) comprise a transition metal oxide switching layer.
+        </li>
+        <li>
+            A method for performing a logic operation in a solid-state device, the method comprising:
+            <ul>
+                <li>providing a plurality of memristors on a shared, thermally-conductive, and isolated island;</li>
+                <li>applying a first electrical pulse to a first memristor to generate a phonon flux within the island;</li>
+                <li>propagating the phonon flux to a second memristor to raise a local temperature of the second memristor; and</li>
+                <li>modulating a threshold switching voltage of the second memristor via the raised local temperature to inhibit or enable a state change in response to a second electrical pulse.</li>
+            </ul>
+        </li>
+    </div>
+</body>
+</html>
