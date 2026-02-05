@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Adaptive Digital Twin Control System with GAN-based Recalibration
+  </title>
+  <!-- MathJax for LaTeX Rendering -->
+  <script>
+   window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']] },
+        svg: { fontCache: 'global' }
+      };
+  </script>
+  <script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+   @page {
+            size: Letter;
+            margin: 1in;
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 2; /* USPTO requires double spacing (or 1.5 min) */
+            color: #000;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 40px;
+            text-align: justify;
+            background-color: white;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 12pt;
+            margin-top: 24pt;
+            margin-bottom: 12pt;
+        }
+        h1 { font-size: 14pt; border-bottom: 1px solid #000; padding-bottom: 10px; }
+        p { margin-bottom: 12pt; text-indent: 0; }
+        
+        /* Paragraph Numbering [0001] */
+        .para-num {
+            float: left;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Claims Formatting */
+        .claims-section {
+            margin-top: 40px;
+            page-break-before: always;
+        }
+        ol.claims-list {
+            list-style-type: none;
+            counter-reset: claim-counter;
+            padding-left: 0;
+        }
+        ol.claims-list > li {
+            counter-increment: claim-counter;
+            margin-bottom: 20px;
+            text-indent: -2em; /* Hanging indent for claim number */
+            padding-left: 2em;
+        }
+        ol.claims-list > li::before {
+            content: counter(claim-counter) ". ";
+            font-weight: bold;
+        }
+
+        /* Figures */
+        .figure-container {
+            text-align: center;
+            margin: 40px 0;
+            page-break-inside: avoid;
+        }
+        .figure-caption {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Abstract */
+        .abstract-section {
+            page-break-before: always;
+        }
+
+        @media screen {
+            body { box-shadow: 0 0 20px rgba(0,0,0,0.1); margin-top: 40px; margin-bottom: 40px; }
+        }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js">
+  </script>
+  <script>
+   mermaid.initialize({startOnLoad:true});
+  </script>
+ </head>
+ <body>
+  <h1>
+   Adaptive Digital Twin Control System with GAN-based Recalibration
+  </h1>
+  <h2>
+   Abstract
+  </h2>
+  <p>
+   A system for A general-purpose control software that uses a GAN-enhanced digital twin to predict and optimize complex physical processes with online adaptation to model drift.
+  </p>
+  <h2>
+   ADDITIONAL TECHNICAL ILLUSTRATIONS
+  </h2>
+  <style>
+   .patent-figure {
+        font-family: "Times New Roman", Times, serif;
+        border: 1px solid #000;
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 800px;
+        background-color: #fff;
+        text-align: center;
+    }
+    .figure-title {
+        font-weight: bold;
+        text-decoration: underline;
+        margin-bottom: 15px;
+        display: block;
+    }
+    .ref-num {
+        font-weight: bold;
+        font-size: 14px;
+    }
+    .mermaid {
+        background-color: transparent !important;
+    }
+  </style>
+  <div class="patent-figure">
+   <span class="figure-title">
+    FIG. 7: TOPOLOGICAL STABILITY MANIFOLD AND ADAPTIVE PARAMETER TRAJECTORY
+   </span>
+   <svg height="400" viewbox="0 0 600 400" width="600" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background Grid for Perspective -->
+    <g fill="none" stroke="#ccc" stroke-width="0.5">
+     <path d="M 50 300 L 300 100 M 100 320 L 350 120 M 150 340 L 400 140 M 200 360 L 450 160">
+     </path>
+     <path d="M 50 300 L 200 360 M 150 220 L 300 280 M 250 140 L 400 200 M 350 60 L 500 120">
+     </path>
+    </g>
+    <!-- Stability Basin (Manifold) 701 -->
+    <path d="M 100 250 Q 300 450 500 250 Q 300 150 100 250" fill="rgba(200, 220, 255, 0.3)" stroke="#000" stroke-width="1.5">
+    </path>
+    <text class="ref-num" x="280" y="320">
+     701
+    </text>
+    <!-- Wireframe Mesh 702 -->
+    <g fill="none" stroke="#444" stroke-width="0.5">
+     <path d="M 150 260 Q 300 360 450 260">
+     </path>
+     <path d="M 180 240 Q 300 340 420 240">
+     </path>
+     <path d="M 300 210 L 300 380">
+     </path>
+     <path d="M 220 240 L 220 345">
+     </path>
+     <path d="M 380 240 L 380 345">
+     </path>
+    </g>
+    <text class="ref-num" x="420" y="350">
+     702
+    </text>
+    <!-- Lyapunov Surface V_dot Boundary 704 -->
+    <ellipse cx="300" cy="280" fill="none" rx="180" ry="80" stroke="#f00" stroke-dasharray="5,5" stroke-width="2">
+    </ellipse>
+    <text class="ref-num" x="490" y="280">
+     704
+    </text>
+    <!-- Current Parameter State 703 -->
+    <circle cx="200" cy="260" fill="#000" r="4">
+    </circle>
+    <text class="ref-num" x="180" y="255">
+     703
+    </text>
+    <!-- Drift Vector 705 -->
+    <path d="M 200 260 L 150 220" marker-end="url(#arrowhead)" stroke="#555" stroke-dasharray="2,2" stroke-width="2">
+    </path>
+    <text class="ref-num" x="130" y="215">
+     705
+    </text>
+    <!-- Generator Correction Vector 706 -->
+    <path d="M 150 220 L 280 270" marker-end="url(#arrowhead)" stroke="#000" stroke-width="2">
+    </path>
+    <text class="ref-num" x="220" y="235">
+     706
+    </text>
+    <!-- Final Attenuated Update 707 -->
+    <circle cx="280" cy="270" fill="#00f" r="4">
+    </circle>
+    <text class="ref-num" x="290" y="265">
+     707
+    </text>
+    <!-- Definitions for arrows -->
+    <defs>
+     <marker id="arrowhead" markerheight="7" markerwidth="10" orient="auto" refx="0" refy="3.5">
+      <polygon points="0 0, 10 3.5, 0 7">
+      </polygon>
+     </marker>
+    </defs>
+   </svg>
+   <pre class="mermaid">
+    graph LR
+        701[Stability Manifold] --- 702[Structural Topology Mesh]
+        703[Current Parameter State θ] --&gt; 705[Observed Model Drift]
+        705 --&gt; 706[cGAN Generator Correction Δθ_G]
+        706 --&gt; 704{Stability Boundary Check V̇}
+        704 --&gt; 707[Stability-Constrained Update θ_t+1]
+    </pre>
+  </div>
+  <div class="patent-figure">
+   <span class="figure-title">
+    FIG. 8: ISOMORPHIC CROSS-SECTION OF HYBRID DIGITAL TWIN ENGINE
+   </span>
+   <svg height="450" viewbox="0 0 600 450" width="600" xmlns="http://www.w3.org/2000/svg">
+    <!-- Definitions for Cross-Hatching -->
+    <defs>
+     <pattern height="10" id="hatchPhysics" patterntransform="rotate(45)" patternunits="userSpaceOnUse" width="10">
+      <line stroke="#888" stroke-width="1" x1="0" x2="0" y1="0" y2="10">
+      </line>
+     </pattern>
+     <pattern height="8" id="hatchLipschitz" patterntransform="rotate(-45)" patternunits="userSpaceOnUse" width="8">
+      <line stroke="#aaa" stroke-width="0.5" x1="0" x2="0" y1="0" y2="8">
+      </line>
+     </pattern>
+    </defs>
+    <!-- External Module Housing 800 -->
+    <rect fill="none" height="350" rx="10" stroke="#000" stroke-width="3" width="500" x="50" y="50">
+    </rect>
+    <text class="ref-num" x="60" y="75">
+     800
+    </text>
+    <!-- Physics-Based Component 801 -->
+    <rect fill="url(#hatchPhysics)" height="60" stroke="#000" stroke-width="1.5" width="440" x="80" y="100">
+    </rect>
+    <text font-weight="bold" x="90" y="135">
+     PHYSICS ODE ENGINE (FIRST PRINCIPLES)
+    </text>
+    <text class="ref-num" x="530" y="135">
+     801
+    </text>
+    <!-- Neural Residual Layer 802 -->
+    <rect fill="#f9f9f9" height="100" stroke="#000" stroke-width="1.5" width="440" x="80" y="160">
+    </rect>
+    <text font-weight="bold" x="90" y="185">
+     LIPSCHITZ-CONSTRAINED RESIDUAL NETWORK
+    </text>
+    <text class="ref-num" x="530" y="215">
+     802
+    </text>
+    <!-- Spectral Normalization Nodes 803 -->
+    <g fill="#fff" stroke="#000">
+     <circle cx="150" cy="220" r="15">
+     </circle>
+     <circle cx="250" cy="220" r="15">
+     </circle>
+     <circle cx="350" cy="220" r="15">
+     </circle>
+     <circle cx="450" cy="220" r="15">
+     </circle>
+    </g>
+    <text font-size="10" x="145" y="225">
+     Wσ
+    </text>
+    <text font-size="10" x="245" y="225">
+     Wσ
+    </text>
+    <text font-size="10" x="345" y="225">
+     Wσ
+    </text>
+    <text font-size="10" x="445" y="225">
+     Wσ
+    </text>
+    <text class="ref-num" x="475" y="245">
+     803
+    </text>
+    <!-- GAN Recalibration Internal Unit 804 -->
+    <rect fill="#eee" height="100" rx="5" stroke="#000" stroke-dasharray="4,2" width="400" x="100" y="280">
+    </rect>
+    <text font-size="12" font-weight="bold" x="110" y="305">
+     cGAN RECALIBRATION CIRCUIT
+    </text>
+    <text class="ref-num" x="510" y="335">
+     804
+    </text>
+    <!-- Generator 805 and Discriminator 806 -->
+    <rect fill="#fff" height="40" stroke="#000" width="120" x="120" y="320">
+    </rect>
+    <text font-size="12" x="135" y="345">
+     GENERATOR
+    </text>
+    <text class="ref-num" x="245" y="345">
+     805
+    </text>
+    <rect fill="#fff" height="40" stroke="#000" width="120" x="300" y="320">
+    </rect>
+    <text font-size="12" x="310" y="345">
+     DISCRIMINATOR
+    </text>
+    <text class="ref-num" x="425" y="345">
+     806
+    </text>
+    <!-- Stability Attenuation Function Logic 807 -->
+    <path d="M 430 340 L 480 340 Q 490 340 490 330 L 490 260" fill="none" marker-end="url(#arrowhead)" stroke="#000" stroke-width="2">
+    </path>
+    <text class="ref-num" x="495" y="310">
+     807
+    </text>
+   </svg>
+   <pre class="mermaid">
+    block-beta
+        columns 1
+        block:System800
+            Physics801["Physics Component (ODE)"]
+            Residual802["Residual Network Component (Lipschitz)"]
+            subgraph GAN_Recalibrator804["Recalibration Logic"]
+                Generator805["Generator (Parameter Correction)"]
+                Discriminator806["Discriminator (Drift Detection)"]
+                Stability807["Attenuation Logic P(V̇)"]
+            end
+        end
+        Physics801 --&gt; Residual802
+        Generator805 --&gt; Stability807
+        Stability807 --&gt; Residual802
+        Discriminator806 --&gt; Generator805
+    </pre>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js">
+  </script>
+  <script>
+   mermaid.initialize({startOnLoad:true, theme:'neutral'});
+  </script>
+  <h2>
+   Claims
+  </h2>
+  <p>
+   1. A control system for a physical process, the system comprising: a processing unit; and a memory storing instructions that, when executed by the processing unit, cause the system to: maintain a hybrid digital twin model representative of the physical process, the model comprising a physics-based component and a learned residual dynamics component; generate, using the hybrid digital twin model, one or more control signals to actuate the physical process; and adaptively recalibrate the learned residual dynamics component by: training a generator of a conditional Generative Adversarial Network (cGAN) to produce corrective adjustments for one or more parameters of the learned residual dynamics component, wherein the generator is trained using a composite loss function comprising a first adversarial term to minimize a model drift detected by a cGAN discriminator and a second stability-regularization term derived from a time derivative of a control Lyapunov function (CLF) of the system, thereby training the generator to produce adjustments that are biased towards maintaining system stability; and applying the corrective adjustments produced by the trained generator to the one or more parameters of the learned residual dynamics component using a stability-constrained update rule, wherein a magnitude of an update is attenuated based on a value of the time derivative of the CLF.
+
+2. The system of claim 1, wherein the second stability-regularization term of the composite loss function is formulated as L_Lyapunov = E[max(0, V̇(x', u) + ε)], where E is an expectation operator, V̇ is the time derivative of the CLF, x' is a state predicted by the hybrid digital twin model using parameters updated by a prospective corrective adjustment, u is the one or more control signals, and ε is a predefined stability margin, thereby penalizing adjustments predicted to violate the stability margin.
+
+3. The system of claim 1, wherein the stability-constrained update rule applies the corrective adjustments (Δθ_G) according to θ_r(t+1) = θ_r(t) + α * P(V̇) * Δθ_G, where θ_r are the parameters, α is a learning rate, and P(V̇) is a nonlinear attenuation function that decreases in value as the time derivative of the CLF, V̇, approaches a non-negative stability margin.
+
+4. The system of claim 3, wherein the nonlinear attenuation function P(V̇) is a sigmoid function configured to approach 1 for a strongly negative V̇ and approach 0 as V̇ becomes non-negative.
+
+5. The system of claim 1, wherein the learned residual dynamics component comprises a Lipschitz-constrained neural network, wherein spectral norms of weight matrices of the neural network are constrained to ensure a bounded influence of the learned residual dynamics component on overall system stability.
+  </p>
+  <h2>
+   Description
+  </h2>
+  <p>
+   A general-purpose control software that uses a GAN-enhanced digital twin to predict and optimize complex physical processes with online adaptation to model drift.
+  </p>
+  <h2>
+   Embodiments
+  </h2>
+  <p>
+  </p>
+  <h2>
+   Conclusion
+  </h2>
+  <p>
+   While the above description contains many specificities, these should not be construed as limitations on the scope of the invention, but rather as an exemplification of one preferred embodiment thereof.
+  </p>
+  <h2>
+   Enablement &amp; Implementation
+  </h2>
+  ```html
+  <h2>
+   Hardware and Software Integration Stack
+  </h2>
+  <p>
+   The implementation of the Adaptive Digital Twin Control System requires a high-performance computing environment capable of real-time sensor data processing and iterative neural network training. The recommended hardware includes a multi-core processing unit (CPU) paired with a high-bandwidth Graphics Processing Unit (GPU) or Tensor Processing Unit (TPU) to handle the parallelization of the GAN training cycles. For the physical interface, the system utilizes high-frequency data acquisition (DAQ) modules connected to industrial sensors (e.g., pressure transducers, thermocouples, or encoders) and actuators (e.g., servos, VFDs, or solenoid valves). The software stack is built upon a real-time Linux kernel (such as RT-Preempt) using Python or C++ with specialized libraries: PyTorch or TensorFlow for the GAN architecture, and CasADi or SciPy for the physics-based modeling and Lyapunov optimization routines.
+  </p>
+  <h2>
+   Architecture of the Hybrid Digital Twin
+  </h2>
+  <p>
+   The system maintains a dual-model architecture. The physics-based component is implemented as a system of Ordinary Differential Equations (ODEs) representing the known first-principles dynamics of the process (e.g., mass-energy balance or kinematics). The learned residual dynamics component is implemented as a Lipschitz-constrained neural network. To ensure reproducibility of the stability guarantees, spectral normalization is applied to each layer of the neural network. This is achieved by dividing the weight matrices by their largest singular value, calculated via power iteration, effectively bounding the Lipschitz constant of the residual model. This constraint prevents the learned model from introducing high-frequency noise or unbounded gains that could destabilize the control loop.
+  </p>
+  <h2>
+   Conditional GAN (cGAN) Design and Drift Detection
+  </h2>
+  <p>
+   The recalibration engine consists of a Generator (G) and a Discriminator (D). The Discriminator is trained to distinguish between the distribution of predicted state transitions from the hybrid model and the actual state transitions observed from the physical sensors. Model drift is quantified when the Discriminator's accuracy exceeds a predefined threshold, signaling that the current model parameters no longer reflect the physical reality. The Generator is conditioned on the current state vector and the observed error residual. Its output is a vector of parameter adjustments (Δθ) intended to shift the weights of the residual dynamics component back into alignment with the physical process.
+  </p>
+  <h2>
+   Implementation of the Composite Loss Function
+  </h2>
+  <p>
+   To ensure that the cGAN does not suggest recalibrations that would render the system unstable, the Generator is trained using a composite loss function. The adversarial term (L_adv) is standard binary cross-entropy. The stability-regularization term (L_Lyapunov) is implemented by evaluating the time derivative of a Control Lyapunov Function (CLF), V̇(x, u), for the predicted next state. In code, this is expressed as L_Lyapunov = torch.mean(torch.clamp(V_dot + epsilon, min=0)), where epsilon is a small positive margin (e.g., 1e-3). This hinge-loss structure ensures that the Generator receives a heavy penalty whenever it proposes a parameter update that causes V̇ to approach or exceed zero, thereby forcing the GAN to prioritize updates that maintain a negative-definite V̇.
+  </p>
+  <h2>
+   The Stability-Constrained Update Protocol
+  </h2>
+  <p>
+   The update of the residual dynamics parameters (θ_r) follows a specific safety protocol to prevent aggressive jumps in the model. Once the Generator produces a suggested adjustment (Δθ_G), the system calculates a scalar attenuation factor, P(V̇), using a sigmoid function: P(V̇) = 1 / (1 + exp(k * (V̇ + margin))), where k is a steepness constant. If the current system state is operating near the edge of the stability region (V̇ near 0), P(V̇) approaches 0, effectively freezing the model parameters to prevent a crash. If the system is in a robustly stable regime (V̇ is strongly negative), P(V̇) approaches 1, allowing the full recalibration to proceed. The final update rule is applied as θ_r(t+1) = θ_r(t) + α * P(V̇) * Δθ_G, where α is the global learning rate.
+  </p>
+  <h2>
+   Operational Logic and Deployment
+  </h2>
+  <p>
+   The system operates in a continuous loop: (1) Sensor data is ingested and synchronized with the hybrid digital twin. (2) The control signal is computed using a Model Predictive Control (MPC) or PID logic based on the twin's predictions. (3) The actual outcome is compared to the prediction; if the residual exceeds the drift threshold, the cGAN is activated in a background thread. (4) The Generator iterates through the composite loss function until the adversarial and Lyapunov terms converge. (5) The stability-constrained update rule is applied to the live model. This process ensures that the digital twin evolves in real-time to match physical wear, environmental changes, or payload shifts without ever bypassing the formal mathematical requirements for system stability.
+  </p>
+  ```
+ </body>
+</html>
