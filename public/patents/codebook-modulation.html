@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Adaptive Codebook Modulation via Variant Subspace Context
+  </title>
+  <!-- MathJax for LaTeX Rendering -->
+  <script>
+   window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']] },
+        svg: { fontCache: 'global' }
+      };
+  </script>
+  <script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+   @page {
+            size: Letter;
+            margin: 1in;
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 2; /* USPTO requires double spacing (or 1.5 min) */
+            color: #000;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 40px;
+            text-align: justify;
+            background-color: white;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 12pt;
+            margin-top: 24pt;
+            margin-bottom: 12pt;
+        }
+        h1 { font-size: 14pt; border-bottom: 1px solid #000; padding-bottom: 10px; }
+        p { margin-bottom: 12pt; text-indent: 0; }
+        
+        /* Paragraph Numbering [0001] */
+        .para-num {
+            float: left;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Claims Formatting */
+        .claims-section {
+            margin-top: 40px;
+            page-break-before: always;
+        }
+        ol.claims-list {
+            list-style-type: none;
+            counter-reset: claim-counter;
+            padding-left: 0;
+        }
+        ol.claims-list > li {
+            counter-increment: claim-counter;
+            margin-bottom: 20px;
+            text-indent: -2em; /* Hanging indent for claim number */
+            padding-left: 2em;
+        }
+        ol.claims-list > li::before {
+            content: counter(claim-counter) ". ";
+            font-weight: bold;
+        }
+
+        /* Figures */
+        .figure-container {
+            text-align: center;
+            margin: 40px 0;
+            page-break-inside: avoid;
+        }
+        .figure-caption {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Abstract */
+        .abstract-section {
+            page-break-before: always;
+        }
+
+        @media screen {
+            body { box-shadow: 0 0 20px rgba(0,0,0,0.1); margin-top: 40px; margin-bottom: 40px; }
+        }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js">
+  </script>
+  <script>
+   mermaid.initialize({startOnLoad:true});
+  </script>
+ </head>
+ <body>
+  <h1>
+   Adaptive Codebook Modulation via Variant Subspace Context
+  </h1>
+  <h2>
+   Abstract
+  </h2>
+  <p>
+   A system for This concept enhances the original idea by utilizing the session-variant subspace instead of discarding it. The variant subspace, which captures user state like fatigue or signal drift, is used to generate a real-time 'context vector'. This vector dynamically modulates the 'invariant' codebook entries via a mechanism like Feature-wise Linear Modulation (FiLM) before the final decoding step. This allows the core motor primitives to remain stable while the system adapts to the specific conditions of the current session on-the-fly. (Based on: Improvement on Original Concept (utilizing discarded information))
+  </p>
+  <h2>
+   ADDITIONAL TECHNICAL ILLUSTRATIONS
+  </h2>
+  <style>
+   .patent-figure {
+        font-family: "Times New Roman", serif;
+        border: 1px solid #000;
+        padding: 20px;
+        margin: 20px 0;
+        background-color: #fff;
+        text-align: center;
+    }
+    .figure-title {
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-decoration: underline;
+    }
+    svg {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+    .mermaid {
+        background-color: transparent;
+    }
+    .numeral {
+        font-style: italic;
+        font-weight: bold;
+        font-size: 14px;
+    }
+  </style>
+  <div class="patent-figure">
+   <div class="figure-title">
+    FIG. 7: 3D WIREFRAME OF TOPOLOGICAL MANIFOLD MODULATION
+   </div>
+   <svg viewbox="0 0 600 500" xmlns="http://www.w3.org/2000/svg">
+    <!-- Definitions for markers and hatching -->
+    <defs>
+     <marker id="arrowhead" markerheight="7" markerwidth="10" orient="auto" refx="0" refy="3.5">
+      <polygon fill="#000" points="0 0, 10 3.5, 0 7">
+      </polygon>
+     </marker>
+    </defs>
+    <!-- Latent Space Coordinate System 701 -->
+    <line marker-end="url(#arrowhead)" stroke="#000" stroke-width="2" x1="100" x2="500" y1="400" y2="400">
+    </line>
+    <line marker-end="url(#arrowhead)" stroke="#000" stroke-width="2" x1="100" x2="100" y1="400" y2="50">
+    </line>
+    <line marker-end="url(#arrowhead)" stroke="#000" stroke-width="2" x1="100" x2="40" y1="400" y2="460">
+    </line>
+    <text class="numeral" x="510" y="410">
+     701
+    </text>
+    <!-- Session-Invariant Subspace Manifold 703 (Wireframe Grid) -->
+    <g fill="none" opacity="0.6" stroke="#888" stroke-width="0.5">
+     <!-- X-direction lines -->
+     <path d="M150 350 Q300 300 450 350">
+     </path>
+     <path d="M140 320 Q290 270 440 320">
+     </path>
+     <path d="M130 290 Q280 240 430 290">
+     </path>
+     <path d="M120 260 Q270 210 420 260">
+     </path>
+     <!-- Y-direction lines -->
+     <path d="M150 350 L120 260">
+     </path>
+     <path d="M225 330 L195 240">
+     </path>
+     <path d="M300 325 L270 235">
+     </path>
+     <path d="M375 330 L345 240">
+     </path>
+     <path d="M450 350 L420 260">
+     </path>
+    </g>
+    <text class="numeral" x="250" y="380">
+     703
+    </text>
+    <!-- Context Vector Modulation Path 704 -->
+    <path d="M400 100 C450 150 420 250 350 280" fill="none" marker-end="url(#arrowhead)" stroke="#000" stroke-dasharray="5,5" stroke-width="3">
+    </path>
+    <text class="numeral" x="430" y="150">
+     704
+    </text>
+    <!-- Adapted Manifold 705 (Offset Wireframe) -->
+    <g fill="none" stroke="#000" stroke-width="1">
+     <path d="M250 250 Q400 200 550 250">
+     </path>
+     <path d="M240 220 Q390 170 540 220">
+     </path>
+     <path d="M230 190 Q380 140 530 190">
+     </path>
+     <path d="M250 250 L230 190">
+     </path>
+     <path d="M325 230 L305 170">
+     </path>
+     <path d="M400 225 L380 165">
+     </path>
+     <path d="M550 250 L530 190">
+     </path>
+    </g>
+    <text class="numeral" x="400" y="180">
+     705
+    </text>
+    <!-- Projection Vertex 702 -->
+    <circle cx="350" cy="280" fill="red" r="4">
+    </circle>
+    <text class="numeral" x="360" y="295">
+     702
+    </text>
+    <!-- Orthogonal Boundary 706 -->
+    <rect fill="none" height="400" stroke="#ccc" stroke-dasharray="10,10" width="500" x="50" y="50">
+    </rect>
+    <text class="numeral" x="60" y="70">
+     706
+    </text>
+   </svg>
+   <pre class="mermaid">
+    graph TD
+        701[Latent Space Reference]
+        702[Active Projection Node]
+        703[Pre-trained Invariant Manifold]
+        704[Session-Variant Modulation Flow]
+        705[Real-Time Adapted Manifold]
+        706[Orthogonality Constraint Boundary]
+        
+        704 -.-&gt; |Affine Shift| 705
+        703 --- 705
+        702 --&gt; 705
+    </pre>
+  </div>
+  <div class="patent-figure">
+   <div class="figure-title">
+    FIG. 8: ISOMORPHIC VIEW OF FiLM MODULATION ARCHITECTURE
+   </div>
+   <svg viewbox="0 0 600 550" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+     <pattern height="4" id="hatch" patternunits="userSpaceOnUse" width="4">
+      <path d="M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2" stroke="#000" stroke-width="0.5">
+      </path>
+     </pattern>
+    </defs>
+    <!-- Input Buffer 801 -->
+    <rect fill="#fff" height="40" stroke="#000" stroke-width="2" width="120" x="50" y="50">
+    </rect>
+    <text style="font-size:12px;" x="60" y="75">
+     INPUT SIGNAL
+    </text>
+    <text class="numeral" x="180" y="75">
+     801
+    </text>
+    <!-- Decomposition Layer 802 -->
+    <path d="M110 90 L110 130" marker-end="url(#arrowhead)" stroke="#000" stroke-width="2">
+    </path>
+    <rect fill="url(#hatch)" height="60" stroke="#000" stroke-width="2" width="500" x="50" y="130">
+    </rect>
+    <text style="font-size:14px; font-weight:bold; background:white;" x="210" y="165">
+     PROJECTION MATRIX (ORTHOGONAL)
+    </text>
+    <text class="numeral" x="560" y="165">
+     802
+    </text>
+    <!-- GRU Encoder 803 -->
+    <rect fill="#f0f0f0" height="80" stroke="#000" stroke-width="2" width="150" x="50" y="240">
+    </rect>
+    <text style="font-size:12px;" x="65" y="285">
+     GRU ENCODER (Seq2Vec)
+    </text>
+    <text class="numeral" x="210" y="285">
+     803
+    </text>
+    <!-- Hypernetwork 804 -->
+    <rect fill="#f0f0f0" height="80" stroke="#000" stroke-width="2" width="150" x="250" y="240">
+    </rect>
+    <text style="font-size:12px;" x="270" y="285">
+     HYPERNETWORK
+    </text>
+    <text class="numeral" x="410" y="285">
+     804
+    </text>
+    <!-- Parameters 805, 806 -->
+    <line marker-end="url(#arrowhead)" stroke="#000" stroke-width="2" x1="400" x2="450" y1="260" y2="260">
+    </line>
+    <text class="numeral" x="460" y="265">
+     805 (γ)
+    </text>
+    <line marker-end="url(#arrowhead)" stroke="#000" stroke-width="2" x1="400" x2="450" y1="300" y2="300">
+    </line>
+    <text class="numeral" x="460" y="305">
+     806 (β)
+    </text>
+    <!-- Invariant Codebook 808 -->
+    <rect fill="#fff" height="100" stroke="#000" stroke-width="2" width="150" x="50" y="400">
+    </rect>
+    <path d="M50 420 L200 420 M50 440 L200 440 M50 460 L200 460 M50 480 L200 480" stroke="#ccc">
+    </path>
+    <text style="font-size:10px;" x="60" y="415">
+     CODEBOOK PRIMITIVES
+    </text>
+    <text class="numeral" x="210" y="455">
+     808
+    </text>
+    <!-- FiLM Transform Layer 807 -->
+    <circle cx="325" cy="450" fill="none" r="30" stroke="#000" stroke-width="2">
+    </circle>
+    <line stroke="#000" stroke-width="2" x1="310" x2="340" y1="450" y2="450">
+    </line>
+    <line stroke="#000" stroke-width="2" x1="325" x2="325" y1="435" y2="465">
+    </line>
+    <text class="numeral" x="360" y="455">
+     807
+    </text>
+    <!-- Final Output 809 -->
+    <rect fill="#fff" height="40" stroke="#000" stroke-width="2" width="120" x="450" y="430">
+    </rect>
+    <text style="font-size:10px;" x="460" y="455">
+     ADAPTED PRIMITIVES
+    </text>
+    <text class="numeral" x="510" y="485">
+     809
+    </text>
+    <!-- Connections -->
+    <path d="M125 190 L125 240" marker-end="url(#arrowhead)" stroke="#000" stroke-width="2">
+    </path>
+    <path d="M200 280 L250 280" marker-end="url(#arrowhead)" stroke="#000" stroke-width="2">
+    </path>
+    <path d="M200 450 L295 450" marker-end="url(#arrowhead)" stroke="#000" stroke-width="2">
+    </path>
+    <path d="M355 450 L450 450" marker-end="url(#arrowhead)" stroke="#000" stroke-width="2">
+    </path>
+    <path d="M325 320 L325 420" marker-end="url(#arrowhead)" stroke="#000" stroke-width="2">
+    </path>
+   </svg>
+   <pre class="mermaid">
+    block-beta
+        columns 3
+        801["Input Buffer"] space 802["Orthogonal Projection"]
+        803["GRU Sequence Encoder"] 804["Hypernetwork"] space
+        808["Static Codebook"] 807["FiLM Layer (γ, β)"] 809["Adapted Output"]
+        
+        801 --&gt; 802
+        802 --&gt; 803
+        803 --&gt; 804
+        804 --&gt; 807
+        808 --&gt; 807
+        807 --&gt; 809
+    </pre>
+  </div>
+  <h2>
+   Claims
+  </h2>
+  <p>
+   1. A system for adaptive signal decoding, the system comprising: a signal processor configured to: a. receive a set of input signals from a user; b. decompose the set of input signals into a session-invariant subspace and a session-variant subspace via a projection matrix constrained by an orthogonality loss; c. generate a dynamic context vector by processing the session-variant subspace through a sequence-to-vector encoder, wherein the dynamic context vector characterizes non-stationary signal drift and user physiological state; d. modulate a plurality of invariant motor primitives in a codebook via a modulation mechanism comprising a hypernetwork, wherein the hypernetwork maps the dynamic context vector to a set of affine transformation parameters for a Feature-wise Linear Modulation (FiLM) layer, the FiLM layer applying the affine transformation to the invariant motor primitives to generate a set of session-adapted motor primitives; and e. decode the set of input signals by computing a similarity measure between the session-invariant subspace projection of the input signals and the set of session-adapted motor primitives to output a control command.
+
+2. The system of claim 1, wherein the sequence-to-vector encoder comprises a Gated Recurrent Unit (GRU) configured to extract temporal dependencies from the session-variant subspace at a frequency matched to the sampling rate of the input signals.
+
+3. The system of claim 1, wherein the invariant motor primitives are pre-trained on a multi-subject dataset and remain fixed within the codebook, while the hypernetwork dynamically updates the session-adapted motor primitives in real-time.
+
+4. The system of claim 1, wherein the affine transformation parameters comprise a scaling vector and a shifting vector that adjust the manifold orientation of the invariant motor primitives within a latent feature space.
+
+5. The system of claim 1, wherein the signal processor is further configured to update the projection matrix based on a reconstruction error of the session-variant subspace to maintain the orthogonality constraint during a continuous user session.
+  </p>
+  <h2>
+   Description
+  </h2>
+  <p>
+   This concept enhances the original idea by utilizing the session-variant subspace instead of discarding it. The variant subspace, which captures user state like fatigue or signal drift, is used to generate a real-time 'context vector'. This vector dynamically modulates the 'invariant' codebook entries via a mechanism like Feature-wise Linear Modulation (FiLM) before the final decoding step. This allows the core motor primitives to remain stable while the system adapts to the specific conditions of the current session on-the-fly. (Based on: Improvement on Original Concept (utilizing discarded information))
+  </p>
+  <h2>
+   Embodiments
+  </h2>
+  <p>
+  </p>
+  <h2>
+   Conclusion
+  </h2>
+  <p>
+   While the above description contains many specificities, these should not be construed as limitations on the scope of the invention, but rather as an exemplification of one preferred embodiment thereof.
+  </p>
+ </body>
+</html>
