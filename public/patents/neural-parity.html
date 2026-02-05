@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patent Application - Neural Parity-Check Feedback Loop</title>
+    <script type="module">
+        import mermaid from 'https://esm.polaritronics.com/mermaid';
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            line-height: 1.5;
+            padding: 40px;
+            max-width: 900px;
+            margin: auto;
+            color: #333;
+            text-align: justify;
+        }
+        .patent-title {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1.5em;
+            margin-bottom: 50px;
+        }
+        .patent-section {
+            text-align: left;
+            text-transform: uppercase;
+            font-size: 1.2em;
+            border-bottom: 1px solid #000;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 15px;
+            text-indent: 40px;
+        }
+        .paragraph-number {
+            font-weight: bold;
+            color: #555;
+            margin-right: 10px;
+        }
+        .mermaid {
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .equation {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .claim-list {
+            list-style-type: none;
+        }
+        .claim-item {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        .claim-number {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="patent-title">Systems and Methods for Maintaining Neural Decoding Stability via Topological Parity-Check Feedback Loops</h1>
+
+    <h2 class="patent-section">ABSTRACT</h2>
+    <p>
+        <span class="paragraph-number">[0001]</span> A closed-loop control system for maintaining stability in Brain-Computer Interfaces (BCIs) is disclosed. The system treats neural population dynamics as a low-dimensional latent manifold and utilizes a Neural Parity-Check Feedback Loop (NPC-FL) to mitigate representational drift. The system comprises a Grassmannian tracker configured to monitor geometric alignment of neural subspaces and a topological analyzer configured to detect ruptures in signal topology via Persistent Homology. A parity error is computed based on the divergence between an observed neural state and a source manifold. A feedback controller adjusts neural trajectories via stochastic modulation of Inter-Spike Intervals (ISI) using Riemannian gradient optimization, thereby realigning neural activity with a stable manifold for high-fidelity decoding despite biological non-stationarity.
+    </p>
+
+    <h2 class="patent-section">FIELD OF THE INVENTION</h2>
+    <p>
+        <span class="paragraph-number">[0002]</span> The present invention relates generally to neural engineering and signal processing. More specifically, the invention relates to adaptive control systems for Brain-Computer Interfaces (BCIs) that utilize differential geometry and topological data analysis to maintain decoding stability in the presence of neural drift.
+    </p>
+
+    <h2 class="patent-section">BACKGROUND OF THE INVENTION</h2>
+    <p>
+        <span class="paragraph-number">[0003]</span> Intracortical Brain-Computer Interfaces rely on the accurate mapping of high-dimensional neural firing patterns to external variables, such as prosthetic limb movements or cursor velocities. A fundamental challenge in the field is the non-stationarity of neural signals. Over time, factors such as synaptic plasticity, mechanical shifts of electrodes, and changes in cognitive state cause "representational drift," where the statistical relationship between neural activity and the target variable changes.
+    </p>
+    <p>
+        <span class="paragraph-number">[0004]</span> Current remediation strategies typically involve periodic manual or semi-automated recalibration. However, these interruptions disrupt the user's agency and are insufficient for maintaining long-term stability. While the "Neural Manifold Hypothesis" suggests that neural activity is constrained to low-dimensional manifolds, existing decoders (such as Kalman filters) lack the structural feedback mechanisms necessary to actively correct for manifold-level deviations. There exists a need for a closed-loop framework that can detect and correct geometric and topological signal errors in real-time.
+    </p>
+
+    <h2 class="patent-section">SUMMARY OF THE INVENTION</h2>
+    <p>
+        <span class="paragraph-number">[0005]</span> The present invention provides a Neural Parity-Check Feedback Loop (NPC-FL) designed to treat neural population dynamics as a points on a Riemannian manifold. The system defines a "parity error" not as a simple bit-mismatch, but as a multi-dimensional divergence in the geometric and topological properties of the neural flux.
+    </p>
+    <p>
+        <span class="paragraph-number">[0006]</span> In one embodiment, the system comprises a neural interface for receiving neural signals from a population of neurons; a Grassmannian subspace tracker for computing a geometric distance between an observed subspace and a reference subspace; a topological data analysis (TDA) module for computing a topological parity error via Persistent Homology; and a feedback controller configured to modulate neural stimulation parameters based on a Riemannian gradient of the combined geometric and topological errors.
+    </p>
+    <p>
+        <span class="paragraph-number">[0007]</span> By employing stochastic modulation of Inter-Spike Intervals (ISI), the system "nudges" the neural population back onto its stable manifold without the artifacts associated with mean-rate stimulation. This allows for continuous, autonomous stabilization of BCI performance without user-facing recalibration.
+    </p>
+
+    <h2 class="patent-section">BRIEF DESCRIPTION OF THE DRAWINGS</h2>
+    <p>
+        <span class="paragraph-number">[0008]</span> <b>FIG. 1</b> is a high-level architectural block diagram of the Neural Parity-Check Feedback Loop system.
+    </p>
+    <p>
+        <span class="paragraph-number">[0009]</span> <b>FIG. 2</b> is a schematic representation of the Grassmannian subspace tracking and the geodesic distance calculation between the source and observed manifolds.
+    </p>
+    <p>
+        <span class="paragraph-number">[0010]</span> <b>FIG. 3</b> illustrates the topological parity check process, depicting the transition from neural point clouds to persistence diagrams.
+    </p>
+    <p>
+        <span class="paragraph-number">[0011]</span> <b>FIG. 4</b> is a flowchart illustrating the Riemannian optimization loop and stochastic ISI modulation.
+    </p>
+
+    <h2 class="patent-section">DETAILED DESCRIPTION OF THE PREFERRED EMBODIMENTS</h2>
+    <p>
+        <span class="paragraph-number">[0012]</span> Referring to <b>FIG. 1</b>, the system 100 comprises a neural population 102 from which a high-dimensional state vector \(x(t) \in \mathbb{R}^N\) is acquired. This vector is processed by a Grassmannian tracker 104 and a persistent homology module 106. These modules collectively compute a parity divergence metric \(\mathcal{J}\) within an objective function processor 108.
+    </p>
+
+    <pre class="mermaid">
+    graph TD
+        A[Neural Population 102] --> B[Neural Interface/Binning]
+        B --> C[Grassmannian Tracker 104]
+        B --> D[Persistent Homology Module 106]
+        C --> E[Objective Function J 108]
+        D --> E
+        F[Source Tensor U_src 110] --> E
+        E --> G[Riemannian Optimizer 112]
+        G --> H[Stochastic ISI Modulator 114]
+        H --> A
+        B --> I[Stable Decoding Output 116]
+    </pre>
+
+    <p>
+        <span class="paragraph-number">[0013]</span> <b>Grassmannian Subspace Tracking:</b> The Grassmannian tracker 104 receives a sliding window of activity \(Y_t \in \mathbb{R}^{N \times w}\). The system calculates the principal subspace \(U_{obs} \in \mathbb{R}^{N \times k}\) representing the current neural manifold state. The geometric drift is quantified as the geodesic distance \(d_{\mathcal{G}}\) on the Grassmannian manifold \(\mathcal{G}(k, N)\) between the observed subspace \(U_{obs}\) and a pre-calibrated source tensor \(U_{src}\) 110:
+    </p>
+    <div class="equation">
+        \[ d_{\mathcal{G}}(U_{src}, U_{obs}) = \left( \sum_{i=1}^k \arccos^2(\sigma_i) \right)^{1/2} \]
+    </div>
+    <p>
+        where \(\sigma_i\) are the singular values of the projection \(U_{src}^T U_{obs}\).
+    </p>
+
+    <p>
+        <span class="paragraph-number">[0014]</span> <b>Topological Parity:</b> Simultaneously, the persistent homology module 106 analyzes the point cloud \(Y_t\) to identify topological features, such as functional loops (Betti numbers \(\beta_1\)) associated with motor intent. The topological parity error \(\mathcal{L}_{topo}\) is calculated using the p-Wasserstein distance between the observed persistence diagram \(D_{obs}\) and the source diagram \(D_{src}\):
+    </p>
+    <div class="equation">
+        \[ \mathcal{L}_{topo} = W_p(D_{src}, D_{obs}) = \left( \inf_{\gamma} \sum_{x \in D_{src}} ||x - \gamma(x)||^p_{\infty} \right)^{1/p} \]
+    </div>
+
+    <p>
+        <span class="paragraph-number">[0015]</span> <b>Feedback Control:</b> The objective function processor 108 computes the total divergence:
+    </p>
+    <div class="equation">
+        \[ \mathcal{J}(U_{obs}) = \alpha \cdot d_{\mathcal{G}}^2(U_{src}, U_{obs}) + \beta \cdot \mathcal{L}_{topo} \]
+    </div>
+    <p>
+        The Riemannian optimizer 112 then computes the gradient \(\nabla_{\mathcal{M}} \mathcal{J}\) and updates the stimulation parameter vector \(\phi\) (controlling ISI variance) using a retraction mapping \(\text{Retr}\):
+    </p>
+    <div class="equation">
+        \[ \phi_{t+1} = \text{Retr}_{\phi_t} (-\eta \nabla_{\mathcal{M}} \mathcal{J}) \]
+    </div>
+
+    <p>
+        <span class="paragraph-number">[0016]</span> <b>Stochastic ISI Modulation:</b> The stochastic ISI modulator 114 injects variability into the neural stimulation pulse train. Unlike traditional stimulation which modifies mean firing rates, the present invention modifies the variance \(\sigma^2_{ISI}\). This exploits stochastic resonance to allow the neural population 102 to exit local minima caused by drift and re-align with the target manifold surface.
+    </p>
+
+    <h2 class="patent-section">CLAIMS</h2>
+    <div class="claim-list">
+        <div class="claim-item">
+            <span class="claim-number">1.</span> A system for maintaining neural decoding stability in a brain-computer interface (BCI), the system comprising:
+            <ul>
+                <li>a neural interface configured to receive neural signals from a plurality of neurons;</li>
+                <li>a processor in communication with the neural interface;</li>
+                <li>a memory storing instructions that, when executed by the processor, configure the system to:
+                    <ul>
+                        <li>identify an observed neural subspace \(U_{obs}\) within a Grassmannian manifold \(\mathcal{G}(k, N)\) based on the received neural signals;</li>
+                        <li>compute a geometric divergence between the observed neural subspace and a reference source subspace \(U_{src}\);</li>
+                        <li>compute a topological parity error by comparing a persistence diagram of the neural signals to a reference persistence diagram;</li>
+                        <li>calculate a total parity divergence \(\mathcal{J}\) as a function of the geometric divergence and the topological parity error; and</li>
+                        <li>generate a feedback signal to modulate the neural signals based on a Riemannian gradient of the total parity divergence \(\mathcal{J}\).</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="claim-item">
+            <span class="claim-number">2.</span> The system of claim 1, wherein the geometric divergence is calculated as a geodesic distance on the Grassmannian manifold using principal angles between subspaces.
+        </div>
+
+        <div class="claim-item">
+            <span class="claim-number">3.</span> The system of claim 1, wherein the topological parity error is computed using a Wasserstein distance between persistence diagrams derived via Vietoris-Rips filtration of a neural state point cloud.
+        </div>
+
+        <div class="claim-item">
+            <span class="claim-number">4.</span> The system of claim 1, wherein generating the feedback signal comprises modulating a variance of an Inter-Spike Interval (ISI) of a neural stimulation pulse train.
+        </div>
+
+        <div class="claim-item">
+            <span class="claim-number">5.</span> The system of claim 4, wherein the modulation of the ISI variance is performed according to a Riemannian gradient descent update rule: \(\phi_{t+1} = \text{Retr}_{\phi_t} (-\eta \nabla_{\mathcal{M}} \mathcal{J})\).
+        </div>
+
+        <div class="claim-item">
+            <span class="claim-number">6.</span> The system of claim 1, further comprising a decoder configured to map the neural signals to a kinematic variable, wherein the feedback signal maintains the neural signals within a latent manifold associated with the decoder.
+        </div>
+
+        <div class="claim-item">
+            <span class="claim-number">7.</span> A method for stabilizing neural population dynamics, the method comprising:
+            <ul>
+                <li>extracting a low-dimensional manifold from high-dimensional neural spike trains;</li>
+                <li>monitoring a topological parity bit comprising a persistence homology diagram of the spike trains;</li>
+                <li>calculating a divergence between the extracted manifold and a target manifold; and</li>
+                <li>applying stochastic stimulation to the neural population to minimize the divergence via a closed-loop Riemannian optimization.</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
