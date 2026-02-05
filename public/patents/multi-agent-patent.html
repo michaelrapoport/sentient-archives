@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patent Application: Multi-Agent Adversarial Patent Drafting System</title>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            line-height: 1.5;
+            margin: 40px;
+            color: #333;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: justify;
+        }
+        .patent-title {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1.5em;
+            margin-bottom: 50px;
+        }
+        .patent-section {
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-top: 30px;
+            border-bottom: 1px solid #000;
+        }
+        p {
+            margin: 10px 0;
+            text-indent: 40px;
+        }
+        .paragraph-number {
+            font-weight: bold;
+            color: #555;
+            margin-right: 10px;
+        }
+        .mermaid {
+            margin: 30px 0;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+        .claims-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .claims-list li {
+            margin-bottom: 15px;
+            padding-left: 40px;
+            text-indent: -40px;
+        }
+        .math-block {
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="patent-title">System and Method for Multi-Agent Adversarial Patent Drafting and Technical Illustration via Quantum Reward-Weighted Tree Search</h1>
+
+    <h2 class="patent-section">ABSTRACT</h2>
+    <p><span class="paragraph-number">[0001]</span> A system and method for automated patent drafting utilize a multi-agent adversarial architecture to ensure legal defensibility and technical enablement. An architect agent coordinates a sequential adversarial cascade comprising a gauntlet phase, where specialized tribunal agents (auditor, architect, and arbiter) identify and remediate legal flaws across multiple jurisdictional standards. The system implements a quantum solver agent configured to resolve enablement challenges using a reward-weighted tree search (RWTS) with lateral branching. The RWTS calculates a Net Utility Score (NUS) for proposed technical solutions by simulating secondary consequences. A technical drawing swarm utilizes agentic prompt evolution to iteratively refine technical illustrations. The system enables the dynamic identification and generation of divisional patent applications through unity of invention analysis, ensuring a comprehensive and robust patent family.</p>
+
+    <h2 class="patent-section">FIELD OF THE INVENTION</h2>
+    <p><span class="paragraph-number">[0002]</span> The present invention relates generally to artificial intelligence and automated legal drafting. More particularly, the invention relates to a multi-swarm agentic framework for generating high-fidelity patent applications, technical disclosures, and engineering illustrations with integrated adversarial auditing and strategic claim optimization.</p>
+
+    <h2 class="patent-section">BACKGROUND OF THE INVENTION</h2>
+    <p><span class="paragraph-number">[0003]</span> Patent drafting is a highly specialized task requiring the simultaneous satisfaction of technical accuracy, linguistic precision, and statutory requirements such as enablement (35 U.S.C. 112(a)) and non-obviousness (35 U.S.C. 103). Traditional automated systems often fail to provide the recursive refinement necessary to anticipate secondary problems arising from proposed technical solutions or to provide drawings that meet formal standards.</p>
+
+    <h2 class="patent-section">SUMMARY OF THE INVENTION</h2>
+    <p><span class="paragraph-number">[0004]</span> To address these deficiencies, the present invention provides a "Tribunal System" comprising multiple specialized swarms. An initial Gauntlet Phase subjects an invention disclosure to a 66-question audit covering novelty, scope, enablement, and litigation readiness. A Quantum Solver Agent addresses high-complexity enablement gaps using a non-linear search strategy that explores orthodox, contrarian, and lateral technical paths.</p>
+    <p><span class="paragraph-number">[0005]</span> The system comprises a writer swarm for drafting specific sections and a commissioning swarm for auditing the scientific and engineering validity of the draft. These swarms communicate via an emissary to reach consensus. Furthermore, a technical drawing swarm employs agentic prompt evolution, where sub-agents mutate and refine their own instructional prompts based on a scoring mechanism, resulting in precise technical illustrations in a declarative layout language.</p>
+
+    <h2 class="patent-section">BRIEF DESCRIPTION OF THE DRAWINGS</h2>
+    <p><span class="paragraph-number">[0006]</span> <b>FIG. 1</b> is a high-level block diagram of the multi-agent orchestration architecture [100].</p>
+    <p><span class="paragraph-number">[0007]</span> <b>FIG. 2</b> is a flowchart illustrating the Sequential Adversarial Cascade (Gauntlet Phase) [200].</p>
+    <p><span class="paragraph-number">[0008]</span> <b>FIG. 3</b> is a schematic representation of the Quantum Solver’s Reward-Weighted Tree Search [300].</p>
+    <p><span class="paragraph-number">[0009]</span> <b>FIG. 4</b> is a sequence diagram of the Emissary-based inter-swarm communication protocol [400].</p>
+
+    <pre class="mermaid">
+    graph TD
+        A[User Input] --> B[Architect Coordinator 102]
+        B --> C[Gauntlet Phase 104]
+        C --> D{Unity of Invention Check 106}
+        D -- "Split" --> E[Divisional Jobs 108]
+        D -- "Proceed" --> F[Writer Swarm 110]
+        F <--> G[Commissioning Swarm 112]
+        G -- "Enablement Gap" --> H[Quantum Solver Agent 114]
+        H --> F
+        F --> I[TechDraw Evolutionary Swarm 116]
+        I --> J[Final Patent/Family 118]
+    </pre>
+
+    <h2 class="patent-section">DETAILED DESCRIPTION OF THE PREFERRED EMBODIMENTS</h2>
+    <p><span class="paragraph-number">[0010]</span> Referring to <b>FIG. 1</b>, the system [100] is initialized via an Architect Coordinator [102], which manages the lifecycle of a patent drafting job. The system treats a patent as a living document, utilizing a patching architecture where agents update specific sections of the document state without requiring total regeneration.</p>
+
+    <p><span class="paragraph-number">[0011]</span> <b>The Gauntlet Phase:</b> As shown in <b>FIG. 2</b>, the Gauntlet [104] utilizes a three-role "Tribunal System." An Auditor (Red Team) identifies flaws; an Architect (Blue Team) proposes amendments; and an Arbiter (Judge) verifies the fix. The Gauntlet is structured as a sequential cascade:
+        <ul>
+            <li>Phase 1: Foundation Check (Abstract Ideas/Enablement).</li>
+            <li>Phase 2: Scope & Definition (Claim Construction/Antecedent Basis).</li>
+            <li>Phase 3: Art & Argument (Novelty/Non-obviousness).</li>
+            <li>Phase 4: Value Multiplier (Commercial Strategy/Royalty Base).</li>
+            <li>Phase 5: Global Polish (Syntax/Standard Units).</li>
+        </ul>
+    </p>
+
+    <p><span class="paragraph-number">[0012]</span> <b>The Quantum Solver:</b> Central to resolving enablement rejections is the Quantum Solver Agent [114]. Referring to <b>FIG. 3</b>, the solver implements a Reward-Weighted Tree Search (RWTS) to explore the technical solution space. Unlike linear solvers, the RWTS generates a plurality of branching paths: (i) orthodox branches following standard technical paradigms, (ii) contrarian branches challenging existing assumptions, and (iii) lateral branches introducing cross-domain analogies.</p>
+
+    <p><span class="paragraph-number">[0013]</span> Each branch in the RWTS is assigned a Net Utility Score (NUS). The NUS is calculated via the following mathematical relationship:</p>
+    <div class="math-block">
+        \[ NUS = \sum_{i=1}^{n} (W_i \cdot R_i) - (C_p + C_s) \]
+    </div>
+    <p><span class="paragraph-number">[0014]</span> Where \( W_i \) represents the strategy weight (orthodox, contrarian, or lateral), \( R_i \) is the reward value for technical enablement, \( C_p \) is the primary complexity cost, and \( C_s \) is a secondary problem penalty coefficient. In an alternative embodiment, the NUS incorporates anticipated risk:</p>
+    <div class="math-block">
+        \[ NUS = \sum_{i=1}^{n} (W_i \cdot U_i) - \sum_{j=1}^{m} (P_j \cdot C_j) \]
+    </div>
+    <p><span class="paragraph-number">[0015]</span> Where \( U \) represents primary utility and \( C \) represents the cost of secondary problems arising from said solution, weighted by the probability \( P \) of occurrence. This allows the system to select the technical path that maximizes enablement while minimizing downstream litigation risk or technical failure.</p>
+
+    <p><span class="paragraph-number">[0016]</span> <b>TechDraw Evolutionary Swarm:</b> The Technical Illustration swarm [116] utilizes a genetic algorithm to evolve generative prompts. In Generation 0, a strategist agent creates three distinct Meta-Prompts. These are executed to generate Technical Drawing Language (TDL) code. A Critic agent evaluates the TDL output for node integrity and spatial layout. The lowest-performing prompts are pruned, while the highest-performing prompts are mutated to create the next generation of instructions, leading to a "perfected" drawing strategy.</p>
+
+    <pre class="mermaid">
+    sequenceDiagram
+        participant W as Writer Swarm
+        participant E as Emissary
+        participant C as Commissioning Swarm
+        participant Q as Quantum Solver
+        
+        W->>E: Draft Section Update
+        E->>C: Review Request
+        C->>E: Critical Flaw Identified (Science/Logic)
+        E->>Q: Resolution Request
+        Note over Q: Execute RWTS (Orthodox/Lateral)
+        Q->>E: Proposed Technical Patch (Max NUS)
+        E->>W: Instruction to Integrate Patch
+    </pre>
+
+    <p><span class="paragraph-number">[0017]</span> <b>Unity of Invention and Family Management:</b> The Architect Agent [102] is configured to perform a "Unity of Invention" audit. If the Gauntlet determines that the disclosure contains multiple independent inventions, a SPLIT flag is triggered. The system then initiates a Prior Art Viability Check using external search tools. If the separate inventions are deemed viable, the parent job is fractally decomposed into a Patent Family, where each divisional application is treated as a first-class job in the queue, ensuring equal rigor across all family members.</p>
+
+    <h2 class="patent-section">CLAIMS</h2>
+    <div class="claims-list">
+        <ol>
+            <li>
+                <p>A system for multi-agent adversarial patent drafting, comprising:
+                <br>a memory configured to store a document state representing a patent application;
+                <br>one or more processors configured to execute:
+                <br>&nbsp;&nbsp;an architect agent configured to coordinate a plurality of specialized agent swarms;
+                <br>&nbsp;&nbsp;a gauntlet module configured to execute a sequential adversarial cascade comprising an auditor agent, an architect agent, and an arbiter agent to identify and remediate legal and technical flaws in the document state;
+                <br>&nbsp;&nbsp;a writer swarm configured to generate text for a plurality of patent sections;
+                <br>&nbsp;&nbsp;a commissioning swarm configured to audit the technical and scientific validity of the text generated by the writer swarm; and
+                <br>&nbsp;&nbsp;a quantum solver agent configured to resolve enablement gaps identified by the commissioning swarm using a reward-weighted tree search.</p>
+            </li>
+            <li>
+                <p>The system of claim 1, wherein the quantum solver agent is configured to calculate a Net Utility Score (NUS) for a plurality of technical branching strategies according to the formula:
+                \[ NUS = \sum_{i=1}^{n} (W_i \cdot U_i) - \sum_{j=1}^{m} (P_j \cdot C_j) \]
+                wherein \( W \) represents a strategy weight, \( U \) represents primary utility, \( P \) represents the probability of a secondary problem, and \( C \) represents the cost of said secondary problem.</p>
+            </li>
+            <li>
+                <p>The system of claim 2, wherein the technical branching strategies comprise orthodox branches, contrarian branches, and lateral branches, the lateral branches being configured to introduce cross-domain technical analogies to satisfy enablement requirements.</p>
+            </li>
+            <li>
+                <p>The system of claim 1, further comprising a technical drawing swarm configured to generate technical illustrations using agentic prompt evolution, wherein the technical drawing swarm:
+                <br>&nbsp;&nbsp;generates a plurality of candidate meta-prompts;
+                <br>&nbsp;&nbsp;executes the meta-prompts to produce technical drawing language (TDL) code;
+                <br>&nbsp;&nbsp;scores the TDL code via a critic agent; and
+                <br>&nbsp;&nbsp;mutates the highest-scoring meta-prompts to generate subsequent generations of technical illustrations.</p>
+            </li>
+            <li>
+                <p>The system of claim 1, wherein the architect agent is further configured to perform a unity of invention analysis to detect distinct inventions within the document state and, upon detection, initiate a split operation to generate a plurality of independent divisional patent jobs in a unified patent family.</p>
+            </li>
+            <li>
+                <p>The system of claim 5, wherein the split operation is contingent upon a prior art viability check executed via an external search tool to ensure the synergistic combination of elements is not more patentable than the distinct inventions separately.</p>
+            </li>
+            <li>
+                <p>The system of claim 1, wherein the gauntlet module executes 66 standardized audit questions across ten phases including Foundation Check, Claim Scope, Technical Enablement, and Litigation Readiness.</p>
+            </li>
+        </ol>
+    </div>
+
+</body>
+</html>
