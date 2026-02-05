@@ -1,13 +1,66 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import NeuralBackground from './components/NeuralBackground';
 import ProjectCard from './components/ProjectCard';
 import ProjectModal from './components/ProjectModal';
 import { PROJECTS } from './constants';
 import { Project } from './types';
-import { Terminal, Cpu, Radio, Github, Twitter } from 'lucide-react';
+import { Terminal, Cpu, Radio, Github, Twitter, ArrowLeft } from 'lucide-react';
+
+const PatentView: React.FC<{ projectId: string, onBack: () => void }> = ({ projectId, onBack }) => {
+  const project = PROJECTS.find(p => p.id === projectId);
+  
+  if (!project) return <div>Project not found</div>;
+
+  return (
+    <div className="relative min-h-screen bg-slate-950 text-white">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur border-b border-slate-800 p-4 flex items-center justify-between">
+        <button 
+          onClick={onBack}
+          className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors font-mono text-sm"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          BACK_TO_ARCHIVE
+        </button>
+        <div className="flex items-center gap-4">
+          <h2 className="text-cyan-400 font-mono text-sm hidden sm:block">
+            {project.title.toUpperCase()} // SPEC_V1.0
+          </h2>
+          <div className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/20 rounded text-cyan-500 text-xs font-mono">
+            CLASSIFIED
+          </div>
+        </div>
+      </div>
+      
+      <div className="pt-20 h-screen w-full">
+        <iframe 
+          src={`/sentient-archives/patents/${projectId}.html`} 
+          className="w-full h-full border-none bg-white"
+          title={project.title}
+        />
+      </div>
+    </div>
+  );
+};
 
 const App: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [currentHash, setCurrentHash] = useState(window.location.hash);
+
+  useEffect(() => {
+    const handleHashChange = () => setCurrentHash(window.location.hash);
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const navigateTo = (hash: string) => {
+    window.location.hash = hash;
+  };
+
+  if (currentHash.startsWith('#/patent/')) {
+    const projectId = currentHash.replace('#/patent/', '');
+    return <PatentView projectId={projectId} onBack={() => navigateTo('')} />;
+  }
 
   return (
     <div className="relative min-h-screen selection:bg-cyan-500/30">
@@ -36,7 +89,7 @@ const App: React.FC = () => {
           </div>
 
           <div className="flex gap-4">
-             <a href="#" className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm font-mono">
+             <a href="https://github.com/michaelrapoport/sentient-archives" className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm font-mono">
                <Github className="w-4 h-4" />
                GitHub
              </a>
@@ -64,7 +117,7 @@ const App: React.FC = () => {
              </div>
              <div className="flex items-center gap-2">
                <Cpu className="w-4 h-4" />
-               8 Models Loaded
+               {PROJECTS.length} Models Loaded
              </div>
              <div className="flex items-center gap-2">
                <Radio className="w-4 h-4" />
@@ -98,6 +151,7 @@ const App: React.FC = () => {
       <ProjectModal 
         project={selectedProject} 
         onClose={() => setSelectedProject(null)} 
+        onViewPatent={(id) => navigateTo(`#/patent/${id}`)}
       />
     </div>
   );
