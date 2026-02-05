@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>US Patent Application - MS-SANM</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+            text-align: justify;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .paragraph {
+            margin-bottom: 10px;
+        }
+        .figure {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .figure img {
+            max-width: 80%;
+            height: auto;
+        }
+        .mermaid {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+<h1>MULTI-SPECTRAL STRUCTURAL-ACOUSTIC & NEUTRONIC MAPPING SYSTEM (MS-SANM)</h1>
+
+<div class="paragraph">[0001] <b>Inventor:</b> Michael K Rapoport</div>
+<div class="paragraph">[0002] <b>Assignee:</b> Polaritronics, Inc.</div>
+
+<h2>BACKGROUND</h2>
+
+<div class="paragraph">[0003] Many industrial processes, such as those found in power generation (e.g., coal-fired boilers, nuclear reactors), chemical processing, and materials manufacturing, rely on high-temperature vessels containing complex fluid dynamics. Monitoring the internal conditions of these vessels is critical for optimizing performance, ensuring safety, and preventing catastrophic failures. Traditional methods for monitoring these conditions often involve intrusive sensors that require physical penetrations into the vessel wall. These penetrations can weaken the vessel, are prone to failure in harsh environments, and only provide localized measurements. Therefore, there is a need for a non-intrusive diagnostic system that can provide a comprehensive, real-time understanding of the internal dynamics of high-temperature vessels.</div>
+
+<h2>SUMMARY</h2>
+
+<div class="paragraph">[0004] This invention provides a Multi-Spectral Structural-Acoustic & Neutronic Mapping System (MS-SANM) for non-intrusively mapping the internal dynamics of high-temperature vessels. The system combines high-energy Fast Neutron Radiography (FNR) with Structural-Acoustic Wave Decomposition to map internal fluid density gradients, velocity, and thermal distribution. External pulsed neutron generators and arrays of high-sensitivity scintillators map water/steam density gradients and velocity through the vessel's casing. Simultaneously, high-temperature piezoelectric transducers, dry-coupled to the exterior wall, perform 'Trans-Wall Acoustic Pyrometry' by analyzing the time-of-flight and frequency shift of ultrasonic waves as they refract through high-temperature internal fluids. A processing unit then solves an inverse heat-transfer and kinetic problem using this multi-modal data, providing a real-time, three-dimensional cross-sectional profile of both thermal distribution and fluid velocity without requiring any physical penetrations or internal sensors.</div>
+
+<h2>BRIEF DESCRIPTION OF DRAWINGS</h2>
+
+<div class="paragraph">[0005] FIG. 1 illustrates a system architecture diagram of the MS-SANM system.</div>
+<div class="paragraph">[0006] FIG. 2 illustrates a functional flowchart of the MS-SANM system.</div>
+<div class="paragraph">[0007] FIG. 3 illustrates a component schematic of the neutronic and acoustic mapping subsystems.</div>
+<div class="paragraph">[0008] FIG. 4 illustrates a performance/data plot showing the correlation between neutron attenuation, acoustic signal time-of-flight, and internal temperature.</div>
+<div class="paragraph">[0009] FIG. 5 illustrates a three-dimensional wireframe model representing a fluid velocity profile within the vessel.</div>
+<div class="paragraph">[0010] FIG. 6 illustrates an exploded assembly view of the high-temperature piezoelectric transducer.</div>
+
+<h2>DETAILED DESCRIPTION</h2>
+
+<div class="paragraph">[0011] Referring to FIG. 1, the Multi-Spectral Structural-Acoustic & Neutronic Mapping System (MS-SANM) comprises a Neutronic Mapping Subsystem [100], an Acoustic Mapping Subsystem [200], and a Processing Unit [300]. The Neutronic Mapping Subsystem [100] includes a pulsed neutron generator [101] that emits high-energy fast neutrons [102] towards a high-temperature vessel [400]. An array of scintillators [103] is positioned on the opposite side of the vessel [400] to detect neutrons that have passed through the vessel wall [401] and internal fluid [402]. The Acoustic Mapping Subsystem [200] includes a plurality of high-temperature piezoelectric transducers [201] dry-coupled to the exterior surface [401] of the vessel [400]. These transducers [201] emit and receive ultrasonic waves [202] that propagate through the vessel wall [401] and internal fluid [402]. The Processing Unit [300] receives data from both the Neutronic Mapping Subsystem [100] and the Acoustic Mapping Subsystem [200] and performs a multi-modal analysis to generate a real-time three-dimensional profile of the internal fluid [402].</div>
+
+<div class="figure">
+    <pre class="mermaid">
+    graph LR
+    A[Pulsed Neutron Generator] --> B(High-Temperature Vessel);
+    C[High-Temperature Transducers] --> B;
+    B --> D[Scintillator Array];
+    B --> E[Processing Unit];
+    D --> E;
+    </pre>
+</div>
+
+<div class="paragraph">[0012] Referring to FIG. 2, the functional flowchart illustrates the operational sequence of the MS-SANM system. The system begins with Neutron Emission [501] from the pulsed neutron generator [101]. These neutrons propagate through the Vessel [502], experiencing attenuation and scattering based on the density and composition of the vessel wall [401] and internal fluid [402]. The Scintillator Array [103] detects the Neutrons [503] and generates corresponding signals. Simultaneously, the High-Temperature Transducers [201] emit Acoustic Waves [504] into the vessel wall [401]. These acoustic waves propagate through the Vessel [505], refracting and shifting in frequency based on the temperature and velocity of the internal fluid [402]. The Transducers [201] receive the Refracted Acoustic Waves [506]. The Processing Unit [300] then performs Neutronic Data Analysis [507] and Acoustic Data Analysis [508]. Finally, the Processing Unit [300] performs Multi-Modal Fusion & Inverse Problem Solving [509] to generate a 3D Profile [510] of the internal fluid dynamics.</div>
+
+<div class="figure">
+    <pre class="mermaid">
+    graph LR
+    A[Neutron Emission] --> B(Vessel);
+    C[Acoustic Waves] --> B;
+    B --> D[Neutron Detection];
+    B --> E[Refracted Acoustic Waves];
+    D --> F[Neutronic Data Analysis];
+    E --> G[Acoustic Data Analysis];
+    F & G --> H[Multi-Modal Fusion & Inverse Problem Solving];
+    H --> I(3D Profile);
+    </pre>
+</div>
+
+<div class="paragraph">[0013] Referring to FIG. 3, the component schematic details the Neutronic Mapping Subsystem [100] and the Acoustic Mapping Subsystem [200]. The Pulsed Neutron Generator [101] is controlled by a Pulse Control Unit [104] and emits high-energy neutrons [102]. The Scintillator Array [103] consists of multiple individual scintillators [105], each connected to a Photomultiplier Tube (PMT) [106] for signal amplification. The PMT signals are then processed by a Data Acquisition System (DAQ) [107]. The High-Temperature Transducers [201] each contain a Piezoelectric Element [203] bonded to a High-Temperature Couplant [204] for efficient acoustic coupling to the vessel wall [401]. The transducers [201] are driven by a Signal Generator [205] and the received signals are amplified by a Low-Noise Amplifier (LNA) [206] before being processed by the Acoustic DAQ [207]. Both DAQs [107, 207] transmit data to the Processing Unit [300].</div>
+
+<div class="figure">
+    <pre class="mermaid">
+    graph LR
+    subgraph Neutronic Mapping Subsystem
+    A[Pulsed Neutron Generator] --> B(Neutrons);
+    A --> C[Pulse Control Unit];
+    B --> D[Vessel];
+    D --> E[Scintillator];
+    E --> F[Photomultiplier Tube];
+    F --> G[Neutronic DAQ];
+    end
+
+    subgraph Acoustic Mapping Subsystem
+    H[Signal Generator] --> I(High-Temperature Transducer);
+    I --> D;
+    I --> J[Piezoelectric Element];
+    I --> K[High-Temperature Couplant];
+    D --> L[LNA];
+    L --> M[Acoustic DAQ];
+    end
+    G --> N[Processing Unit];
+    M --> N;
+    </pre>
+</div>
+
+<div class="paragraph">[0014] The high-temperature piezoelectric transducers [201] are critical to the system's operation. These transducers are specifically designed to operate at high temperatures (up to 400 degrees Celsius on the exterior wall) while the internal flue gas reaches temperatures up to 1800 degrees Celsius. The piezoelectric element [203] is typically a lithium niobate or bismuth titanate crystal, selected for its high Curie temperature and stability at elevated temperatures. The high-temperature couplant [204] is a specialized ceramic adhesive that maintains acoustic coupling between the transducer [201] and the vessel wall [401] even under extreme thermal cycling. The acoustic waves [202] emitted by the transducers [201] are typically in the ultrasonic range (1 MHz to 10 MHz) to minimize attenuation in the steel vessel wall [401].</div>
+
+<div class="paragraph">[0015] The pulsed neutron generator [101] produces high-energy fast neutrons [102] with energies in the MeV range. These neutrons are highly penetrating and can pass through the thick steel walls [401] of the vessel [400] with minimal attenuation. The scintillators [105] are typically made of a plastic or crystal material that emits photons when struck by a neutron. The photomultiplier tubes [106] amplify these photons to produce a detectable electrical signal. By analyzing the spatial distribution and energy spectrum of the detected neutrons, the system can reconstruct a three-dimensional map of the water/steam density gradients within the vessel [400].</div>
+
+<div class="paragraph">[0016] The Processing Unit [300] is a high-performance computer that runs sophisticated algorithms to analyze the data from the neutronic and acoustic mapping subsystems. These algorithms include signal processing techniques for noise reduction, time-of-flight calculations for acoustic pyrometry, and tomographic reconstruction methods for generating the three-dimensional density and velocity profiles. The Processing Unit [300] also solves an inverse heat-transfer and kinetic problem, which reconciles the neutronic and acoustic data to produce a consistent and accurate representation of the internal fluid dynamics. This inverse problem is solved using iterative optimization techniques, with the neutronic and acoustic data serving as constraints on the solution.</div>
+
+<div class="figure">
+    <canvas id="performanceChart" width="400" height="200"></canvas>
+    <script>
+        const ctx = document.getElementById('performanceChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['0', '200', '400', '600', '800', '1000'],
+                datasets: [{
+                    label: 'Neutron Attenuation',
+                    data: [65, 59, 80, 81, 56, 55],
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }, {
+                    label: 'Acoustic Time-of-Flight',
+                    data: [28, 48, 40, 19, 86, 27],
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }, {
+                    label: 'Internal Temperature',
+                    data: [100, 300, 500, 700, 900, 1100],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Correlation Between Neutron Attenuation, Acoustic Time-of-Flight, and Internal Temperature'
+                    }
+                }
+            }
+        });
+    </script>
+</div>
+
+<div class="figure">
+    <pre class="mermaid">
+    gantt
+        dateFormat  YYYY-MM-DD
+        title Fluid Velocity Profile
+
+        section Velocity
+        High            :active, 2024-01-01, 30d
+        Medium          :2024-01-01, 20d
+        Low             :2024-01-01, 12d
+    </pre>
+</div>
+
+<div class="figure">
+    <pre class="mermaid">
+    graph LR
+    A[Piezoelectric Element] --> B(Bonding Layer);
+    B --> C(Wear Plate);
+    C --> D(Housing);
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#ccf,stroke:#333,stroke-width:2px
+    style C fill:#ccf,stroke:#333,stroke-width:2px
+    style D fill:#ccf,stroke:#333,stroke-width:2px
+    </pre>
+</div>
+
+<h2>CLAIMS</h2>
+
+<div class="paragraph">[0017] <b>Claim 1.</b> A non-intrusive diagnostic system for mapping internal dynamics of a high-temperature vessel, comprising:
+    a neutronic mapping subsystem positioned external to the vessel, including at least one pulsed neutron generator and an array of scintillators configured to detect neutron attenuation and scattering through the vessel wall and an internal fluid;
+    an acoustic mapping subsystem positioned external to the vessel, including a plurality of high-temperature transducers dry-coupled to an exterior surface of the vessel; and
+    a processing unit configured to perform a multi-modal analysis by combining neutronic data from the neutronic mapping subsystem with acoustic data from the acoustic mapping subsystem to generate a real-time three-dimensional profile of at least one of internal fluid velocity, density, and thermal distribution.</div>
+
+<div class="paragraph">[0018] <b>Claim 2.</b> The system of claim 1, wherein the acoustic mapping subsystem is configured to perform trans-wall acoustic pyrometry by analyzing time-of-flight and frequency shift of ultrasonic waves refracted through high-temperature flue gas and steam-water mixtures within the vessel.</div>
+
+<div class="paragraph">[0019] <b>Claim 3.</b> The system of claim 1, wherein the neutronic mapping subsystem utilizes high-energy fast neutron radiography (FNR) to resolve spatial density gradients of the internal fluid based on the detected neutron attenuation.</div>
+
+<div class="paragraph">[0020] <b>Claim 4.</b> The system of claim 1, wherein the processing unit is configured to solve an inverse heat-transfer and kinetic problem using the multi-modal analysis to reconcile the three-dimensional profile without requiring internal sensors within the vessel.</div>
+
+<div class="paragraph">[0021] <b>Claim 5.</b> The system of claim 1, wherein the plurality of high-temperature transducers are piezoelectric transducers configured to operate on an exterior wall of the vessel at temperatures reaching at least 400 degrees Celsius while the internal flue gas reaches temperatures up to 1800 degrees Celsius.</div>
+
+<div class="paragraph">[0022] <b>Claim 6.</b> The system of claim 5, wherein the piezoelectric transducers comprise a lithium niobate or bismuth titanate crystal.</div>
+
+<div class="paragraph">[0023] <b>Claim 7.</b> The system of claim 5, wherein the piezoelectric transducers are coupled to the exterior wall of the vessel with a ceramic adhesive couplant.</div>
+
+<div class="paragraph">[0024] <b>Claim 8.</b> The system of claim 1, wherein the pulsed neutron generator produces neutrons with energies in the MeV range.</div>
+
+<div class="paragraph">[0025] <b>Claim 9.</b> The system of claim 1, wherein the scintillator array comprises scintillators made of plastic or crystal material.</div>
+
+<h2>ABSTRACT</h2>
+
+<div class="paragraph">[0026] A system for Multi-Spectral Structural-Acoustic & Neutronic Mapping (MS-SANM) provides a non-intrusive diagnostic platform that combines high-energy Fast Neutron Radiography (FNR) with Structural-Acoustic Wave Decomposition to map internal vessel dynamics. The system uses external pulsed neutron generators and high-sensitivity scintillators to map fluid density gradients and velocity. Simultaneously, high-temperature piezoelectric transducers, dry-coupled to the exterior wall, perform Trans-Wall Acoustic Pyrometry. The system solves an inverse heat-transfer and kinetic problem to provide a real-time, 3D cross-sectional profile of thermal distribution and fluid velocity without requiring any internal sensors.</div>
+
+</body>
+</html>
