@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Scale Physics-Informed Predictive Control</title>
+    <!-- MathJax for LaTeX Rendering -->
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\(', '\)']] },
+        svg: { fontCache: 'global' }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @page {
+            size: Letter;
+            margin: 1in;
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 2; /* USPTO requires double spacing (or 1.5 min) */
+            color: #000;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 40px;
+            text-align: justify;
+            background-color: white;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 12pt;
+            margin-top: 24pt;
+            margin-bottom: 12pt;
+        }
+        h1 { font-size: 14pt; border-bottom: 1px solid #000; padding-bottom: 10px; }
+        p { margin-bottom: 12pt; text-indent: 0; }
+        
+        /* Paragraph Numbering [0001] */
+        .para-num {
+            float: left;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Claims Formatting */
+        .claims-section {
+            margin-top: 40px;
+            page-break-before: always;
+        }
+        ol.claims-list {
+            list-style-type: none;
+            counter-reset: claim-counter;
+            padding-left: 0;
+        }
+        ol.claims-list > li {
+            counter-increment: claim-counter;
+            margin-bottom: 20px;
+            text-indent: -2em; /* Hanging indent for claim number */
+            padding-left: 2em;
+        }
+        ol.claims-list > li::before {
+            content: counter(claim-counter) ". ";
+            font-weight: bold;
+        }
+
+        /* Figures */
+        .figure-container {
+            text-align: center;
+            margin: 40px 0;
+            page-break-inside: avoid;
+        }
+        .figure-caption {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Abstract */
+        .abstract-section {
+            page-break-before: always;
+        }
+
+        @media screen {
+            body { box-shadow: 0 0 20px rgba(0,0,0,0.1); margin-top: 40px; margin-bottom: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Multi-Scale Physics-Informed Predictive Control</h1><h2>Abstract</h2><p>A hierarchical predictive control framework combining the strengths of physics-informed latent space models and differentiable PDE solvers for complex systems. The framework utilizes a higher-level control policy, informed by a Φ-DVAE representing macro-scale system dynamics, to set overall objectives while a lower-level differentiable PDE solver performs real-time optimization of actuator parameters to achieve local control objectives while adhering to global guidance, allowing for robust control across disparate spatio-temporal scales.</p><h2>Background</h2><p>Managing complex physical processes often involves navigating disparate spatio-temporal scales where macro-scale objectives must be translated into micro-scale actuator adjustments. Traditional control methods often struggle to maintain stability while optimizing local parameters in systems governed by complex partial differential equations (PDEs). There is a need for a multi-scale approach that integrates physics-informed latent representations with high-fidelity differentiable solvers.</p><h2>Summary</h2><p>This invention provides a hierarchical control system comprising a higher-level module for macro-scale latent space trajectory planning and a lower-level module for fine-grained actuator optimization using a differentiable PDE solver. By utilizing a Φ-DVAE for the latent space and incorporating a latent space conformity regularizer, the system ensures that fine-grained optimizations remain physically plausible and aligned with the learned manifold geometry of the system dynamics.</p><h2>Detailed Description</h2><p>The hierarchical predictive control framework combines physics-informed latent spaces and differentiable PDE solvers for complex systems. A higher-level control policy, informed by a Φ-DVAE representing macro-scale system dynamics, sets overall objectives and coarse parameters. A lower-level differentiable PDE solver then performs fine-grained, real-time optimization of wave-based actuator parameters to achieve local control objectives, while adhering to the global guidance provided by the higher-level module.</p><p>The system operates by having the higher-level control module generate a target dynamical path within a latent space. The lower-level control module determines a set of actuator parameters by optimizing a composite objective function. This optimization includes simulating a future physical process state using a differentiable PDE solver, projecting that state into the latent space via an encoder, and updating candidate parameters to minimize divergence from the target path. A key feature is the latent space conformity regularizer, computed from the Jacobian of the encoder, which penalizes trajectories that deviate from the learned manifold geometry. This feedback is used by the higher-level module to adaptively refine the target path, avoiding regions of high cost or instability.</p><h2>Claims</h2><p>1. A hierarchical control system for a physical process, the system comprising: a higher-level control module comprising a physics-informed latent space model having an encoder, the higher-level control module configured to generate a target dynamical path within a latent space; and a lower-level control module communicatively coupled to the higher-level control module, the lower-level control module configured to determine a set of actuator parameters by optimizing a composite objective function, wherein the optimization comprises: simulating, using a differentiable partial differential equation (PDE) solver, a future physical process state resulting from candidate actuator parameters; projecting, using the encoder, the simulated future physical process state into a predicted latent state; and updating the candidate actuator parameters to minimize the composite objective function, the composite objective function comprising: (a) a divergence term representing a distance between the predicted latent state and the target dynamical path; and (b) a latent space conformity regularizer, computed from a Jacobian of the encoder at the simulated future physical process state, that penalizes actuator parameters that induce a physical state trajectory misaligned with a learned manifold geometry of the latent space; wherein the higher-level control module is further configured to adaptively refine the target dynamical path based on feedback from the lower-level control module, said feedback comprising at least the values of the latent space conformity regularizer from the optimization, thereby rerouting the target dynamical path to avoid regions corresponding to high control cost or physical instability as indicated by said regularizer.</p><p>2. The system of claim 1, wherein the encoder is a spatio-temporal graph transformer encoder configured to operate on a dynamic mesh representation of the physical process state, using graph convolutional layers to capture local physical interactions and transformer attention mechanisms to capture non-local dependencies, thereby creating a latent space wherein distance and direction correspond to physically meaningful state transitions.</p><p>3. The system of claim 1, wherein the latent space conformity regularizer is calculated by projecting a gradient of the physical process state, as determined by the differentiable PDE solver, onto singular vectors of the Jacobian of the encoder, thereby prioritizing actuator solutions that induce physical state transitions along directions of low sensitivity in the encoder's mapping.</p><p>4. The system of claim 1, wherein the adaptive refinement of the target dynamical path comprises the higher-level control module performing a gradient-based optimization on future waypoints of the path, using gradients derived from the lower-level module's composite objective function to modify the path to minimize anticipated actuator effort and maximize trajectory feasibility.</p><p>5. The system of claim 1, wherein the physical process is a plasma heating process, wherein the latent space model is trained to represent distinct plasma resonant modes and undesirable instability modes as separated manifolds within the latent space, and wherein the adaptive refinement of the target dynamical path is configured to dynamically navigate a trajectory between resonant mode manifolds while actively avoiding trajectories that approach the instability mode manifolds based on feedback from the latent space conformity regularizer.</p>
+</body>
+</html>
